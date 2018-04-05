@@ -2,9 +2,7 @@ package com.sw.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DBConnection 
 {
@@ -19,7 +17,7 @@ public class DBConnection
 		{
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("MySQL JDBC Driver Registered!");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/testDatabase",dbUser,dbPassword);
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/swp_system?autoReconnect=true&useSSL=false",dbUser,dbPassword);
 			
 		}
 		catch(ClassNotFoundException cnfe)

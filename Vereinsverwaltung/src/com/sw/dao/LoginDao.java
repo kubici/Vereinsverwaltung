@@ -17,7 +17,7 @@ public class LoginDao
 		{
 			try
 			{
-				String sql = "Select * from login where uname like '%" + userToCheck.getUname() + "%' and pass like '%"+ userToCheck.getPassword() + "%'";
+				String sql = "Select * from roles where username like '%" + userToCheck.getUname() + "%' and pwd like '%"+ userToCheck.getPassword() + "%'";
 				Statement statement = connection.createStatement();
 				ResultSet set = statement.executeQuery(sql);
 				if(set.first() == true)

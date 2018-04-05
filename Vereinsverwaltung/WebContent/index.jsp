@@ -10,8 +10,8 @@
 
 <section id ="Login">
 		<form action="${pageContext.request.contextPath}/Login" method="post">
-			Enter username: <input type="text" name="uname"><br>
-			Enter password: <input type="password" name="pass"><br>
+			Enter username: <input type="text" name="username"><br>
+			Enter password: <input type="password" name="pwd"><br>
 			<input type="submit" value="login">
 		</form>
 </section>

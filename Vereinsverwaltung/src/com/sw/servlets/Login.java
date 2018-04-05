@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sw.beans.User;
-import com.sw.dao.DBConnection;
 import com.sw.dao.LoginDao;
 
 @WebServlet("/Login")
@@ -17,11 +16,10 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String uname = request.getParameter("uname");
-		String password = request.getParameter("pass");
+		String uname = request.getParameter("username");
+		String password = request.getParameter("pwd");
 		
 		User userToCheck = new User();
 		userToCheck.setPassword(password);
@@ -35,23 +33,13 @@ public class Login extends HttpServlet {
 		{
 			HttpSession session = request.getSession();
 			session.setAttribute("username", uname);
-			response.sendRedirect("./html/home.jsp");
+			response.sendRedirect("./home.jsp");
 		}
 		else
 		{
-			response.sendRedirect("./html/login.jsp");
-			//http://localhost:8080/sw-praktikum-2%C3%9F18/html/login.jsp
+			System.out.println("Wrong username or password!");
+			response.sendRedirect("./index.jsp");
 		}
 	}
-
-
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
-	}
-	
-	
 
 }
