@@ -8,7 +8,6 @@ import com.sw.beans.User;
 
 public class LoginDao 
 {
-	// Test Method
 	public boolean checkUser(User userToCheck)
 	{
 		Connection connection = DBConnection.getConnectionToDatabase();
@@ -20,7 +19,8 @@ public class LoginDao
 				String sql = "Select * from roles where username like '%" + userToCheck.getUname() + "%' and pwd like '%"+ userToCheck.getPassword() + "%'";
 				Statement statement = connection.createStatement();
 				ResultSet set = statement.executeQuery(sql);
-				if(set.first() == true)
+				// Check if Username or Password is empty and if there is an existing entry
+				if(set.first() == true && (!userToCheck.getUname().isEmpty()) && (!userToCheck.getPassword().isEmpty()))
 				{
 					return true;
 				}
