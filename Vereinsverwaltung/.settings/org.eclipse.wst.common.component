@@ -2,6 +2,7 @@
     <wb-module deploy-name="Vereinsverwaltung">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/testsrc"/>
         <property name="context-root" value="Vereinsverwaltung"/>
         <property name="java-output-path" value="/Vereinsverwaltung/build/classes"/>
     </wb-module>
