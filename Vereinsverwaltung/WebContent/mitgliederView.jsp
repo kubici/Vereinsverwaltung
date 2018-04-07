@@ -4,14 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Homepage of your Website</title>
+<title>Insert title here</title>
 </head>
 <body>
-		<p>This is the Testoverview</p>
-		
-		<form action="${pageContext.request.contextPath}/MitgliederServlet" method="post">
-			<input type="submit" value="Mitglieder">
-		
-		</form>
+		<!--  Formular needed -->
+		<!--  Button: Plus, (Minus) -->
+		<!--  table View in html with placeholder -->
 </body>
 </html>

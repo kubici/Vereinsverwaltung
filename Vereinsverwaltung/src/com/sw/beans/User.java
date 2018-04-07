@@ -10,6 +10,7 @@ public class User
 	{
 		this.uname = uname;
 		this.password = password;
+		// TODO ID hinzufügen
 	}
 
 	public User()
