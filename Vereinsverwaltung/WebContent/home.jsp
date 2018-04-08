@@ -9,9 +9,15 @@
 <body>
 		<p>This is the Testoverview</p>
 		
-		<form action="${pageContext.request.contextPath}/MitgliederServlet" method="post">
+<!-- 	<form action="${pageContext.request.contextPath}/MitgliederServlet" method="post"> 
+		<form action="mitgliederView.jsp" method="post">
 			<input type="submit" value="Mitglieder">
 		
 		</form>
+		-->
+		<a href="mitgliederView.jsp">
+		<input type="submit" value="Mitglieder"/>
+		</a>
+		
 </body>
 </html>

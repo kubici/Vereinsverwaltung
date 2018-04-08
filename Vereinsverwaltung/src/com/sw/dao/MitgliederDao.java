@@ -57,19 +57,18 @@ public class MitgliederDao
 		
 	}
 	
-	public void writeMitglieder(String name, String lname, Date birth, String team)
+	public boolean writeMitglieder(String name, String lname, Date birth, String team)
 	{
 		try
 		{
 			// TODO Platzhalter für SQL Script?
-			String sql = "Insert into swp_system.mitglieder (id, name, lname, birth, team) values (?, ?, ?, ?, ?)";
+			String sql = "Insert into swp_system.mitglieder (name, lname, birth, team) values ( ?, ?, ?, ?)";
 			
 			PreparedStatement preparedStmt = this.MitgliederConnection.prepareStatement(sql);
-			preparedStmt.setString(1, "0");
-			preparedStmt.setString(2, name);
-			preparedStmt.setString(3, lname);
-			preparedStmt.setString(4, birth.toString());
-			preparedStmt.setString(5, team);
+			preparedStmt.setString(1, name);
+			preparedStmt.setString(2, lname);
+			preparedStmt.setString(3, birth.toString());
+			preparedStmt.setString(4, team);
 			
 		    preparedStmt.execute();
 		}
@@ -77,13 +76,15 @@ public class MitgliederDao
 		{
 			System.out.println("SQLException wirteMitglieder : ");
 			sqlE.printStackTrace();
+			return false;
 		}
 		catch(Exception ex)
 		{
 			System.out.println("Exception wirteMitglieder : ");
 			ex.printStackTrace();
+			return false;
 		}
-
+		return true;
 	}
 	
 }

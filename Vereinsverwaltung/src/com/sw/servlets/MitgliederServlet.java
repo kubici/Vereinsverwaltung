@@ -1,6 +1,8 @@
 package com.sw.servlets;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,9 +25,25 @@ public class MitgliederServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.sendRedirect("./mitgliederView.jsp");
+		// TODO Implement functions to register a new Mitglied
+		//response.sendRedirect("./mitgliederView.jsp");
 		//doGet(request, response);
+		
+		// Get data from mitgliederView.jsp
+		String name = request.getParameter("name");
+		String lname = request.getParameter("lname");
+		// TODO Change type to Date
+		String birth = (request.getParameter("birth").toString());
+		String gender = request.getParameter("gender");
+		String email = request.getParameter("email");
+		String tel = request.getParameter("telephone");
+		String adressline01 = request.getParameter("adressline01");
+		String adressline02 = request.getParameter("adressline02");
+		String postalcode = request.getParameter("postalcode");
+		String joinedDate = request.getParameter("beitritt");
+		
+		System.out.println("Test Data: " + name);
+		
 	}
 
 }
