@@ -8,14 +8,14 @@ public class Mitglieder
 	{
 		
 	}
-	
+	private int id;
 	private String name;
 	private String lname;
 	private Date birth;
 	private String team;
 	
 	// TODO Create Getter and Setter for attributes
-	private int id;
+	
 	public int getId() {
 		return id;
 	}
