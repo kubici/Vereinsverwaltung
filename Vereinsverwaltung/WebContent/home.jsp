@@ -18,6 +18,10 @@
 		<a href="mitgliederView.jsp">
 		<input type="submit" value="Mitglieder"/>
 		</a>
+		<br>
+		<a href="mitgliederHome.jsp">
+		<input type="submit" value="Mitglieder Overview"/>
+		</a>
 		
 </body>
 </html>
