@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import com.sw.beans.Mitglieder;
 
 public class MitgliederDao 
 {
@@ -30,17 +34,29 @@ public class MitgliederDao
 	}
 	
 	// Read Mitglieder from Database and return them into a ResultSet back to Overview
-	public ResultSet readMitglieder()
+	public List<Mitglieder> readMitglieder()
 	{
 		ResultSet set = null;
 		
 		if(this.MitgliederConnection != null)
 		{
+			List<Mitglieder> mitgliederList = new ArrayList<Mitglieder>();
 			try
 			{
 				String sql = "Select * from mitglieder";
 				Statement statement = this.MitgliederConnection.createStatement();
 				set = statement.executeQuery(sql);
+				
+				while(set.next())
+				{
+					String name = set.getString("name");
+					String lname = set.getString("lname");
+					
+					Mitglieder m = new Mitglieder();
+					m.setName(name);
+					m.setLname(lname);
+					mitgliederList.add(m);
+				}
 				
 			}
 			catch(Exception ex)
@@ -48,9 +64,10 @@ public class MitgliederDao
 				System.out.println("Exception readMitglieder:");
 				ex.printStackTrace();
 			}
-			return set;
+			return mitgliederList;
 		}
 		// No Mitglieder found
+		System.out.println("No Mitglieder found");
 		return null;
 
 		
