@@ -9,5 +9,10 @@
 </head>
 <body>
 		<p> This is the Overview of all Mitglieder </p>
+		
+		
+		
+		The student is confirmed: ${param.plus}
+		
 </body>
 </html>
