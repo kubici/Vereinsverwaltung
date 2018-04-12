@@ -28,14 +28,14 @@
 			<form action="${pageContext.request.contextPath}/MitgliederServlet" method="post">
 				<input type="text" name="name" placeholder="Nachname" /><br>
 				<input type="text" name="lname" placeholder="Vorname" /><br>
-				<p>Geburtstag: <br>
+				<p>Geburtstag: (Format MM.dd.yyyy) <br>
 					<input type="date" name="birth" placeholder="Geburtstag" /><br>
 				</p>
 				<input type="radio" name="gender" value="male"> Male<br>
 	  			<input type="radio" name="gender" value="female"> Female<br>
 	  			<input type="radio" name="gender" value="other"> Other <br>
 				<input type="email" name="email" placeholder="E-Mail" /><br>
-				<input type="tel" name="telephone" placeholder="Telefonnummer" /><br>
+				<input type="tel" name="telefon" placeholder="Telefonnummer" /><br>
 				<p>
 					Adresse: <br>
 					<input type="text" name="adressline01" placeholder="Adresszeile 1" /><br>
@@ -43,10 +43,18 @@
 					<input type="text" name="postalcode" placeholder="Postleitzahl" /><input type="text" name="city" placeholder="Ort" /><br>
 				</p>
 				<p>
-					Beigetreten am 
+					Beigetreten am Format(Format MM.dd.yyyy)<br>
 					<input type="date" name="joinedDate" placeholder="Beigetreten am" /><br>
 				</p>
+				
+				<p>
+					Rolle<br>
+				
+				<input type="text" name="role" placeholder="Rolle"/>
+				</p>
+				
 				<input type="submit" name="submit_mitglied" value="Mitglied hinzuf&uuml;gen"><br>
+
 
 				<!-- Hier fehlt noch die Möglichkeit, den Mitgliedsbeitrag und evtl. die SEPA Einzugsermächtigung als PDF hochzuladen -->
 			</form>

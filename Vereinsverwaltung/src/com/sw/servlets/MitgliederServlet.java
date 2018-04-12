@@ -1,13 +1,20 @@
 package com.sw.servlets;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.spi.DateFormatProvider;
 import java.util.Date;
+import java.util.IllegalFormatException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sw.beans.Mitglieder;
+import com.sw.dao.MitgliederDao;
 
 /**
  * Servlet implementation class MitgliederServlet
@@ -30,19 +37,73 @@ public class MitgliederServlet extends HttpServlet {
 		//doGet(request, response);
 		
 		// Get data from mitgliederView.jsp
-		String name = request.getParameter("name");
-		String lname = request.getParameter("lname");
-		// TODO Change type to Date
-		String birth = (request.getParameter("birth").toString());
-		String gender = request.getParameter("gender");
-		String email = request.getParameter("email");
-		String tel = request.getParameter("telephone");
-		String adressline01 = request.getParameter("adressline01");
-		String adressline02 = request.getParameter("adressline02");
-		String postalcode = request.getParameter("postalcode");
-		String joinedDate = request.getParameter("beitritt");
+		// Create an object mitglieder with the given attributes
+		Mitglieder mitglieder = new Mitglieder();
 		
-		System.out.println("Test Data: " + name);
+		
+		mitglieder.setName(request.getParameter("name"));
+		mitglieder.setLname(request.getParameter("lname"));
+		
+		// Parse birth into Date object
+		String tempBirth = request.getParameter("birth");
+		DateFormat dateFormatBirth = new SimpleDateFormat("dd.MM.yyyy");
+		try
+		{
+			Date birthDate = (Date) dateFormatBirth.parse(tempBirth);
+			mitglieder.setBirth(birthDate);
+		}
+		catch(IllegalFormatException ife)
+		{
+			System.out.println("MitgliederServlet.java - doPost() - Problem with DateFormat: BirthDate");
+			ife.printStackTrace();
+		}
+		catch(Exception ex)
+		{
+			System.out.println("MitgliederServlet.java - doPost() - Problem with DateFormat: BirthDate");
+			ex.printStackTrace();
+		}
+		
+		mitglieder.setGender(request.getParameter("gender"));
+		mitglieder.setEmail(request.getParameter("email"));
+		mitglieder.setTelefon(request.getParameter("telephone"));
+		mitglieder.setAdressline01(request.getParameter("adressline01"));
+		mitglieder.setAdressline02(request.getParameter("adressline02"));
+		mitglieder.setPostalcode(request.getParameter("postalcode"));
+		
+		// Parse joinedDate into Date object
+		String tempJoinedDate = request.getParameter("joinedDate");
+		try
+		{
+			DateFormat dateFormatJoinedDate = new SimpleDateFormat("dd.MM.yyyy");
+			Date joinedDate = (Date) dateFormatJoinedDate.parse(tempJoinedDate);
+			mitglieder.setJoinedDate(joinedDate);
+		}
+		catch(IllegalFormatException ife)
+		{
+			System.out.println("MitgliederServlet.java - doPost() - Problem with DateFormat: JoinedDate");
+			ife.printStackTrace();
+		}
+		catch(Exception ex)
+		{
+			System.out.println("MitgliederServlet.java - doPost() - Problem with DateFormat: JoinedDate");
+			ex.printStackTrace();
+		}
+		
+		mitglieder.setCity(request.getParameter("city"));
+		mitglieder.setGender(request.getParameter("gender"));
+		mitglieder.setTelefon(request.getParameter("telefon"));
+		mitglieder.setEmail(request.getParameter("email"));
+		mitglieder.setRole(request.getParameter("role"));
+		
+		
+		// give me a test 
+		System.out.println("Test Data: " + mitglieder.getName());
+		
+		// save new Mitglied into database
+		MitgliederDao mitgliederDao = new MitgliederDao();
+		mitgliederDao.writeMitglieder(mitglieder);
+		
+		response.sendRedirect("./home.jsp");
 		
 	}
 

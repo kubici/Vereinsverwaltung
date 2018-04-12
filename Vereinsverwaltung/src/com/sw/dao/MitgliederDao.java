@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,18 +75,29 @@ public class MitgliederDao
 		
 	}
 	
-	public boolean writeMitglieder(String name, String lname, Date birth, String team)
+	public boolean writeMitglieder(Mitglieder mitglieder)
 	{
 		try
 		{
+			// insert into swp_system.mitglieder (name, lname, birth, adressline01, postalcode, city, gender, telefon, email, role) values ("Tobias", "Kolb", str_to_date('15-10-1995', '%d-%m-%Y'), "Itzgrund 5", "95512", "Bayreuth", "Männlich", "01601651965","kolb.to95@outlook.de", str_to_date('01.01.2017', '%d-%m-%Y'), "admin");
+
 			// TODO Platzhalter für SQL Script?
-			String sql = "Insert into swp_system.mitglieder (name, lname, birth, team) values ( ?, ?, ?, ?)";
+			String sql = "Insert into swp_system.mitglieder (name, lname, birth, adressline01, adressline02, postalcode,  city, gender, telefon, email, joinedDate, role) values ( ?, ?,?,?, ?, ?, ?, ?, ?, ?,?, ?)";
 			
 			PreparedStatement preparedStmt = this.MitgliederConnection.prepareStatement(sql);
-			preparedStmt.setString(1, name);
-			preparedStmt.setString(2, lname);
-			preparedStmt.setString(3, birth.toString());
-			preparedStmt.setString(4, team);
+			preparedStmt.setObject(1, mitglieder.getName(), Types.VARCHAR);
+			preparedStmt.setObject(2, mitglieder.getLname(), Types.VARCHAR);
+			preparedStmt.setObject(3, mitglieder.getBirth(), Types.DATE);
+			preparedStmt.setObject(4, mitglieder.getAdressline01(), Types.VARCHAR);
+			preparedStmt.setObject(5, mitglieder.getAdressline02(), Types.VARCHAR);
+			preparedStmt.setObject(6, mitglieder.getPostalcode(), Types.VARCHAR);
+			preparedStmt.setObject(7, mitglieder.getCity(), Types.VARCHAR);
+			preparedStmt.setObject(8, mitglieder.getGender(), Types.VARCHAR);
+			preparedStmt.setObject(9, mitglieder.getTelefon(), Types.VARCHAR);
+			preparedStmt.setObject(10, mitglieder.getEmail(), Types.VARCHAR);
+			preparedStmt.setObject(11, mitglieder.getJoinedDate(), Types.DATE);
+			preparedStmt.setObject(12, mitglieder.getRole(), Types.VARCHAR);
+			
 			
 		    preparedStmt.execute();
 		}
