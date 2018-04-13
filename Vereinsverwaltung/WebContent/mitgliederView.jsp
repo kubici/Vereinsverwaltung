@@ -8,8 +8,6 @@
 </head>
 <body>
 		<!--  Formular needed -->
-		<!--  Button: Plus, (Minus) -->
-		<!--  table View in html with placeholder -->
 		
 		
 		<h2>Mitgliederverwaltung</h2>
@@ -28,7 +26,7 @@
 			<form action="${pageContext.request.contextPath}/MitgliederServlet" method="post">
 				<input type="text" name="name" placeholder="Nachname" /><br>
 				<input type="text" name="lname" placeholder="Vorname" /><br>
-				<p>Geburtstag: (Format MM.dd.yyyy) <br>
+				<p>Geburtstag: (Format dd.MM.yyyy) <br>
 					<input type="date" name="birth" placeholder="Geburtstag" /><br>
 				</p>
 				<input type="radio" name="gender" value="male"> Male<br>
@@ -43,7 +41,7 @@
 					<input type="text" name="postalcode" placeholder="Postleitzahl" /><input type="text" name="city" placeholder="Ort" /><br>
 				</p>
 				<p>
-					Beigetreten am Format(Format MM.dd.yyyy)<br>
+					Beigetreten am Format(Format dd.MM.yyyy)<br>
 					<input type="date" name="joinedDate" placeholder="Beigetreten am" /><br>
 				</p>
 				

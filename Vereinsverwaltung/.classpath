@@ -11,5 +11,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="/Users/tobi/Documents/Apache Tomcat 9/apache-tomcat-9.0.6/bin/taglibs-standard-impl-1.2.5.jar"/>
+	<classpathentry kind="lib" path="/Users/tobi/Documents/Apache Tomcat 9/apache-tomcat-9.0.6/bin/javax.faces-api-2.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

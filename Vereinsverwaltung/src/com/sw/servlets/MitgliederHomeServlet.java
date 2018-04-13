@@ -27,6 +27,11 @@ public class MitgliederHomeServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    public void sayHello()
+    {
+    	System.out.println("MitgliederHomeServlet");
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

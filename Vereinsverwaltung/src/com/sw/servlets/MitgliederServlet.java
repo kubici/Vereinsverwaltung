@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sw.beans.Mitglieder;
+import com.sw.beans.User;
 import com.sw.dao.MitgliederDao;
 
 /**
@@ -26,16 +27,24 @@ public class MitgliederServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("doGet() - MitgliederServlet");
+	}
+	
+	
+	// Test Method 
+	public User getUserObject()
+	{
+		User user = new User();
+		user.setPassword("hallo");
+		user.setUname("testObject");
+		
+		return user;
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Implement functions to register a new Mitglied
-		//response.sendRedirect("./mitgliederView.jsp");
-		//doGet(request, response);
-		
 		// Get data from mitgliederView.jsp
 		// Create an object mitglieder with the given attributes
 		Mitglieder mitglieder = new Mitglieder();
@@ -94,10 +103,6 @@ public class MitgliederServlet extends HttpServlet {
 		mitglieder.setTelefon(request.getParameter("telefon"));
 		mitglieder.setEmail(request.getParameter("email"));
 		mitglieder.setRole(request.getParameter("role"));
-		
-		
-		// give me a test 
-		System.out.println("Test Data: " + mitglieder.getName());
 		
 		// save new Mitglied into database
 		MitgliederDao mitgliederDao = new MitgliederDao();
