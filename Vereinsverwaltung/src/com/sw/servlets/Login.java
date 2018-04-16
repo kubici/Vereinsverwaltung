@@ -11,10 +11,9 @@ import javax.servlet.http.HttpSession;
 import com.sw.beans.User;
 import com.sw.dao.LoginDao;
 
-@WebServlet("/Login")
+@WebServlet("/welcome")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -25,7 +24,6 @@ public class Login extends HttpServlet {
 		userToCheck.setPassword(password);
 		userToCheck.setUname(uname);
 
-		
 		LoginDao loginDao = new LoginDao();
 		boolean checkUserValue = loginDao.checkUser(userToCheck);
 		
@@ -33,12 +31,12 @@ public class Login extends HttpServlet {
 		{
 			HttpSession session = request.getSession();
 			session.setAttribute("username", uname);
-			response.sendRedirect("./home.jsp");
+			response.sendRedirect("./index.jsp");
 		}
 		else
 		{
 			System.out.println("Wrong username or password!");
-			response.sendRedirect("./index.jsp");
+			response.sendRedirect("./welcome.jsp");
 		}
 	}
 

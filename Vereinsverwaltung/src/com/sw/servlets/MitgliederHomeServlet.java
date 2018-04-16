@@ -13,29 +13,19 @@ import com.sw.beans.Mitglieder;
 import com.sw.dao.DBConnection;
 import com.sw.dao.MitgliederDao;
 
-/**
- * Servlet implementation class MitgliederHomeServlet
- */
+
+
+// TODO No need for this Servlet
+
 @WebServlet("/MitgliederHomeServlet")
 public class MitgliederHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public MitgliederHomeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
     
-    public void sayHello()
-    {
-    	System.out.println("MitgliederHomeServlet");
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());

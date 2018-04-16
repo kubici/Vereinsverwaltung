@@ -14,8 +14,6 @@ import com.sw.beans.Mitglieder;
 
 public class MitgliederDao 
 {
-	// Not tested yet!
-	// Only implemented
 	// TODO Test it!
 	
 	private Connection MitgliederConnection = null;
@@ -50,6 +48,7 @@ public class MitgliederDao
 				
 				while(set.next())
 				{
+					// TODO read the complet database
 					String name = set.getString("name");
 					String lname = set.getString("lname");
 					
@@ -74,14 +73,11 @@ public class MitgliederDao
 		
 		
 	}
-	
+	// Write Mitglieder from register formular into datbase
 	public boolean writeMitglieder(Mitglieder mitglieder)
 	{
 		try
 		{
-			// insert into swp_system.mitglieder (name, lname, birth, adressline01, postalcode, city, gender, telefon, email, role) values ("Tobias", "Kolb", str_to_date('15-10-1995', '%d-%m-%Y'), "Itzgrund 5", "95512", "Bayreuth", "Männlich", "01601651965","kolb.to95@outlook.de", str_to_date('01.01.2017', '%d-%m-%Y'), "admin");
-
-			// TODO Platzhalter für SQL Script?
 			String sql = "Insert into swp_system.mitglieder (name, lname, birth, adressline01, adressline02, postalcode,  city, gender, telefon, email, joinedDate, role) values ( ?, ?,?,?, ?, ?, ?, ?, ?, ?,?, ?)";
 			
 			PreparedStatement preparedStmt = this.MitgliederConnection.prepareStatement(sql);
@@ -97,8 +93,7 @@ public class MitgliederDao
 			preparedStmt.setObject(10, mitglieder.getEmail(), Types.VARCHAR);
 			preparedStmt.setObject(11, mitglieder.getJoinedDate(), Types.DATE);
 			preparedStmt.setObject(12, mitglieder.getRole(), Types.VARCHAR);
-			
-			
+	
 		    preparedStmt.execute();
 		}
 		catch(SQLException sqlE)
@@ -115,6 +110,5 @@ public class MitgliederDao
 		}
 		return true;
 	}
-	
 }
 

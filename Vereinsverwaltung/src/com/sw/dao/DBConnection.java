@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 public class DBConnection 
 {
-	
 	private static String dbUser = "root";
 	private static String dbPassword = "root";
 	

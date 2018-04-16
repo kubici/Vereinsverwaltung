@@ -1,19 +1,13 @@
 package com.sw.controller;
 
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 
 import com.sw.beans.Mitglieder;
 import com.sw.dao.MitgliederDao;
 
-//@Named(value = "mitgliederController")
-@RequestScoped
-@ManagedBean(name = "mitgliederController", eager = true)
 public class MitgliederDashboardController 
 {
-	
-	public List<Mitglieder> lstMitglieder;
+	private List<Mitglieder> lstMitglieder;
 	
 	public MitgliederDashboardController()
 	{
@@ -23,8 +17,6 @@ public class MitgliederDashboardController
 			MitgliederDao mitgliederDao = new MitgliederDao();
 			setLstMitglieder(mitgliederDao.readMitglieder());
 			this.lstMitglieder = getLstMitglieder();
-			
-			
 		}
 		catch(Exception ex)
 		{

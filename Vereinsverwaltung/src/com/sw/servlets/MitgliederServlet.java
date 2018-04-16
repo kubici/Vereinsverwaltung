@@ -17,10 +17,7 @@ import com.sw.beans.Mitglieder;
 import com.sw.beans.User;
 import com.sw.dao.MitgliederDao;
 
-/**
- * Servlet implementation class MitgliederServlet
- */
-@WebServlet("/MitgliederServlet")
+@WebServlet("/registerMitglieder")
 public class MitgliederServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,26 +27,12 @@ public class MitgliederServlet extends HttpServlet {
 		System.out.println("doGet() - MitgliederServlet");
 	}
 	
-	
-	// Test Method 
-	public User getUserObject()
-	{
-		User user = new User();
-		user.setPassword("hallo");
-		user.setUname("testObject");
-		
-		return user;
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get data from mitgliederView.jsp
 		// Create an object mitglieder with the given attributes
 		Mitglieder mitglieder = new Mitglieder();
-		
-		
+
 		mitglieder.setName(request.getParameter("name"));
 		mitglieder.setLname(request.getParameter("lname"));
 		
@@ -108,7 +91,7 @@ public class MitgliederServlet extends HttpServlet {
 		MitgliederDao mitgliederDao = new MitgliederDao();
 		mitgliederDao.writeMitglieder(mitglieder);
 		
-		response.sendRedirect("./home.jsp");
+		response.sendRedirect("./mitglieder.jsp");
 		
 	}
 

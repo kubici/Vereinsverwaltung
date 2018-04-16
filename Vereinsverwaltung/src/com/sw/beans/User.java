@@ -1,5 +1,6 @@
 package com.sw.beans;
 
+
 public class User 
 {
 	
@@ -8,14 +9,17 @@ public class User
 	
 	public User(String uname, String password)
 	{
-		this.uname = uname;
-		this.password = password;
+		uname = "test1";
+		password = "test2";
+		//this.uname = uname;
+		//this.password = password;
 		// TODO ID hinzufügen
 	}
 
 	public User()
 	{
-		
+		uname = "test1";
+		password = "test2";
 	}
 
 	public String getUname()
