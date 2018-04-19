@@ -19,23 +19,29 @@ public class Login extends HttpServlet {
 	{
 		String uname = request.getParameter("username");
 		String password = request.getParameter("pwd");
-		
-		User userToCheck = new User();
-		userToCheck.setPassword(password);
-		userToCheck.setUname(uname);
+		String infoMessage = "";
+		User currentUser = new User();
+		currentUser.setPassword(password);
+		currentUser.setUname(uname);
 
 		LoginDao loginDao = new LoginDao();
-		boolean checkUserValue = loginDao.checkUser(userToCheck);
+		boolean checkUserValue = loginDao.checkUser(currentUser);
 		
 		if(checkUserValue == true)
 		{
-			HttpSession session = request.getSession();
-			session.setAttribute("username", uname);
+			final HttpSession session = request.getSession();
+			session.setAttribute("currentUser", currentUser);
+			infoMessage = "Successful login";
+			request.setAttribute("infoMessage", infoMessage);
 			response.sendRedirect("./index.jsp");
 		}
 		else
 		{
-			System.out.println("Wrong username or password!");
+			infoMessage = "Wrong username or password";
+			System.out.println(infoMessage);
+			// TODO Output to welcome 
+			request.setAttribute("infoMessage", infoMessage);
+			request.getRequestDispatcher("./welcome.jsp").forward(request, response);
 			response.sendRedirect("./welcome.jsp");
 		}
 	}
