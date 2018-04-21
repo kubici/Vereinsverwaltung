@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.xml.ws.http.HTTPException;
+
 public class DBConnection 
 {
 	private static String dbUser = "root";
@@ -28,6 +30,7 @@ public class DBConnection
 		{
 			System.out.println("Connection Failed! Check output console");
 			sqle.printStackTrace();
+			throw new HTTPException(500);
 		}
 		
 		if(connection != null)
