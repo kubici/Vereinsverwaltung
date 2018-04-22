@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sw.beans.Mitglieder;
 import com.sw.beans.User;
@@ -28,9 +29,14 @@ public class MitgliederServlet extends HttpServlet {
 	}
 	
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+
 		// Get data from mitgliederView.jsp
 		// Create an object mitglieder with the given attributes
+		
+		
+		
 		Mitglieder mitglieder = new Mitglieder();
 
 		mitglieder.setName(request.getParameter("name"));

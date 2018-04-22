@@ -1,16 +1,22 @@
 <%@page import="com.sw.controller.MitgliederDashboardController"%>
 <%@page import="com.sw.beans.User" %>
+<%@page import="com.sw.controller.SessionControl" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 
  <!-- Loading MitgliederList from Controller -->
-	<% MitgliederDashboardController controller = new MitgliederDashboardController();
-		pageContext.setAttribute("mList", controller.getLstMitglieder()); %>
+	<% 
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
+	MitgliederDashboardController controller = new MitgliederDashboardController();
+	pageContext.setAttribute("mList", controller.getLstMitglieder());
+		
+	 %>
+		 
 
 <html>
 <head>
 
-	<title>Mitgliederverwaltung - Removed to mitgliederView.jsp</title>
+	<title>Mitgliederverwaltung</title>
 
 </head>
 <body>

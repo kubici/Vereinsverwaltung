@@ -8,6 +8,10 @@
 </head>
 <body>
 
+<%
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+ %>
+
 <section id ="welcome">
 		<form action="${pageContext.request.contextPath}/welcome" method="post">
 			Enter username: <input type="text" name="username"><br>

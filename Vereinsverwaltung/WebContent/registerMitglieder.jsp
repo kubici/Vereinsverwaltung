@@ -8,7 +8,9 @@
 </head>
 <body>
 		<!--  Formular needed -->
-		
+	<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	 %>	
 		
 		<h2>Mitgliederverwaltung</h2>
 
