@@ -14,7 +14,6 @@
 <!-- Check for a valid session -->
 
 <% 
-
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 if(request.getSession().getAttribute("currentUser") == null)
 	{
