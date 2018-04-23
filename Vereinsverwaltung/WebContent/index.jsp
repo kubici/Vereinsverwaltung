@@ -14,7 +14,10 @@
 <!-- Check for a valid session -->
 
 <% 
+
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+response.setDateHeader("Expires", 0);
 if(request.getSession().getAttribute("currentUser") == null)
 	{
 		System.out.println("keine Session");
