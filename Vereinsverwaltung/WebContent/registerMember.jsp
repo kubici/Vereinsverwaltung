@@ -25,7 +25,7 @@
 	<!-- Mitglied hinzufügen -->
 		<div class="mitglied_hinzufügen">
 			<h3>Mitglied hinzuf&uuml;gen</h3>	
-			<form action="${pageContext.request.contextPath}/registerMitglieder" method="post">
+			<form action="${pageContext.request.contextPath}/registerMember" method="post">
 				<input type="text" name="name" placeholder="Nachname" /><br>
 				<input type="text" name="lname" placeholder="Vorname" /><br>
 				<p>Geburtstag: (Format dd.MM.yyyy) <br>

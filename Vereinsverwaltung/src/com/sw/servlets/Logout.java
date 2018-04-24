@@ -23,8 +23,12 @@ public class Logout extends HttpServlet {
 		{
 			session.removeAttribute("currentUser");
 			session.invalidate();
+			// Set infoMessage to successful loged out
+			Login.setInfoMessage("Logout was successfull");
+			
 			response.sendRedirect("./welcome.jsp");
-			System.out.println("Session gelöscht");
+			Login.setInfoMessage("Logout was successfull");
+			System.out.println("Session deleted");
 		}
 		
 		

@@ -20,15 +20,15 @@ response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setDateHeader("Expires", 0);
 if(request.getSession().getAttribute("currentUser") == null)
 	{
-		System.out.println("keine Session");
+		System.out.println("No Session");
 		response.sendRedirect("./welcome.jsp");
 	}	
 	else
 	{
-	System.out.println("Session vorhanden!");
+	System.out.println("Session alive!");
 	System.out.println(request.getSession().getAttribute("currentUser"));
 	}
- %>
+%>
 
 
 		<p>This is the Testoverview</p>
@@ -42,15 +42,13 @@ if(request.getSession().getAttribute("currentUser") == null)
 		<br>
 		<br>
 		<br>
-		<a href="mitglieder.jsp">
+		<a href="member.jsp">
 		<input type="submit" value="Mitglieder Overview"/>
 		</a>
 		
-	<section id="Logout">
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
-		<input type="submit" value="Lougout"/>
+		<input type="submit" value="Logout"/>
 		</form>
-	</section>
 		
 </body>
 </html>

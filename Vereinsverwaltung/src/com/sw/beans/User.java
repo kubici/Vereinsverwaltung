@@ -6,20 +6,36 @@ public class User
 	
 	private String password;
 	private String uname;
+	private int id;
+	
+	public User(String uname, String password, int id)
+	{
+		this.uname = uname;
+		this.password = password;
+		this.id = id;
+	}
 	
 	public User(String uname, String password)
 	{
-		uname = "test1";
-		password = "test2";
-		//this.uname = uname;
-		//this.password = password;
-		// TODO ID hinzufügen
+		this.uname = uname;
+		this.password = password;
 	}
-
+	
 	public User()
 	{
+		// Test data
 		uname = "test1";
 		password = "test2";
+	}
+	
+	public int getId()
+	{
+		return this.id;
+	}
+	
+	public void setId(int id)
+	{
+		this.id = id;
 	}
 
 	public String getUname()

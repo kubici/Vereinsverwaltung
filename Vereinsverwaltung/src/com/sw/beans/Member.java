@@ -2,10 +2,10 @@ package com.sw.beans;
 
 import java.util.Date;
 
-public class Mitglieder 
+public class Member 
 {
 	// default constructor
-	public Mitglieder()
+	public Member()
 	{
 		
 	}

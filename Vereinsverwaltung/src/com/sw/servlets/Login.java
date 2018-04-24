@@ -16,7 +16,26 @@ import com.sw.dao.LoginDao;
 @WebServlet("/welcome")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	private static String infoMessage = null;
+	
+	public static String getInfoMessage()
+	{
+		if(infoMessage != null)
+		{
+			return infoMessage;
+		}
+		return null;
+	}
+	
+	public static void setInfoMessage(String infoMessage)
+	{
+		if(infoMessage != null)
+		{
+			Login.infoMessage = infoMessage;
+		}
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String uname = request.getParameter("username");
@@ -33,17 +52,16 @@ public class Login extends HttpServlet {
 		{
 			final HttpSession session = request.getSession();
 			session.setAttribute("currentUser", currentUser);
-			infoMessage = "Successful login";
+			Login.infoMessage = "Successful login";
 			request.setAttribute("infoMessage", infoMessage);
 			response.sendRedirect("./index.jsp");
 		}
 		else
 		{
-			infoMessage = "Wrong username or password";
+			Login.infoMessage = "Wrong username or password";
 			System.out.println(infoMessage);
-			// TODO Output to welcome 
+			// TODO TK - How to display a String infoMessage in a jsp File?
 			request.setAttribute("infoMessage", infoMessage);
-			request.getRequestDispatcher("./welcome.jsp").forward(request, response);
 			response.sendRedirect("./welcome.jsp");
 		}
 	}

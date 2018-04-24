@@ -1,18 +1,16 @@
-<%@page import="com.sw.controller.MitgliederDashboardController"%>
+<%@page import="com.sw.controller.MemberDashboardController"%>
 <%@page import="com.sw.beans.User" %>
-<%@page import="com.sw.controller.SessionControl" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 
  <!-- Loading MitgliederList from Controller -->
 	<% 
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
-	MitgliederDashboardController controller = new MitgliederDashboardController();
-	pageContext.setAttribute("mList", controller.getLstMitglieder());
+	MemberDashboardController controller = new MemberDashboardController();
+	pageContext.setAttribute("mList", controller.getLstMember());
 		
 	 %>
 		 
-
 <html>
 <head>
 
@@ -32,7 +30,7 @@
 	
 
 	 <!-- Here you can see a table of all mitglieder in your team -->
-	<jsp:useBean id="mitgliederList" class="com.sw.controller.MitgliederDashboardController"></jsp:useBean>
+	<jsp:useBean id="mitgliederList" class="com.sw.controller.MemberDashboardController"></jsp:useBean>
 	
 	<table border="3">
 	<th>Name</th>
@@ -47,7 +45,7 @@
 	
 	
 	 <!-- Here is the part for register new Mitglieder -->
-	<form action="registerMitglieder.jsp">
+	<form action="registerMember.jsp">
 
 	<br/>
 	<br/>
