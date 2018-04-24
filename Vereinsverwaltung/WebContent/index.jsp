@@ -29,7 +29,11 @@ if(request.getSession().getAttribute("currentUser") == null)
 	System.out.println(request.getSession().getAttribute("currentUser"));
 	}
 %>
-
+		<p>
+			<a href="changePassword.jsp">
+				<input type="submit" value="Passwort ändern"/>
+			</a>
+		</p>
 
 		<p>This is the Testoverview</p>
 		<br>
