@@ -46,11 +46,11 @@ if(request.getSession().getAttribute("currentUser") == null)
 		<input type="submit" value="Mitglieder Overview"/>
 		</a>
 		
-	<seciont id="Logout">
+	<section id="Logout">
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
 		<input type="submit" value="Lougout"/>
 		</form>
-	</seciont>
+	</section>
 		
 </body>
 </html>

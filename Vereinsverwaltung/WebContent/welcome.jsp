@@ -5,21 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login Page 2</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
 
+<header>
+	<h1>Vereinsverwaltung</h1>
+</header>
+<body>
 <%response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setDateHeader("Expires", 0);
  %>
 
+<div class="content-wrap">
 <section id ="welcome">
 		<form action="${pageContext.request.contextPath}/welcome" method="post">
-			Enter username: <input type="text" name="username"><br>
-			Enter password: <input type="password" name="pwd"><br>
-			<input type="submit" value="login">
+		
+			<input id="login_button" type="submit" value="login">
+			
+			username <input type="text" name="username"><br>
+			password <input type="password" name="pwd">		
 		</form>
 </section>
+</div>
 
 </body>
 </html>
