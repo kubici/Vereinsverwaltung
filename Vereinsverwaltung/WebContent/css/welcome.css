@@ -1,0 +1,35 @@
+#login_button{
+	background-color: lightgrey;
+	color: white;
+	font-size: 20px;
+	padding: 2% 50%;
+	margin-top: 5%;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+form{
+	font-variant-caps: all-small-caps;
+	text-align: center;
+}
+
+input[type=text] {
+	
+   width: 70%;
+   padding: 10px 20px;
+   margin: 8px;
+   box-sizing: border-box;
+	font-size: 20px;
+
+}
+
+input[type=password] {
+	
+   width: 70%;
+   padding: 10px 20px;
+   margin: 8px;
+   box-sizing: border-box;
+	font-size: 20px;
+
+}

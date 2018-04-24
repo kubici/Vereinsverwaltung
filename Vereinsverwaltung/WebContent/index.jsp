@@ -7,14 +7,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Homepage of your Website</title>
+<title>Homepage</title>
+<link href="css/fonts.css" rel="stylesheet" type="text/css">
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link href="css/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<header>
+	<h1>Vereinsverwaltung</h1>
+	
+	<% // TODO Dropdown-Menü mit Einstellungs-Icon %>
+	<div class="settings">
+	<p id="user_label">Benutzer: <c:out value="${currentUser.uname}"/></p>
+	<p>
+		<a href="changePassword.jsp">
+		<input class="button" type="submit" value="Passwort ändern"/>
+		</a>
+	</p>
+	<form action="${pageContext.request.contextPath}/Logout" method="post">
+		<input class="button" type="submit" value="Logout"/>
+	</form>
+	</div>
+</header>
 
 <!-- Check for a valid session -->
 
 <% 
-
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setDateHeader("Expires", 0);
@@ -29,30 +47,16 @@ if(request.getSession().getAttribute("currentUser") == null)
 	System.out.println(request.getSession().getAttribute("currentUser"));
 	}
 %>
-		<p>
-			<a href="changePassword.jsp">
-				<input type="submit" value="Passwort ändern"/>
-			</a>
-		</p>
 
-		<p>This is the Testoverview</p>
-		<br>
-		
-		<% User currentUser = (User) session.getAttribute("currentUser");
-			pageContext.setAttribute("currentUser", currentUser); %>
-			
-			
-		<p>Benutzer: <c:out value="${currentUser.uname}"/></p>
-		<br>
-		<br>
-		<br>
-		<a href="member.jsp">
-		<input type="submit" value="Mitglieder Overview"/>
-		</a>
-		
-		<form action="${pageContext.request.contextPath}/Logout" method="post">
-		<input type="submit" value="Logout"/>
-		</form>
-		
+<% User currentUser = (User) session.getAttribute("currentUser");
+	pageContext.setAttribute("currentUser", currentUser); %>
+	
+<div class="content-wrap">
+	<p>This is the Testoverview</p>
+
+	<a href="member.jsp">
+		<input class="module" type="submit" value="Mitglieder Overview"/>
+	</a>
+</div>
 </body>
 </html>

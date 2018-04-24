@@ -1,0 +1,34 @@
+h1 {
+	display: inline-block;
+}
+
+.settings{
+	display: inline-block;
+	margin: 0 10%;
+	font-size: 13px;
+	float: right;
+	text-align: center;
+}
+
+.module{
+	font-family: helvetica;
+	font-weight: lighter;
+	font-variant-caps: all-small-caps;
+	font-size: 40px;
+	padding: 8% 2%;
+	margin: 2%;
+	cursor: pointer;
+	border-radius: 15px;
+	border: none;
+}
+
+.button{
+	background-color: lightgrey;
+	color: white;
+	font-size: 15px;
+	padding: 10px 20px;
+	margin-top: 5%;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+}

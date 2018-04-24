@@ -7,14 +7,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login Page 2</title>
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<title>Willkommen</title>
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link href="css/fonts.css" rel="stylesheet" type="text/css">
+<link href="css/welcome.css" rel="stylesheet" type="text/css">
 </head>
-
+<body>
 <header>
 	<h1>Vereinsverwaltung</h1>
 </header>
-<body>
 <%
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
@@ -23,11 +24,11 @@ response.setDateHeader("Expires", 0);
 
 <div class="content-wrap">
 		<form action="${pageContext.request.contextPath}/welcome" method="post">
-		
-			<input id="login_button" type="submit" value="login">
 			
 			username <input type="text" name="username"><br>
-			password <input type="password" name="pwd">		
+			password <input type="password" name="pwd">	
+						
+			<input id="login_button" type="submit" value="login">	
 		</form>
 </div>
 
