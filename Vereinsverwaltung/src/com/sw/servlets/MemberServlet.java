@@ -1,11 +1,13 @@
 package com.sw.servlets;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.spi.DateFormatProvider;
 import java.util.Date;
 import java.util.IllegalFormatException;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -94,24 +96,36 @@ public class MemberServlet extends HttpServlet {
 	
 	private String generateUserName(Member member)
 	{
-		// TODO SK - Implement function
 		String generatedUserName = null;
 		String memberName = member.getName(); // return the firstname
 		String memberLname = member.getLname(); // return the Lastname
-		int memberId = 0; // MemberId is not available at this time; 
+
+		Random random = new Random();
+		String number = "0123456789";
+		StringBuilder idgenerator = new StringBuilder();
 		
+		for(int i =0;i<8;i++) {
+			idgenerator.append(number.charAt(random.nextInt(number.length())));   //generates Random ID to 8 characters
+		}
+		generatedUserName = memberName.substring(0,1)+"."+memberLname+"."+idgenerator.toString(); // firstletterofFirstname.lastname.RandomId
+
 		return generatedUserName; // generatedUserName -> ([erster buchst. vorname][nachname][id])
 	}
 	
 	private String generateUserPassword()
 	{
-		// TODO SK - Implement function
-		String password = null;
-		// Need an algorithm to generate a random Password
-		// Check random-Library to generate random Numbers and convert them into letters 
-		// number to letter -> see ASCII 
+
+		SecureRandom random = new SecureRandom(); //
+		String letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		
-		return password;
+		StringBuilder passwordgenerator = new StringBuilder();
+		for(int i =1; i<=8;i++){
+			passwordgenerator.append(letters.charAt(random.nextInt(letters.length())));
+			
+		}
+		return passwordgenerator.toString();
+		
+		
 	}
 	
 }
