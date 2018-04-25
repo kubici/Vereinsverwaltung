@@ -102,14 +102,8 @@ public class MemberServlet extends HttpServlet {
 		
 		// TODO build the username as this schema-> generatedUserName -> ([erster buchst. vorname][nachname][id])
 
-		Random random = new Random();
-		String number = "0123456789";
-		StringBuilder idgenerator = new StringBuilder();
-		
-		for(int i =0;i<8;i++) {
-			idgenerator.append(number.charAt(random.nextInt(number.length())));   //generates Random ID to 8 characters
-		}
-		generatedUserName = memberName.substring(0,1)+"."+memberLname+"."+idgenerator.toString(); // firstletterofFirstname.lastname.RandomId
+	
+		generatedUserName = memberName.substring(0,1)+"."+memberLname+"."+memberId; // firstletterofFirstname.lastname.RandomId
 
 		return generatedUserName; // generatedUserName -> ([erster buchst. vorname][nachname][id])
 	}
