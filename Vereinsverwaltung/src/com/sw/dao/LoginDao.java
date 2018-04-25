@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.sw.beans.Member;
-import com.sw.beans.User;
 import com.sw.security.HashText;
 
 public class LoginDao 

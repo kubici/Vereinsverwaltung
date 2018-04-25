@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sw.beans.Member;
+import com.sw.dao.ChangePasswordDao;
 
 @WebServlet("/changePWD")
 public class ChangePassword extends HttpServlet{
@@ -28,10 +30,8 @@ public class ChangePassword extends HttpServlet{
 		}
 	}
 	
-	
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
+		HttpSession session = request.getSession();
 		if(request.getSession().getAttribute("currentUser") == null) {
 			System.out.println("No Session");
 			response.sendRedirect("./welcome.jsp");
@@ -45,18 +45,40 @@ public class ChangePassword extends HttpServlet{
 		String newPWD02 = request.getParameter("pwd_new02");
 		
 		Member member = new Member();
-		// TODO hier Werte füllen
+		member.setUsername(request.getSession().getAttribute("username").toString());
+		member.setPassword(oldPWD);
+		member.setNewPassword(newPWD01);
 		
 		if(newPWD01.equals(newPWD02)) {
-			// TODO An ChangePasswordDao übergeben
+			ChangePasswordDao cpd = new ChangePasswordDao();
+			boolean checkChange = cpd.changePassword(member);
+			
+			if(checkChange) {
+				if(session != null && session.getAttribute("currentUser") != null) {
+					session.removeAttribute("currentUser");
+					session.invalidate();
+					
+					ChangePassword.setInfoMessage("Passwortänderungen wurden übernommen.");
+					
+					response.sendRedirect("./welcome.jsp");
+					ChangePassword.setInfoMessage("Bitte mit neuem Passwort einloggen!");
+					System.out.println("Session deleted");
+				}
+			} else {
+				ChangePassword.infoMessage = "Ihr altes Passwort ist falsch!";
+				System.out.println(infoMessage);
+				// TODO TK - How to display a String infoMessage in a jsp File?
+				request.setAttribute("infoMessage", infoMessage);
+				response.sendRedirect("./changePassword.jsp");
+			}
+			
 		} else {
 			ChangePassword.infoMessage = "Das neue Passwort wurde nicht zweimal korrekt eingegeben!";
 			System.out.println(infoMessage);
+			// TODO TK - How to display a String infoMessage in a jsp File?
 			request.setAttribute("infoMessage", infoMessage);
 			response.sendRedirect("./changePassword.jsp");
 		}
-		
-		
 		
 	}
 }

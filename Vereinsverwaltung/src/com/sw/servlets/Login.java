@@ -2,7 +2,6 @@ package com.sw.servlets;
 
 import java.io.IOException;
 
-import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sw.beans.Member;
-import com.sw.beans.User;
 import com.sw.dao.LoginDao;
 
 @WebServlet("/welcome")
@@ -54,6 +52,7 @@ public class Login extends HttpServlet {
 		{
 			final HttpSession session = request.getSession();
 			session.setAttribute("currentUser", currentUser);
+			session.setAttribute("username", currentUser.getUsername());
 			Login.infoMessage = "Successful login";
 			request.setAttribute("infoMessage", infoMessage);
 			response.sendRedirect("./index.jsp");

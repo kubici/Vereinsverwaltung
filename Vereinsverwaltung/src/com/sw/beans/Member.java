@@ -12,6 +12,7 @@ public class Member
 	private int memberId;
 	private String username;
 	private String password;
+	private String new_password;
 	private String firstName;
 	private String lastName;
 	private Date birthDate;
@@ -33,6 +34,16 @@ public class Member
 	public void setPassword(String password)
 	{
 		this.password = password;
+	}
+	
+	public String getNewPassword()
+	{
+		return this.new_password;
+	}
+	
+	public void setNewPassword(String new_password)
+	{
+		this.new_password = new_password;
 	}
 	
 	public String getUsername()
