@@ -61,7 +61,8 @@ public class Login extends HttpServlet {
 		{
 			Login.infoMessage = "Wrong username or password";
 			System.out.println(infoMessage);
-			// TODO TK - How to display a String infoMessage in a jsp File?
+			// TODO TK - Bug in infoMessage
+			// InfoMessage is display after refreshed page
 			request.setAttribute("infoMessage", infoMessage);
 			response.sendRedirect("./welcome.jsp");
 		}

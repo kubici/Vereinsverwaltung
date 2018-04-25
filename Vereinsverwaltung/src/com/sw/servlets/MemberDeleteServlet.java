@@ -16,8 +16,17 @@ public class MemberDeleteServlet extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// Get the id of the selected Item in the jsp table
 		System.out.println("doPost() deleteMember: ");
-
 		System.out.println(request.getParameter("id"));
+		
+		// Convert String to Int
+		String selectedMemberId = request.getParameter("id");
+		
+		// Connect to Database + do not write your own database connection
+		// Use an existing class
+		
+		// implement deleteMember() - MemberDao
+		// Write SQL Statement in deleteMember()
 	}
 }

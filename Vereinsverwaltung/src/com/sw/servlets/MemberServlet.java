@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sw.beans.Member;
-import com.sw.beans.User;
 import com.sw.controller.MemberDashboardController;
 import com.sw.dao.MemberDao;
 import com.sw.security.HashText;
@@ -100,10 +99,7 @@ public class MemberServlet extends HttpServlet {
 		String memberName = member.getFirstName();// return the firstname
 		String memberLname = member.getLastName();// return the Lastname
 		int memberId = MemberDashboardController.lstMemberCounter; // return the memberId
-		
-		// TODO build the username as this schema-> generatedUserName -> ([erster buchst. vorname][nachname][id])
 
-	
 		generatedUserName = memberName.substring(0,1)+"."+memberLname+"."+memberId; // firstletterofFirstname.lastname.RandomId
 
 		return generatedUserName; // generatedUserName -> ([erster buchst. vorname][nachname][id])

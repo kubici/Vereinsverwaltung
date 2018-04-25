@@ -58,7 +58,7 @@ public class ChangePassword extends HttpServlet{
 					session.removeAttribute("currentUser");
 					session.invalidate();
 					
-					ChangePassword.setInfoMessage("Passwortänderungen wurden übernommen.");
+					ChangePassword.setInfoMessage("Passwortï¿½nderungen wurden ï¿½bernommen.");
 					
 					response.sendRedirect("./welcome.jsp");
 					ChangePassword.setInfoMessage("Bitte mit neuem Passwort einloggen!");
@@ -67,7 +67,6 @@ public class ChangePassword extends HttpServlet{
 			} else {
 				ChangePassword.infoMessage = "Ihr altes Passwort ist falsch!";
 				System.out.println(infoMessage);
-				// TODO TK - How to display a String infoMessage in a jsp File?
 				request.setAttribute("infoMessage", infoMessage);
 				response.sendRedirect("./changePassword.jsp");
 			}
@@ -75,7 +74,6 @@ public class ChangePassword extends HttpServlet{
 		} else {
 			ChangePassword.infoMessage = "Das neue Passwort wurde nicht zweimal korrekt eingegeben!";
 			System.out.println(infoMessage);
-			// TODO TK - How to display a String infoMessage in a jsp File?
 			request.setAttribute("infoMessage", infoMessage);
 			response.sendRedirect("./changePassword.jsp");
 		}

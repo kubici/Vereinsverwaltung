@@ -50,7 +50,6 @@ public class MemberDao
 				
 				while(set.next())
 				{
-					// TODO read the complete database
 					String firstName = set.getString("first_name");
 					String lastName = set.getString("last_name");
 					int memberId = set.getInt("member_id");
@@ -124,6 +123,17 @@ public class MemberDao
 			ex.printStackTrace();
 			return false;
 		}
+		return true;
+	}
+	
+	
+	public boolean deleteMember(Member member)
+	{
+		return true;
+	}
+	
+	public boolean editMember(Member member)
+	{
 		return true;
 	}
 }
