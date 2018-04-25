@@ -1,6 +1,7 @@
 package com.sw.servlets;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import com.sw.beans.Member;
 import com.sw.beans.User;
 import com.sw.dao.MemberDao;
+import com.sw.security.HashText;
 
 @WebServlet("/registerMember")
 public class MemberServlet extends HttpServlet {
@@ -31,11 +33,11 @@ public class MemberServlet extends HttpServlet {
 		// Create an object member with the given attributes
 		Member member = new Member();
 
-		member.setName(request.getParameter("name"));
-		member.setLname(request.getParameter("lname"));
+		member.setName(request.getParameter("first_name"));
+		member.setLastName(request.getParameter("last_name"));
 		
 		// Parse birth into Date object
-		String tempBirth = request.getParameter("birth");
+		String tempBirth = request.getParameter("birth_date");
 		DateFormat dateFormatBirth = new SimpleDateFormat("dd.MM.yyyy");
 		try
 		{
@@ -54,19 +56,19 @@ public class MemberServlet extends HttpServlet {
 		}
 		
 		member.setGender(request.getParameter("gender"));
-		member.setEmail(request.getParameter("email"));
-		member.setTelefon(request.getParameter("telephone"));
-		member.setAdressline01(request.getParameter("adressline01"));
-		member.setAdressline02(request.getParameter("adressline02"));
-		member.setPostalcode(request.getParameter("postalcode"));
+		member.setEmailAddress(request.getParameter("email_address"));
+		member.setPhoneNumber(request.getParameter("phone_number"));
+		member.setAdressline(request.getParameter("address_line"));
+		member.setAdresslineAdd(request.getParameter("address_add"));
+		member.setPostCode(request.getParameter("post_code"));
 		
 		// Parse joinedDate into Date object
-		String tempJoinedDate = request.getParameter("joinedDate");
+		String tempEntryDate = request.getParameter("entry_date");
 		try
 		{
 			DateFormat dateFormatJoinedDate = new SimpleDateFormat("dd.MM.yyyy");
-			Date joinedDate = (Date) dateFormatJoinedDate.parse(tempJoinedDate);
-			member.setJoinedDate(joinedDate);
+			Date joinedDate = (Date) dateFormatJoinedDate.parse(tempEntryDate);
+			member.setEntryDate(joinedDate);
 		}
 		catch(IllegalFormatException ife)
 		{
@@ -80,11 +82,8 @@ public class MemberServlet extends HttpServlet {
 		}
 		
 		member.setCity(request.getParameter("city"));
-		member.setGender(request.getParameter("gender"));
-		member.setTelefon(request.getParameter("telefon"));
-		member.setEmail(request.getParameter("email"));
-		member.setRole(request.getParameter("role"));
-		
+		member.setUsername(generateUserName(member));
+		member.setPassword(generateUserPassword());
 		// save new member into database
 		MemberDao memberDao = new MemberDao();
 		memberDao.writeMember(member);
@@ -97,8 +96,11 @@ public class MemberServlet extends HttpServlet {
 	private String generateUserName(Member member)
 	{
 		String generatedUserName = null;
-		String memberName = member.getName(); // return the firstname
-		String memberLname = member.getLname(); // return the Lastname
+		String memberName = member.getFirstName();// return the firstname
+		String memberLname = member.getLastName();// return the Lastname
+		int memberId = member.getMemberId(); // return the memberId
+		
+		// TODO build the username as this schema-> generatedUserName -> ([erster buchst. vorname][nachname][id])
 
 		Random random = new Random();
 		String number = "0123456789";
@@ -115,7 +117,7 @@ public class MemberServlet extends HttpServlet {
 	private String generateUserPassword()
 	{
 
-		SecureRandom random = new SecureRandom(); //
+		SecureRandom random = new SecureRandom(); 
 		String letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		
 		StringBuilder passwordgenerator = new StringBuilder();
@@ -123,7 +125,19 @@ public class MemberServlet extends HttpServlet {
 			passwordgenerator.append(letters.charAt(random.nextInt(letters.length())));
 			
 		}
-		return passwordgenerator.toString();
+		
+		HashText ht = new HashText();
+		String tempPassword = "";
+		try 
+		{
+			tempPassword = ht.sha256(passwordgenerator.toString());
+		} 
+		catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return tempPassword;
 		
 		
 	}

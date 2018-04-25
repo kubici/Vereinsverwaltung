@@ -26,33 +26,29 @@
 		<div class="mitglied_hinzufügen">
 			<h3>Mitglied hinzuf&uuml;gen</h3>	
 			<form action="${pageContext.request.contextPath}/registerMember" method="post">
-				<input type="text" name="name" placeholder="Nachname" /><br>
-				<input type="text" name="lname" placeholder="Vorname" /><br>
+				<input type="text" name="first_name" placeholder="Nachname" /><br>
+				<input type="text" name="last_name" placeholder="Vorname" /><br>
 				<p>Geburtstag: (Format dd.MM.yyyy) <br>
-					<input type="date" name="birth" placeholder="Geburtstag" /><br>
+					<input type="date" name="birth_date" placeholder="Geburtstag" /><br>
 				</p>
 				<input type="radio" name="gender" value="male"> Male<br>
 	  			<input type="radio" name="gender" value="female"> Female<br>
 	  			<input type="radio" name="gender" value="other"> Other <br>
-				<input type="email" name="email" placeholder="E-Mail" /><br>
-				<input type="tel" name="telefon" placeholder="Telefonnummer" /><br>
+				<input type="email" name="email_address" placeholder="E-Mail" /><br>
+				<input type="tel" name="phone_number" placeholder="Telefonnummer" /><br>
 				<p>
 					Adresse: <br>
-					<input type="text" name="adressline01" placeholder="Adresszeile 1" /><br>
-					<input type="text" name="adressline02" placeholder="Adresszeile 2" /><br>
-					<input type="text" name="postalcode" placeholder="Postleitzahl" /><input type="text" name="city" placeholder="Ort" /><br>
+					<input type="text" name="address_line" placeholder="Adresszeile 1" /><br>
+					<input type="text" name="address_add" placeholder="Adresszeile 2" /><br>
+					<input type="text" name="post_code" placeholder="Postleitzahl" /><input type="text" name="city" placeholder="Ort" /><br>
 				</p>
 				<p>
 					Beigetreten am Format(Format dd.MM.yyyy)<br>
-					<input type="date" name="joinedDate" placeholder="Beigetreten am" /><br>
+					<input type="date" name="entry_date" placeholder="Beigetreten am" /><br>
 				</p>
 				
 				<p>
-					Rolle<br>
-				
-				<input type="text" name="role" placeholder="Rolle"/>
-				</p>
-				
+
 				<input type="submit" name="submit_mitglied" value="Mitglied hinzuf&uuml;gen"><br>
 
 

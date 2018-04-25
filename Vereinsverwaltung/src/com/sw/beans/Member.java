@@ -9,56 +9,87 @@ public class Member
 	{
 		
 	}
-	
-	private String name;
-	private String lname;
-	private Date birth;
-	private String adressline01;
-	private String adressline02;
-	private String postalcode;
+	private int memberId;
+	private String username;
+	private String password;
+	private String firstName;
+	private String lastName;
+	private Date birthDate;
+	private String adressline;
+	private String adresslineAdd;
+	private String postCode;
 	private String city;
 	private String gender;
-	private String telefon;
-	private String email;
-	private Date joinedDate;
-	private String role;
+	private String phoneNumber;
+	private String emailAddress;
+	private Date entryDate;
 	
 	
-	public String getName() {
-		return name;
+	public String getPassword()
+	{
+		return this.password;
 	}
-	public void setName(String name) {
-		this.name = name;
+	
+	public void setPassword(String password)
+	{
+		this.password = password;
 	}
-	public String getLname() {
-		return lname;
+	
+	public String getUsername()
+	{
+		return this.username;
 	}
-	public void setLname(String lname) {
-		this.lname = lname;
+	
+	public void setUsername(String username)
+	{
+		this.username = username;
+	}
+	
+	public int getMemberId()
+	{
+		return this.memberId;
+	}
+	
+	public void setMemberId(int memberId)
+	{
+		this.memberId = memberId;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return this.lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public Date getBirth() {
-		return birth;
+		return birthDate;
 	}
 	public void setBirth(Date birth) {
-		this.birth = birth;
+		this.birthDate = birth;
 	}
-	public String getAdressline01() {
-		return adressline01;
+	public String getAdressline() {
+		return adressline;
 	}
-	public void setAdressline01(String adressline01) {
-		this.adressline01 = adressline01;
+	public void setAdressline(String adressline) {
+		this.adressline = adressline;
 	}
-	public String getAdressline02() {
-		return adressline02;
+	public String getAdresslineAdd() {
+		return adresslineAdd;
 	}
-	public void setAdressline02(String adressline02) {
-		this.adressline02 = adressline02;
+	public void setAdresslineAdd(String adresslineAdd) {
+		this.adresslineAdd = adresslineAdd;
 	}
-	public String getPostalcode() {
-		return postalcode;
+	public String getPostCode() {
+		return postCode;
 	}
-	public void setPostalcode(String postalcode) {
-		this.postalcode = postalcode;
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
 	}
 	public String getCity() {
 		return city;
@@ -72,30 +103,23 @@ public class Member
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getTelefon() {
-		return telefon;
+	public String getPhoneNumber() {
+		return this.phoneNumber;
 	}
-	public void setTelefon(String telefon) {
-		this.telefon = telefon;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
-	public String getEmail() {
-		return email;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
-	public Date getJoinedDate() {
-		return joinedDate;
+	public Date getEntryDate() {
+		return this.entryDate;
 	}
-	public void setJoinedDate(Date joinedDate) {
-		this.joinedDate = joinedDate;
-	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
-	
+	public void setEntryDate(Date entryDate) {
+		this.entryDate = entryDate;
+	}	
 	
 }

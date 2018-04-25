@@ -12,6 +12,8 @@ import java.util.List;
 
 import com.sw.beans.Member;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class MemberDao 
 {
 	
@@ -41,20 +43,24 @@ public class MemberDao
 			List<Member> memberList = new ArrayList<Member>();
 			try
 			{
-				String sql = "Select * from mitglieder";
+				String sql = "Select * from MEMBER where member_id > 1"; // read all Members without Admin
 				Statement statement = this.MemberConnection.createStatement();
 				set = statement.executeQuery(sql);
 				
+				
 				while(set.next())
 				{
-					// TODO read the complet database
-					String name = set.getString("name");
-					String lname = set.getString("lname");
+					// TODO read the complete database
+					String firstName = set.getString("first_name");
+					String lastName = set.getString("last_name");
+					int memberId = set.getInt("member_id");
 					
-					Member m = new Member();
-					m.setName(name);
-					m.setLname(lname);
-					memberList.add(m);
+					Member member = new Member();
+					member.setName(firstName);
+					member.setLastName(lastName);
+					member.setMemberId(memberId);
+					// TODO load more attributes from database, to display them in the table
+					memberList.add(member);
 				}
 				
 			}
@@ -72,26 +78,37 @@ public class MemberDao
 		
 		
 	}
+	
+	
+	public boolean writeMemberExclusive(Member member)
+	{
+		// TODO Write writeMemberExclusive-Method to have a second method with password and the normal method without saving the password
+		throw new NotImplementedException();
+	}
+	
+	
+	
 	// Write Member from register formular into database
 	public boolean writeMember(Member member)
 	{
 		try
 		{
-			String sql = "Insert into swp_system.mitglieder (name, lname, birth, adressline01, adressline02, postalcode,  city, gender, telefon, email, joinedDate, role) values ( ?, ?,?,?, ?, ?, ?, ?, ?, ?,?, ?)";
+			String sql = "Insert into swp_system.MEMBER (first_name, last_name, birth_date, address_line, address_add, post_code,  city, gender, phone_number, email_address, entry_date, username, password) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			PreparedStatement preparedStmt = this.MemberConnection.prepareStatement(sql);
-			preparedStmt.setObject(1, member.getName(), Types.VARCHAR);
-			preparedStmt.setObject(2, member.getLname(), Types.VARCHAR);
+			preparedStmt.setObject(1, member.getFirstName(), Types.VARCHAR);
+			preparedStmt.setObject(2, member.getLastName(), Types.VARCHAR);
 			preparedStmt.setObject(3, member.getBirth(), Types.DATE);
-			preparedStmt.setObject(4, member.getAdressline01(), Types.VARCHAR);
-			preparedStmt.setObject(5, member.getAdressline02(), Types.VARCHAR);
-			preparedStmt.setObject(6, member.getPostalcode(), Types.VARCHAR);
+			preparedStmt.setObject(4, member.getAdressline(), Types.VARCHAR);
+			preparedStmt.setObject(5, member.getAdresslineAdd(), Types.VARCHAR);
+			preparedStmt.setObject(6, member.getPostCode(), Types.VARCHAR);
 			preparedStmt.setObject(7, member.getCity(), Types.VARCHAR);
 			preparedStmt.setObject(8, member.getGender(), Types.VARCHAR);
-			preparedStmt.setObject(9, member.getTelefon(), Types.VARCHAR);
-			preparedStmt.setObject(10, member.getEmail(), Types.VARCHAR);
-			preparedStmt.setObject(11, member.getJoinedDate(), Types.DATE);
-			preparedStmt.setObject(12, member.getRole(), Types.VARCHAR);
+			preparedStmt.setObject(9, member.getPhoneNumber(), Types.VARCHAR);
+			preparedStmt.setObject(10, member.getEmailAddress(), Types.VARCHAR);
+			preparedStmt.setObject(11, member.getEntryDate(), Types.DATE);
+			preparedStmt.setObject(12, member.getUsername() , Types.VARCHAR);
+			preparedStmt.setObject(13, member.getPassword(), Types.VARCHAR);
 	
 		    preparedStmt.execute();
 		}

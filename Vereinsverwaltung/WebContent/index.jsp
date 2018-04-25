@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@page import="com.sw.beans.User"  %>
+   <%@page import="com.sw.beans.Member"  %>
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -18,7 +18,7 @@
 	
 	<% // TODO Dropdown-Menü mit Einstellungs-Icon %>
 	<div class="settings">
-	<p id="user_label">Benutzer: <c:out value="${currentUser.uname}"/></p>
+	<p id="user_label">Benutzer: <c:out value="${currentUser.firstName}"/> <c:out value="${currentUser.lastName}"/></p>
 	<p>
 		<a href="changePassword.jsp">
 		<input class="button" type="submit" value="Passwort ändern"/>
@@ -48,7 +48,7 @@ if(request.getSession().getAttribute("currentUser") == null)
 	}
 %>
 
-<% User currentUser = (User) session.getAttribute("currentUser");
+<% Member currentUser = (Member) session.getAttribute("currentUser");
 	pageContext.setAttribute("currentUser", currentUser); %>
 	
 <div class="content-wrap">

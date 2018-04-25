@@ -1,5 +1,5 @@
 <%@page import="com.sw.controller.MemberDashboardController"%>
-<%@page import="com.sw.beans.User" %>
+<%@page import="com.sw.beans.Member" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 
@@ -19,26 +19,17 @@
 </head>
 <body>
 	<h2>Test</h2>
-
-
 	
-	<p>Next Table</p>
-	
-	
-	<jsp:useBean id="user" class="com.sw.beans.User"></jsp:useBean>
-	<c:out value="${user.uname}"></c:out>
-	
-
 	 <!-- Here you can see a table of all mitglieder in your team -->
 	<jsp:useBean id="mitgliederList" class="com.sw.controller.MemberDashboardController"></jsp:useBean>
 	
 	<table border="3">
-	<th>Name</th>
-	<th>Lname</th>
+	<th>Vorname</th>
+	<th>Nachname</th>
 	<c:forEach items="${mList}" var="mList">
 	<tr>
-		<td><c:out value="${mList.name}"></c:out></td>
-		<td><c:out value="${mList.lname}"></c:out></td>
+		<td><c:out value="${mList.firstName}"></c:out></td>
+		<td><c:out value="${mList.lastName}"></c:out></td>
 	</tr>
 	</c:forEach>
 	</table>

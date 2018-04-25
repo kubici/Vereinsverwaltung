@@ -13,14 +13,14 @@ public class MemberDashboardController
 	{
 		try
 		{
-			System.out.println("MitgliederDashboardController:");
+			System.out.println("MemberDashboardController:");
 			MemberDao memberDao = new MemberDao();
 			setLstMember(memberDao.readMember());
 			this.lstMember = getLstMember();
 		}
 		catch(Exception ex)
 		{
-			System.out.println("Exception: MitgliederDashboardController() constructor");
+			System.out.println("Exception: MemberDashboardController() constructor");
 			ex.printStackTrace();
 		}
 	}
