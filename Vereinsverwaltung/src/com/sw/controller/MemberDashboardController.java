@@ -7,6 +7,8 @@ import com.sw.dao.MemberDao;
 
 public class MemberDashboardController 
 {
+	public static int lstMemberCounter;
+	
 	private List<Member> lstMember;
 	
 	public MemberDashboardController()
@@ -17,6 +19,7 @@ public class MemberDashboardController
 			MemberDao memberDao = new MemberDao();
 			setLstMember(memberDao.readMember());
 			this.lstMember = getLstMember();
+			lstMemberCounter = this.lstMember.size();
 		}
 		catch(Exception ex)
 		{
@@ -33,5 +36,11 @@ public class MemberDashboardController
 	public void setLstMember(List<Member> lstMember)
 	{
 		this.lstMember = lstMember;
+	}
+	
+	
+	public void editMember()
+	{
+		System.out.println("editmember()");
 	}
 }
