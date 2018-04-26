@@ -34,7 +34,7 @@ response.setDateHeader("Expires", 0);
 
 <%
 	// TODO Is there a possibility to check if the page was refreshed?
-	// It can be done with javascript, but jsp would be better!
+	//TODO  It can be done with javascript, but jsp would be better!
 	pageContext.setAttribute("infoMessage", Login.getInfoMessage());
 %>
 <c:out value="${infoMessage}"></c:out>
