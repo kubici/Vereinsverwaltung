@@ -15,8 +15,8 @@ public class Generator {
 		String memberLname = member.getLastName();// return the Lastname
 		int memberId = MemberDashboardController.lstMemberCounter; // return the memberId
 
-		generatedUserName = memberName.substring(0,1)+"."+memberLname+"."+memberId; // firstletterofFirstname.lastname.RandomId
-
+		generatedUserName = memberName.substring(0,1)+""+memberLname+""+memberId; // firstletterofFirstname.lastname.RandomId
+		
 		return generatedUserName; // generatedUserName -> ([erster buchst. vorname][nachname][id])
 	}
 	

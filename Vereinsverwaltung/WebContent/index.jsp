@@ -16,20 +16,10 @@
 <header>
 	<h1>Vereinsverwaltung</h1>
 	
-	<% // TODO Dropdown-Menü mit Einstellungs-Icon %>
-	<div class="settings">
-	<p id="user_label">Benutzer: <c:out value="${currentUser.firstName}"/> <c:out value="${currentUser.lastName}"/></p>
-	<p>
-		<a href="changePassword.jsp">
-		<input class="button" type="submit" value="Passwort ändern"/>
-		</a>
-	</p>
-	<form action="${pageContext.request.contextPath}/Logout" method="post">
-		<input class="button" type="submit" value="Logout"/>
-	</form>
-	</div>
-</header>
-
+	
+	<% Member currentUser = (Member) session.getAttribute("currentUser");
+		pageContext.setAttribute("currentUser", currentUser); %>
+	
 <!-- Check for a valid session -->
 
 <% 
@@ -48,8 +38,21 @@ if(request.getSession().getAttribute("currentUser") == null)
 	}
 %>
 
-<% Member currentUser = (Member) session.getAttribute("currentUser");
-	pageContext.setAttribute("currentUser", currentUser); %>
+	
+<% // TODO Dropdown-Menü mit Einstellungs-Icon %>
+	<div class="settings">
+	<p id="user_label">Benutzer: <c:out value="${currentUser.username}"/></p>
+	<p>
+		<a href="changePassword.jsp">
+		<input class="button" type="submit" value="Passwort ändern"/>
+		</a>
+	</p>
+	<form action="${pageContext.request.contextPath}/Logout" method="post">
+		<input class="button" type="submit" value="Logout"/>
+	</form>
+	</div>
+</header>
+
 	
 <div class="content-wrap">
 	<p>This is the Testoverview</p>

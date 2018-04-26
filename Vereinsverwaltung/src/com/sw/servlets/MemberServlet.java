@@ -83,11 +83,11 @@ public class MemberServlet extends HttpServlet {
 		}
 		
 		member.setCity(request.getParameter("city"));
-		Generator gr = new Generator();
-		member.setUsername(gr.generateUserName(member));
+		Generator generator = new Generator();
+		member.setUsername(generator.generateUserName(member));
 		HashText hash = new HashText();
 		try {
-			member.setPassword(hash.sha256(gr.generatePassword()));
+			member.setPassword(hash.sha256(generator.generatePassword()));
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
