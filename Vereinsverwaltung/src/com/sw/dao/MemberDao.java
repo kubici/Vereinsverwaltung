@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.sw.beans.Member;
+import com.sw.security.ParseDate;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -47,18 +47,38 @@ public class MemberDao
 				Statement statement = this.MemberConnection.createStatement();
 				set = statement.executeQuery(sql);
 				
+				ParseDate parse = new ParseDate();
 				
 				while(set.next())
 				{
+					String username = set.getString("username");
 					String firstName = set.getString("first_name");
 					String lastName = set.getString("last_name");
+					String birth = set.getString("birth_date");
+					String gender = set.getString("gender");
+					String address_line = set.getString("address_line");
+					String address_add = set.getString("address_add");
+					String post_code = set.getString("post_code");
+					String city = set.getString("city");
+					String phone_number = set.getString("phone_number");
+					String email_address = set.getString("email_address");
+					String entry_date = set.getString("entry_date");
 					int memberId = set.getInt("member_id");
 					
 					Member member = new Member();
+					member.setUsername(username);
 					member.setName(firstName);
 					member.setLastName(lastName);
 					member.setMemberId(memberId);
-					// TODO load more attributes from database, to display them in the table
+					member.setBirth(parse.convert(birth));
+					member.setGender(gender);
+					member.setAdressline(address_line);
+					member.setAdresslineAdd(address_add);
+					member.setPostCode(post_code);
+					member.setCity(city);
+					member.setPhoneNumber(phone_number);
+					member.setEmailAddress(email_address);
+					member.setEntryDate(parse.convert(entry_date)); 
 					memberList.add(member);
 				}
 				
@@ -134,7 +154,61 @@ public class MemberDao
 	
 	public boolean editMember(Member member)
 	{
+		try
+		{
+			if (member.getPassword() != null) {
+				String sql = "Update swp_system.MEMBER SET first_name = ?, last_name = ?, birth_date = ?, address_line = ?, address_add = ?, post_code = ?,  city= ?, gender = ?, phone_number = ?, email_address = ?, password = ? Where username = ?";
+				
+				PreparedStatement preparedStmt = this.MemberConnection.prepareStatement(sql);
+				preparedStmt.setObject(1, member.getFirstName(), Types.VARCHAR);
+				preparedStmt.setObject(2, member.getLastName(), Types.VARCHAR);
+				preparedStmt.setObject(3, member.getBirth(), Types.DATE);
+				preparedStmt.setObject(4, member.getAdressline(), Types.VARCHAR);
+				preparedStmt.setObject(5, member.getAdresslineAdd(), Types.VARCHAR);
+				preparedStmt.setObject(6, member.getPostCode(), Types.VARCHAR);
+				preparedStmt.setObject(7, member.getCity(), Types.VARCHAR);
+				preparedStmt.setObject(8, member.getGender(), Types.VARCHAR);
+				preparedStmt.setObject(9, member.getPhoneNumber(), Types.VARCHAR);
+				preparedStmt.setObject(10, member.getEmailAddress(), Types.VARCHAR);
+				preparedStmt.setObject(11, member.getPassword(), Types.VARCHAR);
+				preparedStmt.setObject(12, member.getUsername(), Types.VARCHAR);
+		
+			    preparedStmt.executeUpdate();
+			    preparedStmt.close();
+			} else {
+				String sql = "Update swp_system.MEMBER SET first_name = ?, last_name = ?, birth_date = ?, address_line = ?, address_add = ?, post_code = ?,  city= ?, gender = ?, phone_number = ?, email_address = ? Where username = ? ";
+				
+				PreparedStatement preparedStmt = this.MemberConnection.prepareStatement(sql);
+				preparedStmt.setObject(1, member.getFirstName(), Types.VARCHAR);
+				preparedStmt.setObject(2, member.getLastName(), Types.VARCHAR);
+				preparedStmt.setObject(3, member.getBirth(), Types.DATE);
+				preparedStmt.setObject(4, member.getAdressline(), Types.VARCHAR);
+				preparedStmt.setObject(5, member.getAdresslineAdd(), Types.VARCHAR);
+				preparedStmt.setObject(6, member.getPostCode(), Types.VARCHAR);
+				preparedStmt.setObject(7, member.getCity(), Types.VARCHAR);
+				preparedStmt.setObject(8, member.getGender(), Types.VARCHAR);
+				preparedStmt.setObject(9, member.getPhoneNumber(), Types.VARCHAR);
+				preparedStmt.setObject(10, member.getEmailAddress(), Types.VARCHAR);
+				preparedStmt.setObject(11, member.getUsername(), Types.VARCHAR);
+				
+			    preparedStmt.executeUpdate();
+			    preparedStmt.close();	
+			}
+		}
+		catch(SQLException sqlE)
+		{
+			System.out.println("SQLException editMember() : ");
+			sqlE.printStackTrace();
+			return false;
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Exception editMember() : ");
+			ex.printStackTrace();
+			return false;
+		}
 		return true;
 	}
+
 }
 

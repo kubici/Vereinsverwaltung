@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import com.sw.beans.Member;
 import com.sw.controller.MemberDashboardController;
 import com.sw.dao.MemberDao;
+import com.sw.security.Generator;
 import com.sw.security.HashText;
 
 @WebServlet("/registerMember")
@@ -82,8 +83,14 @@ public class MemberServlet extends HttpServlet {
 		}
 		
 		member.setCity(request.getParameter("city"));
-		member.setUsername(generateUserName(member));
-		member.setPassword(generateUserPassword());
+		Generator gr = new Generator();
+		member.setUsername(gr.generateUserName(member));
+		HashText hash = new HashText();
+		try {
+			member.setPassword(hash.sha256(gr.generatePassword()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 		// save new member into database
 		MemberDao memberDao = new MemberDao();
 		memberDao.writeMember(member);
@@ -93,44 +100,6 @@ public class MemberServlet extends HttpServlet {
 	}
 
 	
-	private String generateUserName(Member member)
-	{
-		String generatedUserName = null;
-		String memberName = member.getFirstName();// return the firstname
-		String memberLname = member.getLastName();// return the Lastname
-		int memberId = MemberDashboardController.lstMemberCounter; // return the memberId
-
-		generatedUserName = memberName.substring(0,1)+"."+memberLname+"."+memberId; // firstletterofFirstname.lastname.RandomId
-
-		return generatedUserName; // generatedUserName -> ([erster buchst. vorname][nachname][id])
-	}
 	
-	private String generateUserPassword()
-	{
-
-		SecureRandom random = new SecureRandom(); 
-		String letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-		
-		StringBuilder passwordgenerator = new StringBuilder();
-		for(int i =1; i<=8;i++){
-			passwordgenerator.append(letters.charAt(random.nextInt(letters.length())));
-			
-		}
-		
-		HashText ht = new HashText();
-		String tempPassword = "";
-		try 
-		{
-			tempPassword = ht.sha256(passwordgenerator.toString());
-		} 
-		catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return tempPassword;
-		
-		
-	}
 	
 }
