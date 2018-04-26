@@ -149,6 +149,19 @@ public class MemberDao
 	
 	public boolean deleteMember(Member member)
 	{
+		String sql ="DELETE FROM swp_system.MEMBER WHERE username = "+ member.getUsername();
+		
+		try {
+			PreparedStatement preparedStmt = this.MemberConnection.prepareStatement(sql);
+			preparedStmt.executeUpdate();
+		    preparedStmt.close();
+		    
+		    
+		} catch(SQLException sqlE){
+			System.out.println("SQLException deleteMember() : ");
+			sqlE.printStackTrace();
+			return false;
+		}
 		return true;
 	}
 	
