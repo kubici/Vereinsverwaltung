@@ -10,6 +10,12 @@
 <h2>Delete the Member</h2>
 		
 		<form action="${pageContext.request.contextPath}/deleteMember" method="post">
-
+	
+	<input type="text" name="username" value='<%=request.getAttribute("username")%>' readonly/><br>
+	<input type="checkbox" name="username" value='<%=request.getAttribute("username")%>'><%=request.getAttribute("username")%><br>
+	<input id="delete_btn" type="submit" value="Delete">
+	
+	</form>
+		
 </body>
 </html>

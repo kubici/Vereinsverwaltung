@@ -153,6 +153,7 @@ public class MemberDao
 		
 		try {
 			PreparedStatement preparedStmt = this.MemberConnection.prepareStatement(sql);
+		
 			preparedStmt.executeUpdate();
 		    preparedStmt.close();
 		    
