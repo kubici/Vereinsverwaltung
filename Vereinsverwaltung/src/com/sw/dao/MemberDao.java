@@ -225,29 +225,5 @@ public class MemberDao
 		return true;
 	}
 	
-	public String getGender (String user) {
-		
-		ResultSet set = null;
-		
-		try {
-			String sql = "SELECT * FROM member WHERE username = ?";
-			PreparedStatement preparedStmt = this.MemberConnection.prepareStatement(sql);
-			preparedStmt.setObject(1, user, Types.VARCHAR);
-			
-			set = preparedStmt.executeQuery();
-			preparedStmt.close();
-			
-			while (set.next()) {
-				System.out.println("+++++++++ " + set.getString("username"));
-				String gender = set.getString("gender");
-				return gender;
-			}
-		} catch (Exception e) {
-			
-		}
-		
-		return null;
-	}
-
 }
 

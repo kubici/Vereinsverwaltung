@@ -7,20 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<h2>Edit the Member or generate a new password</h2>
+		<h2>Mitglied bearbeiten</h2>
 		
 		<form action="${pageContext.request.contextPath}/saveMember" method="post">
 		
-		<input type="text" name="username" value='<%=request.getAttribute("username")%>' readonly/><br>
+		<input type="hidden" name="username" value='<%=request.getAttribute("username")%>' /><br>
 		<input type="text" name="first_name" value='<%=request.getAttribute("first_name")%>'/><br>
 		<input type="text" name="last_name"  value='<%=request.getAttribute("last_name")%>'/><br>
 		<p>Geburtstag: (Format dd.MM.yyyy) <br>
 			<input type="date" name="birth_date" value='<%=request.getAttribute("birth")%>'/><br>
 		</p>
 		<p>
-			<input type="radio" name="gender" value="male"> Male<br>
- 			<input type="radio" name="gender" value="female"> Female<br>
- 			<input type="radio" name="gender" value="other"> Other <br>
+		<h6>Geschlecht:</h6>
+			<input type="radio" name="gender" value="male"  <%= request.getAttribute("gender").equals("male") ?  "checked" : "" %> /> Male<br>
+ 			<input type="radio" name="gender" value="female"  <%= request.getAttribute("gender").equals("female") ?  "checked" : "" %>/> Female<br>
+ 			<input type="radio" name="gender" value="other"  <%= request.getAttribute("gender").equals("other") ?  "checked" : "" %>/> Other <br>
  		</p>
 		<input type="email" name="email_address" value='<%=request.getAttribute("mail")%>' /><br>
 		<input type="tel" name="phone_number" value='<%=request.getAttribute("phone")%>'/><br>
@@ -31,9 +32,11 @@
 			<input type="text" name="post_code" value='<%=request.getAttribute("post_code")%>'/>
 			<input type="text" name="city" value='<%=request.getAttribute("city")%>'/><br>
 		</p>
-		<input type="checkbox" name="password_change" value='<%=request.getAttribute("password")%>'><%=request.getAttribute("password")%><br>
-		<input id="submit_btn" type="submit" value="Submit">
+		<p>
 			
+			<input type="checkbox" name="password_change" value='<%=request.getAttribute("password")%>'><%=request.getAttribute("password")%><br>
+			<input id="submit_btn" type="submit" value="Submit">
+		</p>
 		</form>
 		
 		

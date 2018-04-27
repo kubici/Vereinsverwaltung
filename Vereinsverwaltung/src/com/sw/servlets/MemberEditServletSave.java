@@ -58,12 +58,7 @@ public class MemberEditServletSave extends HttpServlet{
 		
 		if(request.getParameter("gender") != null) {
 			member.setGender(request.getParameter("gender"));
-			System.out.println("setPARAMETER");
-		} else {
-			System.out.println("memberDAO");
-			MemberDao memd = new MemberDao();
-			member.setGender(memd.getGender(member.getUsername()));
-		}
+			}
 		
 		if(request.getParameter("email_address") != null)
 			member.setEmailAddress((String) request.getParameter("email_address"));
