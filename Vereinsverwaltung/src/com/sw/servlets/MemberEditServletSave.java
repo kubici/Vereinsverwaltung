@@ -53,7 +53,7 @@ public class MemberEditServletSave extends HttpServlet{
 		if(request.getParameter("birth_date") != null) {
 			String date = request.getParameter("birth_date");
 			ParseDate parse = new ParseDate();
-			member.setBirth(parse.convert(date));
+			member.setBirth(parse.convertEuro(date));
 		}
 		
 		if(request.getParameter("gender") != null) {

@@ -10,15 +10,15 @@
 		<h2>Mitglied bearbeiten</h2>
 		
 		<form action="${pageContext.request.contextPath}/saveMember" method="post">
-		
+		Aktueller username: <%= request.getAttribute("username") %><br>
 		<input type="hidden" name="username" value='<%=request.getAttribute("username")%>' /><br>
 		<input type="text" name="first_name" value='<%=request.getAttribute("first_name")%>'/><br>
 		<input type="text" name="last_name"  value='<%=request.getAttribute("last_name")%>'/><br>
-		<p>Geburtstag: (Format dd.MM.yyyy) <br>
+		<p>Geburtstag: (Format dd.mm.yyyy) <br>
 			<input type="date" name="birth_date" value='<%=request.getAttribute("birth")%>'/><br>
 		</p>
 		<p>
-		<h6>Geschlecht:</h6>
+		Geschlecht:<br>
 			<input type="radio" name="gender" value="male"  <%= request.getAttribute("gender").equals("male") ?  "checked" : "" %> /> Male<br>
  			<input type="radio" name="gender" value="female"  <%= request.getAttribute("gender").equals("female") ?  "checked" : "" %>/> Female<br>
  			<input type="radio" name="gender" value="other"  <%= request.getAttribute("gender").equals("other") ?  "checked" : "" %>/> Other <br>
@@ -33,7 +33,7 @@
 			<input type="text" name="city" value='<%=request.getAttribute("city")%>'/><br>
 		</p>
 		<p>
-			
+			Um ein neues Passwort zu generieren Checkbox benutzen. Ansonsten wird das alte Passwort beibehalten! <br>
 			<input type="checkbox" name="password_change" value='<%=request.getAttribute("password")%>'><%=request.getAttribute("password")%><br>
 			<input id="submit_btn" type="submit" value="Submit">
 		</p>
