@@ -31,11 +31,9 @@ public class MemberDeleteServlet extends HttpServlet {
 		Member member = new Member();
 		String selectedMemberId = sb.append(member.getMemberId()).toString();
 
-		
-		request.setAttribute("memberId", member.getMemberId());
+		request.setAttribute("memberId", selectedMemberId);
 		
 		request.setAttribute("memberId",member.getMemberId());
-//		request.getParameter(selectedMemberId);
 		request.getRequestDispatcher("./deleteMember.jsp").forward(request, response);
 		
 		System.out.println("doPost() deleteMember: "+request.getParameter(selectedMemberId));

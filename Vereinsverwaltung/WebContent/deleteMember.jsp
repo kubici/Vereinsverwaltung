@@ -14,7 +14,7 @@
 	
 		
 	<input type="text" name="memberId" value='<%=request.getAttribute("memberId")%>' readonly/><br>
-	<input type="checkbox" name="memberId" value='<%=request.getAttribute("MemberId")%>'><br>
+	<input type="checkbox" name="memberId" value='<%=request.getAttribute("memberId")%>'><br>
 	<input id="delete_btn" type="submit" value="Delete">
 	
 	</form>
