@@ -59,7 +59,7 @@ public class MemberEditServlet extends HttpServlet {
 		
 		ParseDate parse = new ParseDate();
 		request.setAttribute("birth", parse.convertString(member.getBirth()));
-		//TODO gender
+		request.setAttribute("gender", member.getGender());
 		request.setAttribute("mail", member.getEmailAddress());
 		request.setAttribute("phone", member.getPhoneNumber());
 		request.setAttribute("address", member.getAdressline());

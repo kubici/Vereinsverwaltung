@@ -17,9 +17,11 @@
 		<p>Geburtstag: (Format dd.MM.yyyy) <br>
 			<input type="date" name="birth_date" value='<%=request.getAttribute("birth")%>'/><br>
 		</p>
+		<p>
 			<input type="radio" name="gender" value="male"> Male<br>
  			<input type="radio" name="gender" value="female"> Female<br>
  			<input type="radio" name="gender" value="other"> Other <br>
+ 		</p>
 		<input type="email" name="email_address" value='<%=request.getAttribute("mail")%>' /><br>
 		<input type="tel" name="phone_number" value='<%=request.getAttribute("phone")%>'/><br>
 		<p>

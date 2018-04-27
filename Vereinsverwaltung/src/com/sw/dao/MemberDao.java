@@ -1,5 +1,6 @@
 package com.sw.dao;
 
+import java.security.KeyRep.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -222,6 +223,30 @@ public class MemberDao
 			return false;
 		}
 		return true;
+	}
+	
+	public String getGender (String user) {
+		
+		ResultSet set = null;
+		
+		try {
+			String sql = "SELECT * FROM member WHERE username = ?";
+			PreparedStatement preparedStmt = this.MemberConnection.prepareStatement(sql);
+			preparedStmt.setObject(1, user, Types.VARCHAR);
+			
+			set = preparedStmt.executeQuery();
+			preparedStmt.close();
+			
+			while (set.next()) {
+				System.out.println("+++++++++ " + set.getString("username"));
+				String gender = set.getString("gender");
+				return gender;
+			}
+		} catch (Exception e) {
+			
+		}
+		
+		return null;
 	}
 
 }
