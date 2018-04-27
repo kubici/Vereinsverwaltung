@@ -30,7 +30,6 @@ public class MemberDeleteServlet extends HttpServlet {
 		StringBuilder sb = new StringBuilder();
 		Member member = new Member();
 		String selectedMemberId = sb.append(member.getMemberId()).toString();
-
 		request.setAttribute("memberId", selectedMemberId);
 		
 		request.setAttribute("memberId",member.getMemberId());
