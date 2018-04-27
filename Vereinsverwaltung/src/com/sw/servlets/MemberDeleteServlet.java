@@ -26,18 +26,22 @@ public class MemberDeleteServlet extends HttpServlet {
 		
 		// Get the id of the selected Item in the jsp table
 		
+	
+		StringBuilder sb = new StringBuilder();
+		Member member = new Member();
+		String selectedMemberId = sb.append(member.getMemberId()).toString();
+		request.setAttribute("memberId", selectedMemberId);
 		
+		request.setAttribute("memberId",member.getMemberId());
 		request.getRequestDispatcher("./deleteMember.jsp").forward(request, response);
 		
-		String selectedMemberId = request.getParameter("id");
+		System.out.println("doPost() deleteMember: "+request.getParameter(selectedMemberId));
 		
-		Member member = new Member();
-		request.setAttribute(selectedMemberId, member.getUsername());
-	
 		MemberDao memberdao = new MemberDao();
-		memberdao.deleteMember(member);
-		System.out.println("doPost() deleteMember: "+request.getParameter("id"));
-	
+		boolean result =memberdao.deleteMember(member);
+		if(result) {
+			response.sendRedirect("member.jsp");
+		}
 		
 	}
 }
