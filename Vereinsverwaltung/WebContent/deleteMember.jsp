@@ -12,9 +12,9 @@
 		<form action="${pageContext.request.contextPath}/deleteMember" method="post">
 		
 	
-	<input type="text" name="memberId" value='<%=request.getAttribute("memberId")%>' readonly/><br>
+	<input type="text" name="member_Id" value='<%=request.getAttribute("member_Id")%>' readonly/><br>
 	Um die Id zu Löschen Checkbox betätigen..
-	<input type="checkbox" name="memberId" value='<%=request.getAttribute("memberId")%>'><br>
+	<input type="checkbox" name="member_Id" value='<%=request.getAttribute("member_Id")%>'><br>
 	<input id="delete_btn" type="submit" value="Delete">
 	
 	</form>
