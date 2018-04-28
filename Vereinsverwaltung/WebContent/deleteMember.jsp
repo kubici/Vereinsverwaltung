@@ -7,14 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>Delete the Member</h2>
+<h2> Do you Really want to Delete the Member?</h2>
 		
-		<form action="${pageContext.request.contextPath}/deleteMember" method="post">
-		
+	<form action="${pageContext.request.contextPath}/deleteMember" method="post">	
 	
 	<input type="text" name="member_Id" value='<%=request.getAttribute("member_Id")%>' readonly/><br>
-	Um die Id zu Löschen Checkbox betätigen..
-	<input type="checkbox" name="member_Id" value='<%=request.getAttribute("member_Id")%>'><br>
+	Um die Id zu Löschen betätigen..
+	
 	<input id="delete_btn" type="submit" value="Delete">
 	
 	</form>
