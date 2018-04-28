@@ -27,18 +27,12 @@ public class MemberDeleteServlet extends HttpServlet {
 
 		
 		Member member = new Member();
-		
 		String selectedMemberId = Integer.toString(member.getMemberId());
-		
 		request.setAttribute("memberId", selectedMemberId);
-		
 		request.getRequestDispatcher("./deleteMember.jsp").forward(request, response);
-		
 		System.out.println("doPost() deleteMember: "+request.getParameter(selectedMemberId));
-		
 		MemberDao memberdao = new MemberDao();
-		
-		boolean result =memberdao.deleteMember(member);
+				boolean result =memberdao.deleteMember(member);
 		if(result) {
 			response.sendRedirect("member.jsp");
 		}else {
