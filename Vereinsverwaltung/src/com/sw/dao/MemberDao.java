@@ -150,8 +150,9 @@ public class MemberDao
 	
 	public boolean deleteMember(Member member)
 	{
-		String sql ="DELETE FROM swp_system.MEMBER WHERE Id = ?";
+		
 		try {
+			String sql ="DELETE FROM swp_system.MEMBER WHERE Id = ?";
 			PreparedStatement preparedStmt = this.MemberConnection.prepareStatement(sql);
 			preparedStmt.setObject(1, member.getMemberId(), Types.VARCHAR);
 			preparedStmt.executeUpdate();
