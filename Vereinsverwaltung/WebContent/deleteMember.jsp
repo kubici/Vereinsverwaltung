@@ -12,8 +12,8 @@
 		<form action="${pageContext.request.contextPath}/deleteMember" method="post">
 		
 	
-		
 	<input type="text" name="memberId" value='<%=request.getAttribute("memberId")%>' readonly/><br>
+	Um die Id zu Löschen Checkbox betätigen..
 	<input type="checkbox" name="memberId" value='<%=request.getAttribute("memberId")%>'><br>
 	<input id="delete_btn" type="submit" value="Delete">
 	

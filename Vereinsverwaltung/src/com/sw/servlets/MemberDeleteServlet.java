@@ -24,23 +24,25 @@ public class MemberDeleteServlet extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Get the id of the selected Item in the jsp table
+
 		
-	
-		StringBuilder sb = new StringBuilder();
 		Member member = new Member();
-		String selectedMemberId = sb.append(member.getMemberId()).toString();
+		
+		String selectedMemberId = Integer.toString(member.getMemberId());
+		
 		request.setAttribute("memberId", selectedMemberId);
 		
-		request.setAttribute("memberId",member.getMemberId());
 		request.getRequestDispatcher("./deleteMember.jsp").forward(request, response);
 		
 		System.out.println("doPost() deleteMember: "+request.getParameter(selectedMemberId));
 		
 		MemberDao memberdao = new MemberDao();
+		
 		boolean result =memberdao.deleteMember(member);
 		if(result) {
 			response.sendRedirect("member.jsp");
+		}else {
+			System.out.println("Not Deleted");
 		}
 		
 	}
