@@ -148,23 +148,13 @@ public class MemberDao
 	}
 	
 	
-	public boolean deleteMember(Member member)
+	public void deleteMember(Member member) throws SQLException, Exception
 	{
-		
-		try {
 			String sql ="DELETE FROM swp_system.MEMBER WHERE member_Id = ?";
 			PreparedStatement preparedStmt = this.MemberConnection.prepareStatement(sql);
-			preparedStmt.setObject(1, member.getMemberId(), Types.VARCHAR);
+			preparedStmt.setObject(1, member.getMemberId(), Types.INTEGER);
 			preparedStmt.executeUpdate();
 		    preparedStmt.close();
-		    
-		    
-		} catch(SQLException sqlE){
-			System.out.println("SQLException deleteMember() : ");
-			sqlE.printStackTrace();
-			return false;
-		}
-		return true;
 	}
 	
 	public boolean editMember(Member member)

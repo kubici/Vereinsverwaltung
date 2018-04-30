@@ -38,6 +38,9 @@ public class MemberEditServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("memberId: " + request.getParameter("id")); // TODO this is the correct ID of the selected member
+		
 		HttpSession session = request.getSession();
 		if(request.getSession().getAttribute("currentUser") == null) {
 			System.out.println("No Session");
@@ -50,7 +53,8 @@ public class MemberEditServlet extends HttpServlet {
 		MemberDashboardController mdc = new MemberDashboardController();
 		List<Member> listMember = mdc.getLstMember();
 		
-		int i = (Integer.parseInt(request.getParameter("id"))) - 1;
+		int i = (Integer.parseInt(request.getParameter("id"))) - 2; // -1
+	//	int i = (Integer.parseInt(request.getParameter("id")));
 		Member member = listMember.get(i);
 		System.out.println(member);
 		request.setAttribute("username", member.getUsername());

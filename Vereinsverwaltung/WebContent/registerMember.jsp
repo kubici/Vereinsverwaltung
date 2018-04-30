@@ -31,9 +31,9 @@
 				<p>Geburtstag: (Format dd.MM.yyyy) <br>
 					<input type="date" name="birth_date" placeholder="Geburtstag" /><br>
 				</p>
-				<input type="radio" name="gender" value="male"> Male<br>
-	  			<input type="radio" name="gender" value="female"> Female<br>
-	  			<input type="radio" name="gender" value="other"> Other <br>
+				<input type="radio" name="gender" value="male"> Männlich<br>
+	  			<input type="radio" name="gender" value="female"> Weiblich<br>
+	  			<input type="radio" name="gender" value="other"> Neutral <br>
 				<input type="email" name="email_address" placeholder="E-Mail" /><br>
 				<input type="tel" name="phone_number" placeholder="Telefonnummer" /><br>
 				<p>

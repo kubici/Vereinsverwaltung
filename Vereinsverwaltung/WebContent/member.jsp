@@ -61,15 +61,16 @@
 		<td>
 			<!-- This form is needed to get the selected item -->
 			<form action="editMember" method="post">
-    				<button class="button" type="submit" name="id" value="${loop.count}" style="background-color:transparent; border-color:transparent;">
+    				<button class="button" type="submit" name="id" value="${mList.memberId}" style="background-color:transparent; border-color:transparent;">
     					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
     				</button>
 			</form>
 		</td>
 		<td>
-			<form action="deleteMember" method="post">
-    				<button class="button" type="submit" name="id" value="${loop.count}" style="background-color:transparent; border-color:transparent;">
-    					<img src="./image/delete_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
+			<form action="deleteMember" method="post"  onsubmit="return buttonPressed();">
+    				<button class="button" id="deleteButton" type="submit" name="id" value="${mList.memberId}" style="background-color:transparent; border-color:transparent;">
+    					<img src="./image/delete_icon.png" style="width:32px;height=32px; border=0"/>
+   
     				</button>
 			</form>
 		</td>
@@ -77,13 +78,31 @@
 	</c:forEach>
 	</table>
 	
+	<!-- Controll delete Button -->
+	<script type="text/javascript">
+	function buttonPressed()
+	{		
+		answer = confirm("Mitglied löschen?");
+		if(answer == true)
+		{
+    			return true;
+		}
+		else if(answer == false)
+		{
+			alert("Löschvorgang abgebrochen!");
+			return false;
+		}
+	}
+	</script>
+	
+
 	
 	 <!-- Here is the part for register new Mitglieder -->
 	<form action="registerMember.jsp">
 
 	<br/>
 	<br/>
-	Click for register new Mitglieder
+	Neues Mitglied hinzufügen
 	<input type = "submit" value = "+"/>
 	</form>
 	

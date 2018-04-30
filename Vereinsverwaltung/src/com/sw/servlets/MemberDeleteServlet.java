@@ -1,6 +1,7 @@
 package com.sw.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -31,23 +32,38 @@ public class MemberDeleteServlet extends HttpServlet {
 		} else {
 			System.out.println("Session alive!");
 			System.out.println(request.getSession().getAttribute("currentUser"));
-		}
+		
+		
+		
+		
+		System.out.println(request.getParameter("id"));
+		int selectedMemberId = Integer.parseInt(request.getParameter("id"));
+		//selectedMemberId += 1; // plus 1 because Admin is at ID 0
+		System.out.println("Temp: " + selectedMemberId);
+		
+		request.setAttribute("member_Id", selectedMemberId); // set Attribut for deleteMember.jsp
 		
 		Member member = new Member();
-		String selectedMemberId = Integer.toString(member.getMemberId());
-		request.setAttribute("member_Id", selectedMemberId);
-		request.getRequestDispatcher("./deleteMember.jsp").forward(request, response);
-		System.out.println("doPost() deleteMember: "+request.getParameter(selectedMemberId));
+		member.setMemberId(selectedMemberId);
+		
+		
 		
 		MemberDao memberdao = new MemberDao();
-		boolean result =memberdao.deleteMember(member);
-		if(result) {
+		try 
+		{
+			memberdao.deleteMember(member);
+		}
+		catch(SQLException sqle)
+		{
 			
-			System.out.println("Member : "+ member.getMemberId()+" is deleted from database");
+		}
+		catch(Exception ex)
+		{
 			
-		}else {
-			System.out.println("Not Deleted");
 		}
 		
+		System.out.println("Member : "+ member.getMemberId()+" is deleted from database");
+		response.sendRedirect("./member.jsp");
+		}
 	}
 }

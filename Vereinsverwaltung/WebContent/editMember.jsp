@@ -10,7 +10,7 @@
 		<h2>Mitglied bearbeiten</h2>
 		
 		<form action="${pageContext.request.contextPath}/saveMember" method="post">
-		Aktueller username: <%= request.getAttribute("username") %><br>
+		Benutzername: <%= request.getAttribute("username") %><br>
 		<input type="hidden" name="username" value='<%=request.getAttribute("username")%>' /><br>
 		<input type="text" name="first_name" value='<%=request.getAttribute("first_name")%>'/><br>
 		<input type="text" name="last_name"  value='<%=request.getAttribute("last_name")%>'/><br>
@@ -19,9 +19,9 @@
 		</p>
 		<p>
 		Geschlecht:<br>
-			<input type="radio" name="gender" value="male"  <%= request.getAttribute("gender").equals("male") ?  "checked" : "" %> /> Male<br>
- 			<input type="radio" name="gender" value="female"  <%= request.getAttribute("gender").equals("female") ?  "checked" : "" %>/> Female<br>
- 			<input type="radio" name="gender" value="other"  <%= request.getAttribute("gender").equals("other") ?  "checked" : "" %>/> Other <br>
+			<input type="radio" name="gender" value="male"  <%= request.getAttribute("gender").equals("male") ?  "checked" : "" %> /> Männlich<br>
+ 			<input type="radio" name="gender" value="female"  <%= request.getAttribute("gender").equals("female") ?  "checked" : "" %>/> Weiblich<br>
+ 			<input type="radio" name="gender" value="other"  <%= request.getAttribute("gender").equals("other") ?  "checked" : "" %>/> Neutral <br>
  		</p>
 		<input type="email" name="email_address" value='<%=request.getAttribute("mail")%>' /><br>
 		<input type="tel" name="phone_number" value='<%=request.getAttribute("phone")%>'/><br>
