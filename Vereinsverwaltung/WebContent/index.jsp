@@ -16,7 +16,6 @@
 <header>
 	<h1>Vereinsverwaltung</h1>
 	
-	
 	<% Member currentUser = (Member) session.getAttribute("currentUser");
 		pageContext.setAttribute("currentUser", currentUser); %>
 	

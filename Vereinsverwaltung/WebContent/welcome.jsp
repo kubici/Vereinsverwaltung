@@ -13,14 +13,22 @@
 <link href="css/welcome.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+
 <header>
 	<h1>Vereinsverwaltung</h1>
-</header>
+
 <%
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setDateHeader("Expires", 0);
  %>
+
+</header>
+
+
+
+
 
 <div class="content-wrap">
 		<form action="${pageContext.request.contextPath}/welcome" method="post">
