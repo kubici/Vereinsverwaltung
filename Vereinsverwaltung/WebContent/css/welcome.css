@@ -2,18 +2,18 @@
 	background-color: lightgrey;
 	color: white;
 	font-size: 20px;
-	padding: 2% 50%;
+	padding: 1% 10%;
 	margin-top: 5%;
 	border: none;
 	cursor: pointer;
 	border-radius: 5px;
 }
 
-form{
+form label{
 	font-variant-caps: all-small-caps;
-	text-align: center;
 }
 
+/*
 input[type=text] {
 	
    width: 70%;
@@ -33,3 +33,4 @@ input[type=password] {
 	font-size: 20px;
 
 }
+*/
