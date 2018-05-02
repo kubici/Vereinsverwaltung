@@ -2,15 +2,15 @@
     pageEncoding="UTF-8"%>
    <%@page import="com.sw.beans.Member"  %>
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="bootstrap-4/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <title>Homepage</title>
-<link href="css/fonts.css" rel="stylesheet" type="text/css">
-<link href="css/layout.css" rel="stylesheet" type="text/css">
-<link href="css/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <header>
