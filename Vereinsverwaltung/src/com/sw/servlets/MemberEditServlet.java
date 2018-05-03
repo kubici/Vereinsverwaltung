@@ -53,9 +53,25 @@ public class MemberEditServlet extends HttpServlet {
 		MemberDashboardController mdc = new MemberDashboardController();
 		List<Member> listMember = mdc.getLstMember();
 		
-		int i = (Integer.parseInt(request.getParameter("id"))) - 2; // -1
-	//	int i = (Integer.parseInt(request.getParameter("id")));
-		Member member = listMember.get(i);
+		int userId = (Integer.parseInt(request.getParameter("id")));
+		//int i2 = (Integer.parseInt(request.getParameter("id")))-2;
+		
+		Member member = null;
+		if(listMember != null)
+		{
+			for(int j = 0; j < listMember.size(); j++)
+			{
+				if(listMember.get(j) != null && listMember.get(j).getMemberId() == userId)
+				{
+					member = listMember.get(j);
+					break;
+				}
+			}
+		}
+
+	
+		
+		
 		System.out.println(member);
 		request.setAttribute("username", member.getUsername());
 		request.setAttribute("last_name", member.getLastName());
