@@ -13,10 +13,6 @@
 
 <title>Homepage</title>
 </head>
-<body>
-<header>
-	<h1>Vereinsverwaltung</h1>
-	
 <% Member currentUser = (Member) session.getAttribute("currentUser");
 	pageContext.setAttribute("currentUser", currentUser); %>
 	
@@ -36,24 +32,36 @@ if(request.getSession().getAttribute("currentUser") == null)
 	System.out.println(request.getSession().getAttribute("currentUser"));
 	}
 %>
+<body>
+<header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="#">
+    <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+  	</a>
 
-
-<div class="dropdown">
-	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Settings </button>
-	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		
-		<a class="dropdown-item" id="user_label">
-			Benutzer: <c:out value="${currentUser.username}"/></a>
-		<a class="dropdown-item" href="changePassword.jsp">
-			<input class="button" type="submit" value="Passwort ändern"/></a>
-		<a class="dropdown-item" href="#">
-			<form action="${pageContext.request.contextPath}/Logout" method="post">
-			<input class="button" type="submit" value="Logout"/>
-			</form></a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Settings </button>
+		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+			<a class="dropdown-item" id="user_label">
+				Benutzer: <c:out value="${currentUser.username}"/></a>
+			<a class="dropdown-item" href="changePassword.jsp">
+				<input class="button" type="submit" value="Passwort ändern"/></a>
+			<a class="dropdown-item" href="#">
+				<form action="${pageContext.request.contextPath}/Logout" method="post">
+				<input class="button" type="submit" value="Logout"/>
+				</form></a>
+		</div>
+	 </div>
   </div>
-</div>
+</nav>
+<h1>Vereinsverwaltung</h1>	
 </header>
-
 <div class="content-wrap">
 	<p>This is the Testoverview</p>
 

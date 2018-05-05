@@ -21,14 +21,3 @@ h1 {
 	border-radius: 15px;
 	border: none;
 }
-
-.button{
-	background-color: lightgrey;
-	color: white;
-	font-size: 15px;
-	padding: 10px 20px;
-	margin-top: 5%;
-	border: none;
-	cursor: pointer;
-	border-radius: 5px;
-}
