@@ -31,12 +31,12 @@ pageContext.setAttribute("infoMessage", Login.getInfoMessage());
 </header>
 <div class="content-wrap">
 <form action="${pageContext.request.contextPath}/welcome" method="post">
-	<div class="form-group">
+	<div class="form-group w-75">
 		<label for="exampleInputInput1">Benutzername</label>
 		<input type="text" name="username" class="form-control" id="formGroupExampleInput" placeholder="Benutzernamen eingeben">
 		<small id="emailHelp" class="form-text text-muted">Beispiel: tkolb</small>
 	</div><br>
-	<div class="form-group">
+	<div class="form-group w-75">
 		<label for="formGroupExampleInput2">Passwort</label>
     	<input type="password" name="pwd" class="form-control" id="formGroupExampleInput2" placeholder="Passwort eingeben">
 	</div>	
