@@ -56,7 +56,7 @@ pageContext.setAttribute("mList", controller.getLstMember());
 				<a class="dropdown-item" id="user_label">
 					Benutzer: <c:out value="${currentUser.username}"/></a>
 				<a class="dropdown-item" href="changePassword.jsp">
-					<input class="button" type="submit" value="Passwort Ã¤ndern"/></a>
+					<input class="button" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
 						<input class="button" type="submit" value="Logout"/>
@@ -68,19 +68,17 @@ pageContext.setAttribute("mList", controller.getLstMember());
 </nav>		
 </header>
   
-	<h2>MitgliederÃ¼bersicht</h2>
+	<h2>Mitgliederübersicht</h2>
 	
 	 <!-- Here you can see a table of all mitglieder in your team -->
 	<jsp:useBean id="mitgliederList" class="com.sw.controller.MemberDashboardController"></jsp:useBean>
 
 <div class="content-wrap">
-	 <!-- Here you can see a table of all mitglieder in your team -->
-	<jsp:useBean id="mitgliederList" class="com.sw.controller.MemberDashboardController"></jsp:useBean>	
 	<table border="3">
 		<th>Vorname</th>
 		<th>Nachname</th>
 		<th>Mitglied bearbeiten</th>
-		<th>Mitglied lÃ¶schen</th>
+		<th>Mitglied löschen</th>
 		<c:forEach items="${mList}" var="mList" varStatus="loop">
 		<tr>
 			<td><c:out value="${mList.firstName}"></c:out></td>
@@ -109,14 +107,14 @@ pageContext.setAttribute("mList", controller.getLstMember());
 	<script type="text/javascript">
 		function buttonPressed()
 		{		
-			answer = confirm("Mitglied lÃ¶schen?");
+			answer = confirm("Mitglied löschen?");
 			if(answer == true)
 			{
 		   			return true;
 			}
 			else if(answer == false)
 			{
-				alert("LÃ¶schvorgang abgebrochen!");
+				alert("Löschvorgang abgebrochen!");
 				return false;
 			}
 		}
@@ -126,7 +124,7 @@ pageContext.setAttribute("mList", controller.getLstMember());
 	<form action="registerMember.jsp">		
 		<br/>
 		<br/>
-		Neues Mitglied hinzufÃ¼gen
+		Neues Mitglied hinzufügen
 		<input type = "submit" value = "+"/>
 	</form>
 </div>
