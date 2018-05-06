@@ -71,7 +71,7 @@ if(request.getSession().getAttribute("currentUser") == null)
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<a class="module" href="member.jsp">
+			<a class="module" href="overviewMember.jsp">
 				<div id="card_img"></div>
 				<div id="card_content">
 				  <h2>Mitglieder</h2>

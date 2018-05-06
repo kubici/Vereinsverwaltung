@@ -4,7 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 import com.sw.beans.Member;
-import com.sw.controller.MemberDashboardController;
+import com.sw.servlets.MemberDashboardServlet;
 
 public class Generator {
 	
@@ -13,7 +13,7 @@ public class Generator {
 		String generatedUserName = null;
 		String memberName = member.getFirstName();// return the firstname
 		String memberLname = member.getLastName();// return the Lastname
-		int memberId = MemberDashboardController.lstMemberCounter; // return the memberId
+		int memberId = MemberDashboardServlet.lstMemberCounter; // return the memberId
 
 		generatedUserName = memberName.substring(0,1)+""+memberLname+""+memberId; // firstletterofFirstname.lastname.RandomId
 		

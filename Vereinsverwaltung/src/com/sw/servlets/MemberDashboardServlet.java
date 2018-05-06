@@ -1,21 +1,21 @@
-package com.sw.controller;
+package com.sw.servlets;
 
 import java.util.List;
 
 import com.sw.beans.Member;
 import com.sw.dao.MemberDao;
 
-public class MemberDashboardController 
+public class MemberDashboardServlet
 {
 	public static int lstMemberCounter;
 	
 	private List<Member> lstMember;
 	
-	public MemberDashboardController()
+	public MemberDashboardServlet()
 	{
 		try
 		{
-			System.out.println("MemberDashboardController:");
+			System.out.println("MemberDashboardServlet:");
 			MemberDao memberDao = new MemberDao();
 			setLstMember(memberDao.readMember());
 			this.lstMember = getLstMember();
@@ -24,7 +24,7 @@ public class MemberDashboardController
 		}
 		catch(Exception ex)
 		{
-			System.out.println("Exception: MemberDashboardController() constructor");
+			System.out.println("Exception: MemberDashboardServlet() constructor");
 			ex.printStackTrace();
 		}
 	}

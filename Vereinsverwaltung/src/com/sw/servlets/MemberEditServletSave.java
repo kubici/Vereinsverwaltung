@@ -85,7 +85,7 @@ public class MemberEditServletSave extends HttpServlet{
 		MemberDao md = new MemberDao();
 		boolean checkEdit = md.editMember(member);
 		if(checkEdit) {
-			response.sendRedirect("./member.jsp");
+			response.sendRedirect("./overviewMember.jsp");
 		}  else {
 			System.out.println("failed");
 		}

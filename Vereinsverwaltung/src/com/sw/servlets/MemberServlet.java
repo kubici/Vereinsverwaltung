@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sw.beans.Member;
-import com.sw.controller.MemberDashboardController;
+import com.sw.servlets.MemberDashboardServlet;
 import com.sw.dao.MemberDao;
 import com.sw.security.Generator;
 import com.sw.security.HashText;
@@ -95,7 +95,7 @@ public class MemberServlet extends HttpServlet {
 		MemberDao memberDao = new MemberDao();
 		memberDao.writeMember(member);
 		
-		response.sendRedirect("./member.jsp");
+		response.sendRedirect("./overviewMember.jsp");
 		
 	}
 

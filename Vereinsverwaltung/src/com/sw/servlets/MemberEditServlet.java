@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sw.beans.Member;
-import com.sw.controller.MemberDashboardController;
+import com.sw.servlets.MemberDashboardServlet;
 import com.sw.security.Generator;
 import com.sw.security.ParseDate;
 
@@ -50,7 +50,7 @@ public class MemberEditServlet extends HttpServlet {
 			System.out.println(request.getSession().getAttribute("currentUser"));
 		}
 		
-		MemberDashboardController mdc = new MemberDashboardController();
+		MemberDashboardServlet mdc = new MemberDashboardServlet();
 		List<Member> listMember = mdc.getLstMember();
 		
 		int userId = (Integer.parseInt(request.getParameter("id")));

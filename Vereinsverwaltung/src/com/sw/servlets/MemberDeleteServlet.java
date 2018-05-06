@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sw.beans.Member;
-import com.sw.controller.MemberDashboardController;
+import com.sw.servlets.MemberDashboardServlet;
 import com.sw.dao.DBConnection;
 import com.sw.dao.MemberDao;
 
@@ -63,7 +63,7 @@ public class MemberDeleteServlet extends HttpServlet {
 		}
 		
 		System.out.println("Member : "+ member.getMemberId()+" is deleted from database");
-		response.sendRedirect("./member.jsp");
+		response.sendRedirect("./overviewMember.jsp");
 		}
 	}
 }

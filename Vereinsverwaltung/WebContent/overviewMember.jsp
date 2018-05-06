@@ -1,4 +1,4 @@
-<%@page import="com.sw.controller.MemberDashboardController"%>
+<%@page import="com.sw.servlets.MemberDashboardServlet"%>
 <%@page import="com.sw.beans.Member" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -12,8 +12,8 @@
 <!-- Loading MitgliederList from Controller -->
 <% 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
-MemberDashboardController controller = new MemberDashboardController();
-pageContext.setAttribute("mList", controller.getLstMember());
+MemberDashboardServlet memberServlet = new MemberDashboardServlet();
+pageContext.setAttribute("mList", memberServlet.getLstMember());
 %>
 <title>Mitgliederverwaltung</title>
 </head>
@@ -32,7 +32,7 @@ pageContext.setAttribute("mList", controller.getLstMember());
 		<ul class="navbar-nav mr-auto">	
 <!-- 	NAVBAR-ITEM -->
 		<li class="nav-item active">
-	        <a class="nav-link" href="member.jsp">
+	        <a class="nav-link" href="overviewMember.jsp">
 	        	Mitglieder 
 	        	<span class="sr-only">(current)</span>
 			</a>
@@ -71,7 +71,7 @@ pageContext.setAttribute("mList", controller.getLstMember());
 	<h2>Mitgliederübersicht</h2>
 	
 	 <!-- Here you can see a table of all mitglieder in your team -->
-	<jsp:useBean id="mitgliederList" class="com.sw.controller.MemberDashboardController"></jsp:useBean>
+	<jsp:useBean id="mitgliederList" class="com.sw.servlets.MemberDashboardServlet"></jsp:useBean>
 
 <div class="content-wrap">
 	<table border="3">

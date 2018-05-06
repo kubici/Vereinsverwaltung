@@ -26,7 +26,7 @@
 		<ul class="navbar-nav mr-auto">	
 <!-- 	NAVBAR-ITEM -->
 		<li class="nav-item active">
-	        <a class="nav-link" href="member.jsp">
+	        <a class="nav-link" href="overviewMember.jsp">
 	        	Mitglieder 
 <!-- 	        	<span class="sr-only">(current)</span> -->
 			</a>
