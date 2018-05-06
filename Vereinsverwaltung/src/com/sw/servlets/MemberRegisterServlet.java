@@ -24,7 +24,7 @@ import com.sw.security.Generator;
 import com.sw.security.HashText;
 
 @WebServlet("/registerMember")
-public class MemberServlet extends HttpServlet {
+public class MemberRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
