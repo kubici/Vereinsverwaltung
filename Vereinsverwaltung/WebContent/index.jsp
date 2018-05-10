@@ -79,7 +79,7 @@ if(request.getSession().getAttribute("currentUser") == null)
 			</a>
 		</div>
 		<div class="col">
-			<a class="module" href="#">
+			<a class="module" href="overviewRoles.jsp">
 				<div id="card_img"></div>
 				<div id="card_content">
 				  <h2>Rollen</h2>
