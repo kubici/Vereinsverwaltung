@@ -76,37 +76,51 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 <body>
 <h1>Mitgliederübersicht</h1>
 
-<!-- TABELLE Mitglieder -->
 <div id="users-contain" class="content-wrap ui-widget">
-  <table border="3">
-		<th>Vorname</th>
-		<th>Nachname</th>
-		<th>Mitglied bearbeiten</th>
-		<th>Mitglied löschen</th>
-		<c:forEach items="${mList}" var="mList" varStatus="loop">
-		<tr>
-			<td><c:out value="${mList.firstName}"></c:out></td>
-			<td><c:out value="${mList.lastName}"></c:out></td>
-			<td>
-				<!-- This form is needed to get the selected item -->
-				<form action="editMember" method="post">
-		   				<button class="button" type="submit" name="id" value="${mList.memberId}" style="background-color:transparent; border-color:transparent;">
-		   					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
-		   				</button>
-				</form>
-			</td>
-			<td>
-				<form action="deleteMember" method="post"  onsubmit="return buttonPressed();">
-		   				<button class="button" id="deleteButton" type="submit" name="id" value="${mList.memberId}" style="background-color:transparent; border-color:transparent;">
-		   					<img src="./image/delete_icon.png" style="width:32px;height=32px; border=0"/>
-		  
-		   				</button>
-				</form>
-			</td>
-		</tr>
-		</c:forEach>
+
+<!-- TABELLE Mitglieder -->
+<div class="table-responsive-lg">
+	<table class="table table-hover">
+	  	<thead>
+	  		<tr>
+	  			<th scope="col">Bild</th>
+				<th scope="col">Vorname</th>
+				<th scope="col">Nachname</th>
+				<th scope="col">Geburtstag</th>
+				<th scope="col">E-Mail </th>
+				<th scope="col">Mitglied bearbeiten</th>
+				<th scope="col">Mitglied löschen</th>
+			</tr>
+		</thead>
+		</tbody>
+			<c:forEach items="${mList}" var="mList" varStatus="loop">
+				<tr>
+					<td><img src="#"/></td>
+					<td><c:out value="${mList.firstName}"></c:out></td>
+					<td><c:out value="${mList.lastName}"></c:out></td>
+					<td>!!!!!!</td>
+					<td class=""><c:out value="${mList.emailAddress}"></c:out></td>
+					<td>
+						<!-- This form is needed to get the selected item -->
+						<form action="editMember" method="post">
+				   				<button class="btn btn-light" type="submit" name="id" value="${mList.memberId}" style="background-color:transparent; border-color:transparent;">
+				   					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
+				   				</button>
+						</form>
+					</td>
+					<td>
+						<form action="deleteMember" method="post"  onsubmit="return buttonPressed();">
+				   				<button class="btn btn-light" id="deleteButton" type="submit" name="id" value="${mList.memberId}" style="background-color:transparent; border-color:transparent;">
+				   					<img src="./image/delete_icon.png" style="width:32px;height=32px; border=0"/>
+				   				</button>
+						</form>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
-	<button id="create-user">+</button>
+</div>
+	<button type="button" class="btn btn-primary btn-lg btn-block" id="create-user">+</button>
 </div>
 
 <!-- DIALOG Mitglied hinzufügen  -->
