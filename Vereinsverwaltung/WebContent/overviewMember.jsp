@@ -83,7 +83,6 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 	<table class="table table-hover">
 	  	<thead>
 	  		<tr>
-	  			<th scope="col">Bild</th>
 				<th scope="col">Vorname</th>
 				<th scope="col">Nachname</th>
 				<th scope="col">Geburtstag</th>
@@ -95,7 +94,6 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 		</tbody>
 			<c:forEach items="${mList}" var="mList" varStatus="loop">
 				<tr>
-					<td><img src="#"/></td>
 					<td><c:out value="${mList.firstName}"></c:out></td>
 					<td><c:out value="${mList.lastName}"></c:out></td>
 					<td>!!!!!!</td>

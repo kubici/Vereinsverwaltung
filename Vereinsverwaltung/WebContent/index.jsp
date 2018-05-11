@@ -74,7 +74,7 @@ if(request.getSession().getAttribute("currentUser") == null)
 		<div class="row mx-0 px-0">
 			<div class="col mx-1">
 				<a class="module" href="overviewMember.jsp">
-					<div id="card_img"></div>
+					<div id="card_img1"></div>
 					<div id="card_content">
 					  <h2>Mitglieder</h2>
 				  </div>  
@@ -82,15 +82,15 @@ if(request.getSession().getAttribute("currentUser") == null)
 			</div>
 			<div class="col mx-1">
 				<a class="module" href="overviewRoles.jsp">
-					<div id="card_img"></div>
+					<div id="card_img2"></div>
 					<div id="card_content">
-					  <h2>Rollen</h2>
+						<h2>Rollen</h2>  
 			  		</div>  
 				</a>        
 			</div>
 			<div class="col mx-1">
 				<a class="module" href="overviewInventory.jsp">
-					<div id="card_img"></div>
+					<div id="card_img3"></div>
 					<div id="card_content">
 					  <h2>Inventar</h2>
 				  </div>  
