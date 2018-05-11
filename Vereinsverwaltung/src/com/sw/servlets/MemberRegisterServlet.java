@@ -95,8 +95,8 @@ public class MemberRegisterServlet extends HttpServlet {
 		MemberDao memberDao = new MemberDao();
 		memberDao.writeMember(member);
 		
-		response.sendRedirect("./overviewMember.jsp");
-		
+		//response.sendRedirect("./overviewMember.jsp");
+		request.getRequestDispatcher("./MemberDashboardServlet").forward(request, response);
 	}
 
 	
