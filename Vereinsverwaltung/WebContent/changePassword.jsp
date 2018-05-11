@@ -26,38 +26,47 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">	
-<!-- 		NAVBAR-ITEM -->
-			<li class="nav-item active">
-		        <a class="nav-link" href="overviewMember.jsp">
-		        	Mitglieder 
-				</a>
-		    </li>
-	   		<li class="nav-item active">
-				<a class="nav-link" href="#">
-					Rollen 
-				</a>
-		    </li>	    
+<!-- 	NAVBAR-ITEM -->
+		<li class="nav-item active">
+	        <a class="nav-link btn btn-light text-left pl-2" href="overviewMember.jsp">
+	        	Mitglieder 
+			</a>
+	    </li>
+   		<li class="nav-item active">
+			<a class="nav-link btn btn-light text-left pl-2" href="overviewRoles.jsp">
+				Rollen 
+			</a>
+	    </li>
+   		<li class="nav-item active">
+			<a class="nav-link btn btn-light text-left pl-2" href="overviewInventory.jsp">
+				Inventar 
+			</a>
+	    </li>	    	    
 <!-- 	    DISABLED NAVBAR-ITEM -->
 <!-- 	    <li class="nav-item"> -->
 <!-- 		<a class="nav-link disabled" href="#">Disabled</a> -->
 <!-- 	    </li> -->
-			</ul>
-			<div class="nav-item dropdown">
-		    	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img src="image/settings_icon.png" width="20" height="20" class="d-inline-block" alt="">
+      
+		</ul>
+<!-- 	DROPDOWN-MENU NAVBAR -->
+		<div class="nav-item dropdown">
+	    	<a class="nav-link btn btn-light dropdown-toggle text-left" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<img src="image/settings_icon.png" width="25" height="25" class="d-inline-block p-0" alt="">
+			</a>
+			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+				<h6 class="dropdown-header">Einstellungen</h6>
+				<a class="dropdown-item" id="user_label">
+					Benutzer: <c:out value="${currentUser.username}"/></a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="changePassword.jsp">
+					<input class="btn btn-secondary" type="submit" value="Passwort ändern"/></a>
+				<a class="dropdown-item" href="#">
+					<form action="${pageContext.request.contextPath}/Logout" method="post">
+						<input class="btn btn-secondary" type="submit" value="Logout"/>
+					</form>
 				</a>
-				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" id="user_label">
-						Benutzer: <c:out value="${currentUser.username}"/></a>
-					<a class="dropdown-item" href="changePassword.jsp">
-						<input class="button" type="submit" value="Passwort ändern"/></a>
-					<a class="dropdown-item" href="#">
-						<form action="${pageContext.request.contextPath}/Logout" method="post">
-							<input class="button" type="submit" value="Logout"/>
-						</form>
-					</a>
-				</div>
 			</div>
+		</div>
 	</div>
 </nav>
 <h2>Password ändern</h2>

@@ -30,16 +30,21 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 		<ul class="navbar-nav mr-auto">	
 <!-- 	NAVBAR-ITEM -->
 		<li class="nav-item disabled">
-	        <a class="nav-link btn btn-light disabled text-left pl-2">
+	        <a class="nav-link btn btn-light text-left pl-2">
 	        	Mitglieder 
 	        	<span class="sr-only">(current)</span>
 			</a>
 	    </li>
    		<li class="nav-item active">
-			<a class="nav-link btn btn-light text-left pl-2" href="#">
+			<a class="nav-link btn btn-light text-left pl-2" href="overviewRoles.jsp">
 				Rollen 
 			</a>
-	    </li>	    
+	    </li>
+   		<li class="nav-item active">
+			<a class="nav-link btn btn-light text-left pl-2" href="overviewInventory.jsp">
+				Inventar 
+			</a>
+	    </li>	    	    
 <!-- 	    DISABLED NAVBAR-ITEM -->
 <!-- 	    <li class="nav-item"> -->
 <!-- 		<a class="nav-link disabled" href="#">Disabled</a> -->
@@ -51,7 +56,7 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 	    	<a class="nav-link btn btn-light dropdown-toggle text-left" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<img src="image/settings_icon.png" width="25" height="25" class="d-inline-block p-0" alt="">
 			</a>
-			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 				<h6 class="dropdown-header">Einstellungen</h6>
 				<a class="dropdown-item" id="user_label">
 					Benutzer: <c:out value="${currentUser.username}"/></a>
@@ -70,12 +75,14 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 </head>
 <body>
 <h1>Mitgliederübersicht</h1>
+
+<!-- TABELLE Mitglieder -->
 <div id="users-contain" class="content-wrap ui-widget">
   <table border="3">
 		<th>Vorname</th>
 		<th>Nachname</th>
 		<th>Mitglied bearbeiten</th>
-		<th>Mitglied lÃ¶schen</th>
+		<th>Mitglied löschen</th>
 		<c:forEach items="${mList}" var="mList" varStatus="loop">
 		<tr>
 			<td><c:out value="${mList.firstName}"></c:out></td>
@@ -102,6 +109,7 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 	<button id="create-user">+</button>
 </div>
 
+<!-- DIALOG Mitglied hinzufügen  -->
 <div id="dialog-form" title="Create new user">
   <p class="validateTips">All form fields are required.</p>
     <form>
@@ -134,9 +142,6 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
   </form>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>	
 <!-- Controll delete Button -->
 <script type="text/javascript">
 	function buttonPressed()
@@ -150,116 +155,14 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 		{
 			alert("Löschvorgang abgebrochen!");
 			return false;
-		}
+		}	
 	}
 </script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>	
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-	  $( function() {
-	    var dialog, form,
-		  emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-	      first_name = $( "#first_name" ),
-	      email_address = $( "#email_address" ),
-	      last_name = $( "#last_name" ),
-	      birth_date = $("#birth_date"),
-	      gender = $("#gender"),
-	      phone_number = $("#phone_number"),
-	      address_line = $("#address_line"),
-	      address_add = $("#address_add"),
-	      post_code = $("#post_code"),
-	      entry_date = $("#entry_date"),
-	      city = $("#city"),
-	      password = $("#password"),
-	      allFields = $( [] ).add( first_name ).add( last_name ).add( email_address ).add( birth_date).add( gender).add(phone_number).add(address_line).add(address_add).add(post_code).add(entry_date).add(city).add(password),
-	      tips = $( ".validateTips" );
-	 
-	    function updateTips( t ) {
-	      tips
-	        .text( t )
-	        .addClass( "ui-state-highlight" );
-	      setTimeout(function(){
-	        tips.removeClass( "ui-state-highlight", 1500 );
-	      }, 500 );
-	    }
-	 
-	    function checkLength( o, n, min, max ) {
-	      if ( o.val().length > max || o.val().length < min ) {
-	        o.addClass( "ui-state-error" );
-	        updateTips( "Length of " + n + " must be between " +
-	          min + " and " + max + "." );
-	        return false;
-	      } 
-	      else {
-	        return true;
-	      }
-	    }
-	 
-	    function checkRegexp( o, regexp, n ) {
-	      if ( !( regexp.test( o.val() ) ) ) {
-	        o.addClass( "ui-state-error" );
-	        updateTips( n );
-	        return false;
-	      } else {
-	        return true;
-	      }
-	    }
-	 
-	    function addUser() {
-	      var valid = true;
-	      allFields.removeClass( "ui-state-error" );
-		  if($("input[type='radio'].radioBtnClass").is(':checked')) {
-	      var gender_type = $("input[type='radio'].radioBtnClass:checked").val();
-	}
-	     valid = valid && checkRegexp(email_address, emailRegex, "max.muster@hof-university.de");	
-	      if ( valid ) {
-	        $.post("registerMember", 
-	        		{first_name : first_name.val(), 
-	        		 email_address : email_address.val(),
-	        		 last_name : last_name.val(),
-	        		 birth_date : birth_date.val(),
-	        		 gender : gender_type,
-	        		 email_address : email_address.val(),
-	        		 phone_number : phone_number.val(),
-	        		 address_line : address_line.val(),
-	        		 address_add : address_add.val(),
-	        		 post_code : post_code.val(),
-	        		 entry_date : entry_date.val(),
-	        		 city : city.val(),
-	        		 });
-	        history.go(0);
-	        dialog.dialog( "close" );
-	      }
-	      return valid;
-	    }
-	 
-	    dialog = $( "#dialog-form" ).dialog({
-	      autoOpen: false,
-	      height: 700,
-	      width: 350,
-	      modal: true,
-	      buttons: {
-	        "Create an account": addUser,
-	        Cancel: function() {
-	          dialog.dialog( "close" );
-	        }
-	      },
-	      close: function() {
-	        form[ 0 ].reset();
-	        allFields.removeClass( "ui-state-error" );
-	      }
-	    });
-	 
-	    form = dialog.find( "form" ).on( "submit", function( event ) {
-	      event.preventDefault();
-	      history.go(0);
-	      addUser();
-	    });
-	 
-	    $( "#create-user" ).button().on( "click", function() {
-	      dialog.dialog( "open" );
-	    });
-	  } );
-</script>
+<script src="js/registerMember.js"></script>
 </body>
 </html>

@@ -70,10 +70,9 @@ if(request.getSession().getAttribute("currentUser") == null)
 </nav>		
 </header>
 <div class="content-wrap">
-	<p>This is the Testoverview</p>
 	<div class="container">
-		<div class="row">
-			<div class="col">
+		<div class="row mx-0 px-0">
+			<div class="col mx-1">
 				<a class="module" href="overviewMember.jsp">
 					<div id="card_img"></div>
 					<div id="card_content">
@@ -81,16 +80,16 @@ if(request.getSession().getAttribute("currentUser") == null)
 				  </div>  
 				</a>
 			</div>
-			<div class="col">
-				<a class="module" href="#">
+			<div class="col mx-1">
+				<a class="module" href="overviewRoles.jsp">
 					<div id="card_img"></div>
 					<div id="card_content">
 					  <h2>Rollen</h2>
 			  		</div>  
 				</a>        
 			</div>
-			<div class="col">
-				<a class="module" href="#">
+			<div class="col mx-1">
+				<a class="module" href="overviewInventory.jsp">
 					<div id="card_img"></div>
 					<div id="card_content">
 					  <h2>Inventar</h2>

@@ -26,14 +26,18 @@
 		<ul class="navbar-nav mr-auto">	
 <!-- 	NAVBAR-ITEM -->
 		<li class="nav-item active">
-	        <a class="nav-link" href="overviewMember.jsp">
+	        <a class="nav-link btn btn-light text-left pl-2" href="overviewMember.jsp">
 	        	Mitglieder 
-<!-- 	        	<span class="sr-only">(current)</span> -->
 			</a>
 	    </li>
    		<li class="nav-item active">
-			<a class="nav-link" href="#">
+			<a class="nav-link btn btn-light text-left pl-2" href="overviewRoles.jsp">
 				Rollen 
+			</a>
+	    </li>
+   		<li class="nav-item active">
+			<a class="nav-link btn btn-light text-left pl-2" href="overviewInventory.jsp">
+				Inventar 
 			</a>
 	    </li>	    
 <!-- 	    DISABLED NAVBAR-ITEM -->
@@ -42,18 +46,21 @@
 <!-- 	    </li> -->
       
 		</ul>
+<!-- 	DROPDOWN-MENU NAVBAR -->
 		<div class="nav-item dropdown">
-	    	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img src="image/settings_icon.png" width="20" height="20" class="d-inline-block" alt="">
+	    	<a class="nav-link btn btn-light dropdown-toggle text-left" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<img src="image/settings_icon.png" width="25" height="25" class="d-inline-block p-0" alt="">
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+				<h6 class="dropdown-header">Einstellungen</h6>
 				<a class="dropdown-item" id="user_label">
 					Benutzer: <c:out value="${currentUser.username}"/></a>
+				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="changePassword.jsp">
-					<input class="button" type="submit" value="Passwort ändern"/></a>
+					<input class="btn btn-secondary" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
-						<input class="button" type="submit" value="Logout"/>
+						<input class="btn btn-secondary" type="submit" value="Logout"/>
 					</form>
 				</a>
 			</div>
