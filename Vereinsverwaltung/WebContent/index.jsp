@@ -48,55 +48,56 @@ if(request.getSession().getAttribute("currentUser") == null)
 <!-- 	  <span class="navbar-toggler-icon"></span> -->
 <!-- 	</button> -->
 		<div class="navbar-nav mr-auto"></div>
+<!-- 	DROPDOWN-MENU NAVBAR -->
 		<div class="nav-item dropdown">
-	    	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img src="image/settings_icon.png" width="20" height="20" class="d-inline-block" alt="">
+	    	<a class="nav-link btn btn-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<img src="image/settings_icon.png" width="25" height="25" class="d-inline-block p-0" alt="">
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+				<h6 class="dropdown-header">Einstellungen</h6>
 				<a class="dropdown-item" id="user_label">
 					Benutzer: <c:out value="${currentUser.username}"/></a>
+				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="changePassword.jsp">
-					<input class="button" type="submit" value="Passwort ändern"/></a>
+					<input class="btn btn-secondary" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
-						<input class="button" type="submit" value="Logout"/>
+						<input class="btn btn-secondary" type="submit" value="Logout"/>
 					</form>
 				</a>
 			</div>
 		</div>
-	</div>
 </nav>		
-<h1>Vereinsverwaltung</h1>	
 </header>
 <div class="content-wrap">
 	<p>This is the Testoverview</p>
-	
-<div class="container">
-	<div class="row">
-		<div class="col">
-			<a class="module" href="overviewMember.jsp">
-				<div id="card_img"></div>
-				<div id="card_content">
-				  <h2>Mitglieder</h2>
-			  </div>  
-			</a>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<a class="module" href="overviewMember.jsp">
+					<div id="card_img"></div>
+					<div id="card_content">
+					  <h2>Mitglieder</h2>
+				  </div>  
+				</a>
+			</div>
+			<div class="col">
+				<a class="module" href="#">
+					<div id="card_img"></div>
+					<div id="card_content">
+					  <h2>Rollen</h2>
+			  		</div>  
+				</a>        
+			</div>
+			<div class="col">
+				<a class="module" href="#">
+					<div id="card_img"></div>
+					<div id="card_content">
+					  <h2>Inventar</h2>
+				  </div>  
+				</a>        
+			</div>		
 		</div>
-		<div class="col">
-			<a class="module" href="overviewRoles.jsp">
-				<div id="card_img"></div>
-				<div id="card_content">
-				  <h2>Rollen</h2>
-			  </div>  
-			</a>        
-		</div>
-		<div class="col">
-			<a class="module" href="#">
-				<div id="card_img"></div>
-				<div id="card_content">
-				  <h2>Inventar</h2>
-			  </div>  
-			</a>        
-		</div>		
 	</div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

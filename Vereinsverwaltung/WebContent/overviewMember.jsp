@@ -15,7 +15,7 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 MemberDashboardServlet memberServlet = new MemberDashboardServlet();
 pageContext.setAttribute("mList", memberServlet.getLstMember());
 %>
-  <title>Mitgliederübersicht</title>
+  <title>MitgliederÃ¼bersicht</title>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>	
@@ -25,14 +25,14 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 	<script type="text/javascript">
 		function buttonPressed()
 		{		
-			answer = confirm("Mitglied löschen?");
+			answer = confirm("Mitglied lÃ¶schen?");
 			if(answer == true)
 			{
 		   			return true;
 			}
 			else if(answer == false)
 			{
-				alert("Löschvorgang abgebrochen!");
+				alert("LÃ¶schvorgang abgebrochen!");
 				return false;
 			}
 		}
@@ -146,7 +146,7 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
     });
   } );
   </script>
-  <!-- NAVBAR -->
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<a class="navbar-brand" href="index.jsp">
 		<img src="image/group_icon.png" width="30" height="30" class="d-inline-block" alt="">
@@ -158,14 +158,14 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">	
 <!-- 	NAVBAR-ITEM -->
-		<li class="nav-item active">
-	        <a class="nav-link" href="overviewMemberOld.jsp">
+		<li class="nav-item disabled">
+	        <a class="nav-link btn btn-light disabled text-left pl-2">
 	        	Mitglieder 
 	        	<span class="sr-only">(current)</span>
 			</a>
 	    </li>
    		<li class="nav-item active">
-			<a class="nav-link" href="#">
+			<a class="nav-link btn btn-light text-left pl-2" href="#">
 				Rollen 
 			</a>
 	    </li>	    
@@ -175,24 +175,27 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 <!-- 	    </li> -->
       
 		</ul>
+<!-- 	DROPDOWN-MENU NAVBAR -->
 		<div class="nav-item dropdown">
-	    	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img src="image/settings_icon.png" width="20" height="20" class="d-inline-block" alt="">
+	    	<a class="nav-link btn btn-light dropdown-toggle text-left" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<img src="image/settings_icon.png" width="25" height="25" class="d-inline-block p-0" alt="">
 			</a>
-			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<h6 class="dropdown-header">Einstellungen</h6>
 				<a class="dropdown-item" id="user_label">
 					Benutzer: <c:out value="${currentUser.username}"/></a>
+				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="changePassword.jsp">
-					<input class="button" type="submit" value="Passwort ändern"/></a>
+					<input class="btn btn-secondary" type="submit" value="Passwort Ã¤ndern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
-						<input class="button" type="submit" value="Logout"/>
+						<input class="btn btn-secondary" type="submit" value="Logout"/>
 					</form>
 				</a>
 			</div>
 		</div>
 	</div>
-</nav>		
+</nav>	
 </head>
 <body>
  
@@ -205,7 +208,7 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 				<p>Geburtstag: (Format dd.MM.yyyy) <br>
 					<input type="date" id="birth_date" name="birth_date" placeholder="Geburtstag" /><br>
 				</p>
-				<input type="radio" class="radioBtnClass" id="gender" name="gender" value="male"> Männlich<br>
+				<input type="radio" class="radioBtnClass" id="gender" name="gender" value="male"> MÃ¤nnlich<br>
 	  			<input type="radio" class="radioBtnClass" id="gender" name="gender" value="female"> Weiblich<br>
 	  			<input type="radio" class="radioBtnClass" id="gender" name="gender" value="other"> Neutral <br>
 				<input type="email" id="email_address" name="email_address" placeholder="E-Mail" /><br>
@@ -231,12 +234,12 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
  
  
 <div id="users-contain" class="ui-widget">
-  <h1>Mitgliederübersicht</h1>
+  <h1>MitgliederÃ¼bersicht</h1>
   <table border="3">
 		<th>Vorname</th>
 		<th>Nachname</th>
 		<th>Mitglied bearbeiten</th>
-		<th>Mitglied löschen</th>
+		<th>Mitglied lÃ¶schen</th>
 		<c:forEach items="${mList}" var="mList" varStatus="loop">
 		<tr>
 			<td><c:out value="${mList.firstName}"></c:out></td>
