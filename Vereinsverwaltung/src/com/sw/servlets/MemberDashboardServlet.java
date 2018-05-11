@@ -1,19 +1,33 @@
 package com.sw.servlets;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.sw.beans.Member;
 import com.sw.dao.MemberDao;
 
-public class MemberDashboardServlet
-{
+/**
+ * Servlet implementation class MemberDashboardTest
+ */
+@WebServlet("/MemberDashboardServlet")
+public class MemberDashboardServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	private List<Member> lstMember;
 	public static int lstMemberCounter;
 	
-	private List<Member> lstMember;
-	
-	public MemberDashboardServlet()
-	{
-		try
+    public MemberDashboardServlet() 
+    {
+    	try
 		{
 			System.out.println("MemberDashboardServlet:");
 			MemberDao memberDao = new MemberDao();
@@ -27,7 +41,26 @@ public class MemberDashboardServlet
 			System.out.println("Exception: MemberDashboardServlet() constructor");
 			ex.printStackTrace();
 		}
+    }
+    
+	@Override
+	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+
+		System.out.println("service() ");
+		
+		HttpServletRequest servletRequest = (HttpServletRequest) request;
+		HttpServletResponse servletResponse = (HttpServletResponse) response;
+		doPost(servletRequest, servletResponse);
+		
 	}
+		
+    
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		System.out.println("doPost() - MemberDashboardServlet");
+		response.sendRedirect("./index.jsp");
+	}
+	
 	
 	public List<Member> getLstMember()
 	{
@@ -38,12 +71,5 @@ public class MemberDashboardServlet
 	{
 		this.lstMember = lstMember;
 	}
-	
-	
-	public void editMember()
-	{
-		System.out.println("editmember()");
-	}
-	
 
 }

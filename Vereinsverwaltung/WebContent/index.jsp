@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
 <title>Homepage</title>
-</head>
+
 <% Member currentUser = (Member) session.getAttribute("currentUser");
 	pageContext.setAttribute("currentUser", currentUser); %>
 	
@@ -33,7 +33,10 @@ if(request.getSession().getAttribute("currentUser") == null)
 	System.out.println(request.getSession().getAttribute("currentUser"));
 	}
 %>
+
+</head>
 <body>
+
 <header>
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

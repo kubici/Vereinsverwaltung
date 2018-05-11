@@ -55,7 +55,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("username", currentUser.getUsername());
 			Login.infoMessage = "Successful login";
 			request.setAttribute("infoMessage", infoMessage);
-			response.sendRedirect("./index.jsp");
+			request.getRequestDispatcher("./MemberDashboardServlet").forward(request, response);
 		}
 		else
 		{
