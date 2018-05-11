@@ -45,6 +45,7 @@ if(request.getSession().getAttribute("currentUser") == null)
 <!-- 	  <span class="navbar-toggler-icon"></span> -->
 <!-- 	</button> -->
 		<div class="navbar-nav mr-auto"></div>
+<!-- 	DROPDOWN-MENU NAVBAR -->
 		<div class="nav-item dropdown">
 	    	<a class="nav-link btn btn-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<img src="image/settings_icon.png" width="25" height="25" class="d-inline-block p-0" alt="">
@@ -82,7 +83,7 @@ if(request.getSession().getAttribute("currentUser") == null)
 					<div id="card_img"></div>
 					<div id="card_content">
 					  <h2>Rollen</h2>
-				  </div>  
+			  		</div>  
 				</a>        
 			</div>
 			<div class="col">
