@@ -16,11 +16,12 @@ import javax.servlet.http.HttpSession;
 
 // TODO First next Day Set this filter before MemberDashboardServlet
 
-@WebFilter("/MemberDashboardServlet")
+@WebFilter({"/MemberDashboardServlet", "/deleteMember"})
 public class SessionFilter implements Filter
 {
     public SessionFilter() {
         // TODO Auto-generated constructor stub
+    	System.out.println("SessionFilter()");
     }
 
 	public void destroy() {
