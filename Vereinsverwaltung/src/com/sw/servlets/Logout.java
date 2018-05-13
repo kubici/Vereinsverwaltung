@@ -19,6 +19,7 @@ public class Logout extends HttpServlet {
 	{
 		HttpSession session = request.getSession();
 		
+		
 		if(session != null && session.getAttribute("currentUser") != null)
 		{
 			session.removeAttribute("currentUser");
@@ -26,12 +27,13 @@ public class Logout extends HttpServlet {
 			// Set infoMessage to successful loged out
 			Login.setInfoMessage("Logout was successfull");
 			
-			response.sendRedirect("./welcome.jsp");
+			request.getRequestDispatcher("./welcome.jsp").forward(request, response);
 			Login.setInfoMessage("Logout was successfull");
 			System.out.println("Session deleted");
 		}
-		
-		
+		else
+		{
+			request.getRequestDispatcher("./welcome.jsp").forward(request, response);
+		}
 	}
-
 }

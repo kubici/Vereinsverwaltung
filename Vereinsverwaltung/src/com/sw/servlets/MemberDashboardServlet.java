@@ -46,19 +46,19 @@ public class MemberDashboardServlet extends HttpServlet {
 	@Override
 	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-		System.out.println("service() ");
+		System.out.println("service() - MemberDashboardServlet");
 		
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		HttpServletResponse servletResponse = (HttpServletResponse) response;
 		doPost(servletRequest, servletResponse);
 		
 	}
-		
-    
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		System.out.println("doPost() - MemberDashboardServlet");
-		response.sendRedirect("./index.jsp");
+		//response.sendRedirect("./overviewMember.jsp");
+		request.getRequestDispatcher("./overviewMember.jsp").forward(request, response);
 	}
 	
 	

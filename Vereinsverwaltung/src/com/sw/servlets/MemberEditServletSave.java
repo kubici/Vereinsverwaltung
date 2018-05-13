@@ -2,6 +2,8 @@ package com.sw.servlets;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,17 +33,10 @@ public class MemberEditServletSave extends HttpServlet{
 		}
 	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		try {
 		HttpSession session = request.getSession();
-		if(request.getSession().getAttribute("currentUser") == null) {
-			System.out.println("No Session");
-			response.sendRedirect("./welcome.jsp");
-		} else {
-			System.out.println("Session alive!");
-			System.out.println(request.getSession().getAttribute("currentUser"));
-		}
-		
+
 		Member member = new Member();
 		
 		member.setUsername((String) request.getParameter("username"));
@@ -85,7 +80,7 @@ public class MemberEditServletSave extends HttpServlet{
 		MemberDao md = new MemberDao();
 		boolean checkEdit = md.editMember(member);
 		if(checkEdit) {
-			response.sendRedirect("./overviewMember.jsp");
+			request.getRequestDispatcher("./overviewMember.jsp").forward(request, response);
 		}  else {
 			System.out.println("failed");
 		}
