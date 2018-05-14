@@ -55,7 +55,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("username", currentUser.getUsername());
 			Login.infoMessage = "Successful login";
 			request.setAttribute("infoMessage", infoMessage);
-			request.getRequestDispatcher("./MemberDashboardServlet").forward(request, response);
+			request.getRequestDispatcher("./DashboardServlet").forward(request, response);
 		}
 		else
 		{

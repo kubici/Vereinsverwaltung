@@ -37,9 +37,8 @@ public class RoleAddServlet extends HttpServlet{
 			RoleModuleAccessDao accessdao = new RoleModuleAccessDao();
 			accessdao.insertRoleModuleAccess(role_saved.getRole_id(), result_access); // TODO if false handling
 		} catch (Exception e) {
-			// TODO noch überlegen
+			// TODO noch ï¿½berlegen
 		}
-		
-		response.sendRedirect("./overviewRoles.jsp");
+		request.getRequestDispatcher("./overviewRoles.jsp").forward(request, response);
 	}
 }

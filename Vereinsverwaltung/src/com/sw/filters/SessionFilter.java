@@ -16,11 +16,12 @@ import javax.servlet.http.HttpSession;
 
 // TODO First next Day Set this filter before MemberDashboardServlet
 
-@WebFilter("/MemberDashboardServlet")
+@WebFilter({"/ChangePassword", "/ChangePasswordServlet", "/DashboardServlet", "/InventoryDashboardServlet", "/InventoryRegisterServlet", "/Logout", "/MemberDashboardServlet", "/MemberDeleteServlet", "/MemberEditServlet", "/MemberEditServletSave", "/MemberRegisterServlet", "/RoleServlet", "/RoleAddServlet", "/RoleDeleteServlet", "/RoleEditServlet"})
 public class SessionFilter implements Filter
 {
     public SessionFilter() {
         // TODO Auto-generated constructor stub
+    	System.out.println("SessionFilter() - Konstruktor");
     }
 
 	public void destroy() {
@@ -29,23 +30,16 @@ public class SessionFilter implements Filter
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException 
 	{
-		System.out.println("Hello from doFilter() SessionFilter: Check before MemberDashboardServlet");
-		// pass the request along the filter chain
-		//chain.doFilter(request, response);
-		
-		
+		System.out.println("Hello from doFilter() SessionFilter");
 		// Check for valid session 
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
-		//HttpSession session = servletRequest.getSession();
-		
 		HttpServletResponse servletResponse =  (HttpServletResponse) response;
 		
 	
 		if(servletRequest.getSession().getAttribute("currentUser") == null)
 		{
 			System.out.println("No Session");
-			servletResponse.sendRedirect("./welcome.jsp");
-			//servletRequest.getRequestDispatcher("").forward(request, response);
+			servletRequest.getRequestDispatcher("./welcome.jsp").forward(servletRequest, servletResponse);
 		} 
 		else 
 		{

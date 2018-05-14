@@ -22,16 +22,6 @@
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setDateHeader("Expires", 0);
-if(request.getSession().getAttribute("currentUser") == null)
-	{
-		System.out.println("No Session");
-		response.sendRedirect("./welcome.jsp");
-	}	
-	else
-	{
-	System.out.println("Session alive!");
-	System.out.println(request.getSession().getAttribute("currentUser"));
-	}
 %>
 
 </head>
@@ -40,7 +30,7 @@ if(request.getSession().getAttribute("currentUser") == null)
 <header>
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="index.jsp">
+	<a class="navbar-brand" href="./DashboardServlet" >
 		<img src="image/group_icon.png" width="30" height="30" class="d-inline-block" alt="">
 		Vereinsverwaltung
 	</a>
@@ -58,8 +48,10 @@ if(request.getSession().getAttribute("currentUser") == null)
 				<a class="dropdown-item" id="user_label">
 					Benutzer: <c:out value="${currentUser.username}"/></a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="changePassword.jsp">
-					<input class="btn btn-secondary" type="submit" value="Passwort ändern"/></a>
+				<a class="dropdown-item">
+					<form action="${pageContext.request.contextPath}/ChangePasswordServlet" method="post">
+						<input class="btn btn-secondary" type="submit" value="Passwort ändern"/></a>
+					</form>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
 						<input class="btn btn-secondary" type="submit" value="Logout"/>
@@ -74,15 +66,17 @@ if(request.getSession().getAttribute("currentUser") == null)
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<a class="module" href="overviewMember.jsp">
+			
+				<a class="module" href="./MemberDashboardServlet">
 					<div id="card_img"></div>
 					<div id="card_content">
 					  <h2>Mitglieder</h2>
 				  </div>  
 				</a>
+			
 			</div>
 			<div class="col">
-				<a class="module" href="#">
+				<a class="module" href="./RoleServlet">
 					<div id="card_img"></div>
 					<div id="card_content">
 					  <h2>Rollen</h2>
@@ -90,7 +84,7 @@ if(request.getSession().getAttribute("currentUser") == null)
 				</a>        
 			</div>
 			<div class="col">
-				<a class="module" href="#">
+				<a class="module" href="./InventoryServlet">
 					<div id="card_img"></div>
 					<div id="card_content">
 					  <h2>Inventar</h2>
