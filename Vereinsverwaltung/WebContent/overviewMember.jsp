@@ -151,15 +151,15 @@ pageContext.setAttribute("rList", roledao.getRoles());
 				
 				<div class="form-group">
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" name="gender" value="male">
+						<input class="form-check-input" type="radio" id="inlineRadio1" name="gender" value="male">
 						<label class="form-check-label" for="inlineRadio1">Männlich</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" name="gender" value="female">
+						<input class="form-check-input" type="radio" id="inlineRadio2" name="gender" value="female">
 						<label class="form-check-label" for="inlineRadio2">Weiblich</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" name="gender" value="other">
+						<input class="form-check-input" type="radio" id="inlineRadio3" name="gender" value="other">
 						<label class="form-check-label" for="inlineRadio3">Neutral</label>
 					</div>	
 				</div>

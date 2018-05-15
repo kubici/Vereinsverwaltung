@@ -2,23 +2,16 @@ package com.sw.servlets;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.text.spi.DateFormatProvider;
 import java.util.Date;
 import java.util.IllegalFormatException;
-import java.util.Random;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.sw.beans.Member;
-import com.sw.servlets.MemberDashboardServlet;
 import com.sw.dao.MemberDao;
 import com.sw.dao.MemberHasRoleDao;
 import com.sw.security.Generator;
@@ -42,8 +35,9 @@ public class MemberRegisterServlet extends HttpServlet {
 		// Parse birth into Date object
 		String tempBirth = request.getParameter("birth_date");
 		ParseDate parser = new ParseDate();
-		member.setBirth(parser.convert(tempBirth));
-
+		member.setBirth(parser.autoConvert(tempBirth));
+		
+		System.out.println("++++++++++++++++++++++ " + request.getParameter("gender"));
 		member.setGender(request.getParameter("gender"));
 		member.setEmailAddress(request.getParameter("email_address"));
 		member.setPhoneNumber(request.getParameter("phone_number"));

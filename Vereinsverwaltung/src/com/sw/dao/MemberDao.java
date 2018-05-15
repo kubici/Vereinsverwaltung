@@ -1,6 +1,5 @@
 package com.sw.dao;
 
-import java.security.KeyRep.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -71,7 +70,7 @@ public class MemberDao
 					member.setName(firstName);
 					member.setLastName(lastName);
 					member.setMemberId(memberId);
-					member.setBirth(parse.convert(birth));
+					member.setBirth(parse.autoConvert(birth));
 					member.setGender(gender);
 					member.setAdressline(address_line);
 					member.setAdresslineAdd(address_add);
@@ -79,7 +78,7 @@ public class MemberDao
 					member.setCity(city);
 					member.setPhoneNumber(phone_number);
 					member.setEmailAddress(email_address);
-					member.setEntryDate(parse.convert(entry_date)); 
+					member.setEntryDate(parse.autoConvert(entry_date)); 
 					memberList.add(member);
 				}
 				
@@ -264,7 +263,7 @@ public class MemberDao
 				member.setMemberId(memberId);
 				
 				ParseDate parser = new ParseDate();
-				member.setBirth(parser.convert(birth));
+				member.setBirth(parser.autoConvert(birth));
 				member.setGender(gender);
 				member.setAdressline(address_line);
 				member.setAdresslineAdd(address_add);
@@ -272,7 +271,7 @@ public class MemberDao
 				member.setCity(city);
 				member.setPhoneNumber(phone_number);
 				member.setEmailAddress(email_address);
-				member.setEntryDate(parser.convert(entry_date)); 
+				member.setEntryDate(parser.autoConvert(entry_date)); 
 				
 				return member;
 			}
