@@ -62,30 +62,28 @@ response.setDateHeader("Expires", 0);
 </nav>		
 </header>
 <div class="content-wrap">
-	<p>This is the Testoverview</p>
 	<div class="container">
-		<div class="row">
-			<div class="col">
-			
+		<div class="row mx-0 px-0">
+			<div class="col mx-1">
 				<a class="module" href="./MemberDashboardServlet">
-					<div id="card_img"></div>
+					<div id="card_img1"></div>
 					<div id="card_content">
 					  <h2>Mitglieder</h2>
 				  </div>  
 				</a>
 			
 			</div>
-			<div class="col">
+			<div class="col mx-1">
 				<a class="module" href="./RoleServlet">
-					<div id="card_img"></div>
+					<div id="card_img2"></div>
 					<div id="card_content">
-					  <h2>Rollen</h2>
+						<h2>Rollen</h2>  
 			  		</div>  
 				</a>        
 			</div>
-			<div class="col">
+			<div class="col mx-1">
 				<a class="module" href="./InventoryServlet">
-					<div id="card_img"></div>
+					<div id="card_img3"></div>
 					<div id="card_content">
 					  <h2>Inventar</h2>
 				  </div>  
