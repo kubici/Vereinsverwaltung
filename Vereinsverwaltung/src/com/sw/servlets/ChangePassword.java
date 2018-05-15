@@ -2,6 +2,7 @@ package com.sw.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +31,7 @@ public class ChangePassword extends HttpServlet{
 		}
 	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		HttpSession session = request.getSession();
 		if(request.getSession().getAttribute("currentUser") == null) {
 			System.out.println("No Session");
@@ -60,7 +61,8 @@ public class ChangePassword extends HttpServlet{
 					
 					ChangePassword.setInfoMessage("Passwort�nderungen wurden �bernommen.");
 					
-					response.sendRedirect("./welcome.jsp");
+					//response.sendRedirect("./welcome.jsp");
+					request.getRequestDispatcher("./welcome.jsp").forward(request, response);
 					ChangePassword.setInfoMessage("Bitte mit neuem Passwort einloggen!");
 					System.out.println("Session deleted");
 				}
@@ -68,14 +70,15 @@ public class ChangePassword extends HttpServlet{
 				ChangePassword.infoMessage = "Ihr altes Passwort ist falsch!";
 				System.out.println(infoMessage);
 				request.setAttribute("infoMessage", infoMessage);
-				response.sendRedirect("./changePassword.jsp");
+				//response.sendRedirect("./changePassword.jsp");
+				request.getRequestDispatcher("./changePassword.jsp").forward(request, response);
 			}
 			
 		} else {
-			ChangePassword.infoMessage = "Das neue Passwort wurde nicht zweimal korrekt eingegeben!";
+			ChangePassword.infoMessage = "Keine Übereinstimmung des neuen Passwortes";
 			System.out.println(infoMessage);
 			request.setAttribute("infoMessage", infoMessage);
-			response.sendRedirect("./changePassword.jsp");
+			request.getRequestDispatcher("./changePassword.jsp").forward(request, response);
 		}
 		
 	}

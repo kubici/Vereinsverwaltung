@@ -26,15 +26,6 @@ public class MemberDeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		if(request.getSession().getAttribute("currentUser") == null) {
-			System.out.println("No Session");
-			response.sendRedirect("./welcome.jsp");
-		} else {
-			System.out.println("Session alive!");
-			System.out.println(request.getSession().getAttribute("currentUser"));
-		
-		
-		
 		
 		System.out.println(request.getParameter("id"));
 		int selectedMemberId = Integer.parseInt(request.getParameter("id"));
@@ -45,8 +36,6 @@ public class MemberDeleteServlet extends HttpServlet {
 		
 		Member member = new Member();
 		member.setMemberId(selectedMemberId);
-		
-		
 		
 		MemberDao memberdao = new MemberDao();
 		try 
@@ -63,7 +52,6 @@ public class MemberDeleteServlet extends HttpServlet {
 		}
 		
 		System.out.println("Member : "+ member.getMemberId()+" is deleted from database");
-		response.sendRedirect("./overviewMember.jsp");
-		}
+		request.getRequestDispatcher("./overviewMember.jsp").forward(request, response);
 	}
 }

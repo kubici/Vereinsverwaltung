@@ -42,6 +42,6 @@ public class RoleEditServlet extends HttpServlet {
 			// TODO folgen noch diskutabel
 		}
 		
-		response.sendRedirect("./overviewRoles.jsp");
+		request.getRequestDispatcher("./overviewRoles.jsp").forward(request, response);
 	}
 }

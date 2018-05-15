@@ -42,13 +42,6 @@ public class MemberEditServlet extends HttpServlet {
 		System.out.println("memberId: " + request.getParameter("id")); // TODO this is the correct ID of the selected member
 		
 		HttpSession session = request.getSession();
-		if(request.getSession().getAttribute("currentUser") == null) {
-			System.out.println("No Session");
-			response.sendRedirect("./welcome.jsp");
-		} else {
-			System.out.println("Session alive!");
-			System.out.println(request.getSession().getAttribute("currentUser"));
-		}
 		
 		MemberDashboardServlet mdc = new MemberDashboardServlet();
 		List<Member> listMember = mdc.getLstMember();

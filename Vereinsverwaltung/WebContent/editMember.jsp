@@ -13,7 +13,7 @@
 <header>
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="index.jsp">
+	<a class="navbar-brand" href="./DashboardServlet">
 		<img src="image/group_icon.png" width="30" height="30" class="d-inline-block" alt="">
 		Vereinsverwaltung
 	</a>
@@ -24,17 +24,17 @@
 		<ul class="navbar-nav mr-auto">	
 <!-- 	NAVBAR-ITEM -->
 		<li class="nav-item active">
-	        <a class="nav-link btn btn-light text-left pl-2" href="overviewMember.jsp">
-	        	Mitglieder 
+	    <a class="nav-link btn btn-light text-left pl-2" href="./MemberDashboardServlet">
+	       Mitglieder 
 			</a>
 	    </li>
    		<li class="nav-item active">
-			<a class="nav-link btn btn-light text-left pl-2" href="overviewRoles.jsp">
+			<a class="nav-link btn btn-light text-left pl-2" href="./RoleServlet">
 				Rollen 
 			</a>
 	    </li>
    		<li class="nav-item active">
-			<a class="nav-link btn btn-light text-left pl-2" href="overviewInventory.jsp">
+			<a class="nav-link btn btn-light text-left pl-2" href="./InventoryServlet">
 				Inventar 
 			</a>
 	    </li>	    
@@ -54,7 +54,7 @@
 				<a class="dropdown-item" id="user_label">
 					Benutzer: <c:out value="${currentUser.username}"/></a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="changePassword.jsp">
+				<a class="dropdown-item" href="./ChangePasswordServlet">
 					<input class="btn btn-secondary" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
