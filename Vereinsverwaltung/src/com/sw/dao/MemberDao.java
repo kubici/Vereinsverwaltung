@@ -215,5 +215,72 @@ public class MemberDao
 		return true;
 	}
 	
+	public int getMemberIdByUsername (String username) {
+		String sql = "SELECT * FROM swp_system.MEMBER WHERE username = ?";
+		try (	Connection con = DBConnection.getConnectionToDatabase();
+				PreparedStatement pstatement = con.prepareStatement(sql);
+				) {
+			pstatement.setString(1, username);
+			ResultSet set = pstatement.executeQuery();
+			
+			while(set.next()) {
+				return set.getInt("member_id");
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public Member getMemberByUsername (String username) {
+		String sql = "SELECT * FROM swp_system.MEMBER WHERE username = ?";
+		try(	Connection con = DBConnection.getConnectionToDatabase();
+				PreparedStatement pstatement = con.prepareStatement(sql);
+				) {
+			pstatement.setString(1, username);
+			ResultSet set = pstatement.executeQuery();
+			
+			while(set.next())
+			{
+				String user = set.getString("username");
+				String firstName = set.getString("first_name");
+				String lastName = set.getString("last_name");
+				String birth = set.getString("birth_date");
+				String gender = set.getString("gender");
+				String address_line = set.getString("address_line");
+				String address_add = set.getString("address_add");
+				String post_code = set.getString("post_code");
+				String city = set.getString("city");
+				String phone_number = set.getString("phone_number");
+				String email_address = set.getString("email_address");
+				String entry_date = set.getString("entry_date");
+				int memberId = set.getInt("member_id");
+				
+				Member member = new Member();
+				member.setUsername(user);
+				member.setName(firstName);
+				member.setLastName(lastName);
+				member.setMemberId(memberId);
+				
+				ParseDate parser = new ParseDate();
+				member.setBirth(parser.convert(birth));
+				member.setGender(gender);
+				member.setAdressline(address_line);
+				member.setAdresslineAdd(address_add);
+				member.setPostCode(post_code);
+				member.setCity(city);
+				member.setPhoneNumber(phone_number);
+				member.setEmailAddress(email_address);
+				member.setEntryDate(parser.convert(entry_date)); 
+				
+				return member;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }
 

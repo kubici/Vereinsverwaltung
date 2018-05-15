@@ -53,4 +53,11 @@ public class ParseDate {
 		String stringDate = dateformat.format(date);
 		return stringDate;
 	}
+	
+	public String convertStringII (Date date) {
+		DateFormat dateformat = new SimpleDateFormat("yyyy-mm-dd");
+		
+		String stringDate = dateformat.format(date);
+		return stringDate;
+	}
 }

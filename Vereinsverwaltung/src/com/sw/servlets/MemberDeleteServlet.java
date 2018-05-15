@@ -15,6 +15,7 @@ import com.sw.beans.Member;
 import com.sw.servlets.MemberDashboardServlet;
 import com.sw.dao.DBConnection;
 import com.sw.dao.MemberDao;
+import com.sw.dao.MemberHasRoleDao;
 
 /**
  * Servlet implementation class MemberDeleteServlet
@@ -36,6 +37,9 @@ public class MemberDeleteServlet extends HttpServlet {
 		
 		Member member = new Member();
 		member.setMemberId(selectedMemberId);
+		
+		MemberHasRoleDao member_has_role_dao = new MemberHasRoleDao();
+		member_has_role_dao.deleteMemberHasRoleREFERENCEmember_id(member.getMemberId());
 		
 		MemberDao memberdao = new MemberDao();
 		try 

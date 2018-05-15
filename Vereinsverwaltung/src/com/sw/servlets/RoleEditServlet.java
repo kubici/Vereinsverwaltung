@@ -36,10 +36,11 @@ public class RoleEditServlet extends HttpServlet {
 				result_access[i] = Integer.parseInt(result[i]);
 			}
 			RoleModuleAccessDao accessdao = new RoleModuleAccessDao();
-			accessdao.deleteRoleModuleAccess(role.getRole_id()); //TODO false handling
-			accessdao.insertRoleModuleAccess(role.getRole_id(), result_access); //TODO false handling
+			accessdao.deleteRoleModuleAccess(role.getRole_id());
+			accessdao.insertRoleModuleAccess(role.getRole_id(), result_access);
 		} catch (NullPointerException e) {
-			// TODO folgen noch diskutabel
+			RoleModuleAccessDao accessdao = new RoleModuleAccessDao();
+			accessdao.deleteRoleModuleAccess(role.getRole_id());
 		}
 		
 		request.getRequestDispatcher("./overviewRoles.jsp").forward(request, response);

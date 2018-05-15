@@ -25,7 +25,7 @@ ArrayList<Integer> list = accessdao.getModuleIdByRoleId(Integer.parseInt(request
 		
 		<c:forEach items="${mList}" var="mList" varStatus="loop">
 			<input type="checkbox" name="role_module_access" value="${mList.module_id}"
-			 <%=list.contains( ((Module) pageContext.getAttribute("mList")).getModule_id()) ? "checked" : "" %> />  <!-- Fick dich, du scheiß Zeile Code! -->
+			 <%=list.contains( ((Module) pageContext.getAttribute("mList")).getModule_id()) ? "checked" : "" %> />
 			<c:out value="${mList.module_description}"></c:out> 
 			<br>
 		</c:forEach>

@@ -8,9 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import com.sw.beans.Member;
 import com.sw.dao.MemberDao;
+import com.sw.dao.MemberHasRoleDao;
 import com.sw.security.HashText;
 import com.sw.security.ParseDate;
 
@@ -18,26 +18,9 @@ import com.sw.security.ParseDate;
 public class MemberEditServletSave extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
-	private static String infoMessage = null;
-		
-	public static String getInfoMessage(){
-		if(infoMessage != null)		{
-			return infoMessage;
-		}
-		return null;
-	}
-	
-	public static void setInfoMessage(String infoMessage)	{
-		if(infoMessage != null)		{
-			MemberEditServletSave.infoMessage = infoMessage;
-		}
-	}
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		try {
-		HttpSession session = request.getSession();
-
 		Member member = new Member();
+		
 		
 		member.setUsername((String) request.getParameter("username"));
 		if(request.getParameter("last_name") != null)
@@ -48,7 +31,7 @@ public class MemberEditServletSave extends HttpServlet{
 		if(request.getParameter("birth_date") != null) {
 			String date = request.getParameter("birth_date");
 			ParseDate parse = new ParseDate();
-			member.setBirth(parse.convertEuro(date));
+			member.setBirth(parse.convert(date));
 		}
 		
 		if(request.getParameter("gender") != null) {
@@ -73,22 +56,33 @@ public class MemberEditServletSave extends HttpServlet{
 		} else {
 			HashText hash = new HashText();
 			String password;
-			password = hash.sha256(request.getParameter("password_change").toString());
-			member.setPassword(password);
+			try {
+				password = hash.sha256(request.getParameter("password_change").toString());
+				member.setPassword(password);
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
 		}
 		
-		MemberDao md = new MemberDao();
-		boolean checkEdit = md.editMember(member);
-		if(checkEdit) {
-			request.getRequestDispatcher("./overviewMember.jsp").forward(request, response);
-		}  else {
-			System.out.println("failed");
+		MemberDao memberdao = new MemberDao();
+		memberdao.editMember(member);
+		int current_id = memberdao.getMemberIdByUsername(member.getUsername());
+		
+		try {
+			String[] result = request.getParameterValues("member_has_role");
+			int[] result_member_has_role =  new int[result.length];
+			for (int i=0; i<result.length; i++) {
+				result_member_has_role[i] = Integer.parseInt(result[i]);
+			}
+			
+			MemberHasRoleDao member_has_role_dao = new MemberHasRoleDao();
+			member_has_role_dao.deleteMemberHasRoleREFERENCEmember_id(current_id);
+			member_has_role_dao.insertMemberHasRole(current_id, result_member_has_role);
+		} catch (NullPointerException e) {
+			MemberHasRoleDao member_has_role_dao = new MemberHasRoleDao();
+			member_has_role_dao.deleteMemberHasRoleREFERENCEmember_id(current_id);
 		}
 		
-		
-		
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
+		request.getRequestDispatcher("./overviewMember.jsp").forward(request, response);
 	}
 }
