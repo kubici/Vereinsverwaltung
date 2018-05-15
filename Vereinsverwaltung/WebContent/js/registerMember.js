@@ -1,4 +1,5 @@
-	  $( function() {
+	  $( function() 
+		{
 	    var dialog, form,
 		  emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
 	      first_name = $( "#first_name" ),
@@ -24,6 +25,8 @@
 	        tips.removeClass( "ui-state-highlight", 1500 );
 	      }, 500 );
 	    }
+	    
+	    
 	 
 	    function checkLength( o, n, min, max ) {
 	      if ( o.val().length > max || o.val().length < min ) {
@@ -47,12 +50,13 @@
 	      }
 	    }
 	 
-	    function addUser() {
+	   function addUser() {
 	      var valid = true;
 	      allFields.removeClass( "ui-state-error" );
 		  if($("input[type='radio'].radioBtnClass").is(':checked')) {
-	      var gender_type = $("input[type='radio'].radioBtnClass:checked").val();
-	}
+			  var gender_type = $("input[type='radio'].radioBtnClass:checked").val();
+		  }
+		  
 	     valid = valid && checkRegexp(email_address, emailRegex, "max.muster@hof-university.de");	
 	      if ( valid ) {
 	        $.post("registerMember", 

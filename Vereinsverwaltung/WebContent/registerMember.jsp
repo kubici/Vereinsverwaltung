@@ -75,7 +75,7 @@
 		</div>
 	<!-- Mitglied hinzufügen -->
 		<div class="mitglied_hinzufügen">
-			<h3>Mitglied hinzuf&uuml;gen</h3>	
+			<h3>Mitglied hinzufügen</h3>	
 			<form action="${pageContext.request.contextPath}/registerMember" method="post">
 				<input type="text" name="first_name" placeholder="Nachname" /><br>
 				<input type="text" name="last_name" placeholder="Vorname" /><br>
@@ -100,7 +100,7 @@
 				
 				<p>
 
-				<input type="submit" name="submit_mitglied" value="Mitglied hinzuf&uuml;gen"><br>
+				<input type="submit" name="submit_mitglied" value="Mitglied hinzufügen"><br>
 
 
 				<!-- Hier fehlt noch die Möglichkeit, den Mitgliedsbeitrag und evtl. die SEPA Einzugsermächtigung als PDF hochzuladen -->

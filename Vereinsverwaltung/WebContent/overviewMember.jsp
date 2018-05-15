@@ -15,6 +15,7 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 MemberDashboardServlet memberServlet = new MemberDashboardServlet();
 pageContext.setAttribute("mList", memberServlet.getLstMember());
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
   <title>Mitgliederübersicht</title>
 
 <!-- NAVBAR -->
@@ -77,86 +78,137 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 <h1>Mitgliederübersicht</h1>
 
 <div id="users-contain" class="content-wrap ui-widget">
-
-<!-- TABELLE Mitglieder -->
-<div class="table-responsive-lg">
-	<table class="table table-hover">
-	  	<thead>
-	  		<tr>
-				<th scope="col">Vorname</th>
-				<th scope="col">Nachname</th>
-				<th scope="col">Geburtstag</th>
-				<th scope="col">E-Mail </th>
-				<th scope="col">Mitglied bearbeiten</th>
-				<th scope="col">Mitglied löschen</th>
-			</tr>
-		</thead>
-		</tbody>
-			<c:forEach items="${mList}" var="mList" varStatus="loop">
-				<tr>
-					<td><c:out value="${mList.firstName}"></c:out></td>
-					<td><c:out value="${mList.lastName}"></c:out></td>
-					<td>!!!!!!</td>
-					<td class=""><c:out value="${mList.emailAddress}"></c:out></td>
-					<td>
-						<!-- This form is needed to get the selected item -->
-						<form action="editMember" method="post">
-				   				<button class="btn btn-light" type="submit" name="id" value="${mList.memberId}" style="background-color:transparent; border-color:transparent;">
-				   					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
-				   				</button>
-						</form>
-					</td>
-					<td>
-						<form action="deleteMember" method="post"  onsubmit="return buttonPressed();">
-				   				<button class="btn btn-light" id="deleteButton" type="submit" name="id" value="${mList.memberId}" style="background-color:transparent; border-color:transparent;">
-				   					<img src="./image/delete_icon.png" style="width:32px;height=32px; border=0"/>
-				   				</button>
-						</form>
-					</td>
+	<!-- TABELLE Mitglieder -->
+	<div class="table-responsive-lg">
+		<table class="table table-hover">
+		  	<thead>
+		  		<tr>
+					<th scope="col">Vorname</th>
+					<th scope="col">Nachname</th>
+					<th scope="col">Geburtstag</th>
+					<th scope="col">E-Mail </th>
+					<th scope="col">Mitglied bearbeiten</th>
+					<th scope="col">Mitglied löschen</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-</div>
-	<button type="button" class="btn btn-primary btn-lg btn-block" id="create-user">+</button>
-</div>
-
-<!-- DIALOG Mitglied hinzufügen  -->
-<div id="dialog-form" title="Create new user">
-  <p class="validateTips">All form fields are required.</p>
-    <form>
-    <fieldset>
-				<input type="text" id="first_name" name="first_name" placeholder="Nachname" /><br>
-				<input type="text" id="last_name" name="last_name" placeholder="Vorname" /><br>
-				<p>Geburtstag: (Format dd.MM.yyyy) <br>
-					<input type="date" id="birth_date" name="birth_date" placeholder="Geburtstag" /><br>
-				</p>
-				<input type="radio" class="radioBtnClass" id="gender" name="gender" value="male"> Männlich<br>
-	  			<input type="radio" class="radioBtnClass" id="gender" name="gender" value="female"> Weiblich<br>
-	  			<input type="radio" class="radioBtnClass" id="gender" name="gender" value="other"> Neutral <br>
-				<input type="email" id="email_address" name="email_address" placeholder="E-Mail" /><br>
-				<input type="tel" id="phone_number" name="phone_number" placeholder="Telefonnummer" /><br>
-				<p>
-					Adresse: <br>
-					<input type="text" id="address_line" name="address_line" placeholder="Adresszeile 1" /><br>
-					<input type="text" id="address_add" placeholder="Adresszeile 2" /><br>
-					<input type="text" id="post_code" name="post_code" placeholder="Postleitzahl" />
-					<input type="text" id="city" name="city" placeholder="Ort" /><br>
-				</p>
-				<p>
-					Beigetreten am Format(Format dd.MM.yyyy)<br>
-					<input type="date" id="entry_date" name="entry_date" placeholder="Beigetreten am" /><br>
-				</p>
+			</thead>
+			</tbody>
+				<c:forEach items="${mList}" var="mList" varStatus="loop">
+					<tr>
+						<td><c:out value="${mList.firstName}"></c:out></td>
+						<td><c:out value="${mList.lastName}"></c:out></td>
+						<% //TODO Date-Format-integration %>
+						<td>!!!</td>
+						<td><c:out value="${mList.emailAddress}"></c:out></td>
+						<td>
+							<!-- This form is needed to get the selected item -->
+							<form action="editMember" method="post">
+					   				<button class="btn btn-light" type="submit" name="id" value="${mList.memberId}" style="background-color:transparent; border-color:transparent;">
+					   					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
+					   				</button>
+							</form>
+						</td>
+						<td>
+							<form action="deleteMember" method="post"  onsubmit="return deleteMember();">
+					   				<button class="btn btn-light" id="deleteButton" type="submit" name="id" value="${mList.memberId}" style="background-color:transparent; border-color:transparent;">
+					   					<img src="./image/delete_icon.png" style="width:32px;height=32px; border=0"/>
+					   				</button>
+							</form>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		
+<!-- NEW MEMBER FORMULAR -->
+		<div class="collapse" id="collapse_registerMember">
+			<fieldset class="mb-5 border p-4">
+			<h3>neues Mitglied hinzufügen</h3><br/>
+			<% //TODO Validation prüfung %>
+			<form action="${pageContext.request.contextPath}/registerMember" method="post">
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col">
+							<input type="text" class="form-control" name="first_name" placeholder="Vorname">
+						</div>
+						<div class="col">
+							<input type="text" class="form-control" name="last_name" placeholder="Nachname">
+						</div>
+					</div>
+				</div>
 				
-      <!-- Allow form submission with keyboard without duplicating the dialog button -->
-      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-    </fieldset>
-  </form>
+			  	<div class="form-group">
+					<label for="inputbirthDate">Geburtstag</label>
+					<input type="date" class="form-control" name="birth_date" placeholder="DD.MM.JJJJ">
+				</div>
+				
+				<div class="form-group">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" name="gender" value="male">
+						<label class="form-check-label" for="inlineRadio1">Männlich</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" name="gender" value="female">
+						<label class="form-check-label" for="inlineRadio2">Weiblich</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" name="gender" value="other">
+						<label class="form-check-label" for="inlineRadio3">Neutral</label>
+					</div>	
+				</div>
+				
+				<div class="form-group">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputEmail4">Email</label>
+							<input type="email" class="form-control" id="inputEmail4" name="email_address" placeholder="maxmuster@gmail.com">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputPassword4">Telefon</label>
+							<input type="tel" class="form-control" id="inputText4" name="phone_number" placeholder="Telefonnummer eingeben" >
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="inputAddress">Addresse</label>
+					<input type="text" class="form-control" id="inputAddress" name="address_line" placeholder="Straße, Hausnr.">
+				</div>
+				
+				<div class="form-group">
+					<input type="text" class="form-control" id="inputAddress2" name="address_add" placeholder="Apartment, Studio oder Stockwerk">
+				</div>
+				
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col">
+							<input type="text" class="form-control" name="post_code" placeholder="Postleitzahl">
+						</div>
+						<div class="col-7">
+							<input type="text" class="form-control" name="city" placeholder="Ort">
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+						<label for="formGroupExampleInput">beigetreten am</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" name="entry_date" placeholder="DD.MM.JJJJ">
+				</div>	
+				<%//TODO Submit JS-Integration + Reload current-site %>					
+				<button type="submit" class="btn btn-primary" name="submit_mitglied">Mitglied erstellen</button>
+				<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_registerMember" role="button" aria-expanded="false" aria-controls="collapse_registerMember">Abbrechen</button>
+				</form>
+			</fieldset>
+		</div>
+		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_registerMember" role="button" aria-expanded="false" aria-controls="collapse_registerMember">+</button>
+	</div>
+	
+	
+<!-- CONTENT-WRAP END -->
 </div>
 
 <!-- Controll delete Button -->
 <script type="text/javascript">
-	function buttonPressed()
+	function deleteMember()
 	{		
 		answer = confirm("Mitglied löschen?");
 		if(answer == true)
