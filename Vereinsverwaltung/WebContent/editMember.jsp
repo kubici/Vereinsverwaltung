@@ -149,6 +149,7 @@
   				<label class="custom-control-label" for="customCheck1"><%=request.getAttribute("password")%></label>
 			</div>
 		</div>
+		<%//TODO Änderungen am Gender speichern %>
 		<input id="submit_btn" class="btn btn-primary" type="submit" value="Änderungen speichern">
 		<a class="btn btn-primary" href="./MemberDashboardServlet" role="button">Abbrechen</a>
 		</form>
