@@ -50,11 +50,11 @@ response.setDateHeader("Expires", 0);
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item">
 					<form action="${pageContext.request.contextPath}/ChangePasswordServlet" method="post">
-						<input class="btn btn-secondary" type="submit" value="Passwort ändern"/></a>
+						<input class="btn btn-secondary btn-block" type="submit" value="Passwort ändern"/></a>
 					</form>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
-						<input class="btn btn-secondary" type="submit" value="Logout"/>
+						<input class="btn btn-secondary btn-block" type="submit" value="Logout"/>
 					</form>
 				</a>
 			</div>

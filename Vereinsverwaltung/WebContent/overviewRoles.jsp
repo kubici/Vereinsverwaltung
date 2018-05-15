@@ -30,7 +30,7 @@ pageContext.setAttribute("rList", roledao.getRoles());
 		<ul class="navbar-nav mr-auto">	
 <!-- 	NAVBAR-ITEM -->
 		<li class="nav-item active">
-	        <a class="nav-link btn btn-light text-left pl-2" href="overviewMember.jsp">
+	        <a class="nav-link btn btn-light text-left pl-2" href="./MemberDashboardServlet">
 	        	Mitglieder 
 			</a>
 	    </li>
@@ -41,7 +41,7 @@ pageContext.setAttribute("rList", roledao.getRoles());
 			</a>
 	    </li>
    		<li class="nav-item active">
-			<a class="nav-link btn btn-light text-left pl-2" href="overviewInventory.jsp">
+			<a class="nav-link btn btn-light text-left pl-2" href="./InventoryDashboardServlet">
 				Inventar 
 			</a>
 	    </li>	    	    
@@ -62,10 +62,10 @@ pageContext.setAttribute("rList", roledao.getRoles());
 					Benutzer: <c:out value="${currentUser.username}"/></a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="changePassword.jsp">
-					<input class="btn btn-secondary" type="submit" value="Passwort ändern"/></a>
+					<input class="btn btn-secondary btn-block" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
-						<input class="btn btn-secondary" type="submit" value="Logout"/>
+						<input class="btn btn-secondary btn-block" type="submit" value="Logout"/>
 					</form>
 				</a>
 			</div>

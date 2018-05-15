@@ -55,10 +55,10 @@
 					Benutzer: <c:out value="${currentUser.username}"/></a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="./ChangePasswordServlet">
-					<input class="btn btn-secondary" type="submit" value="Passwort ändern"/></a>
+					<input class="btn btn-secondary btn-block" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
-						<input class="btn btn-secondary" type="submit" value="Logout"/>
+						<input class="btn btn-secondary btn-block" type="submit" value="Logout"/>
 					</form>
 				</a>
 			</div>
@@ -150,7 +150,7 @@
 			</div>
 		</div>
 		<input id="submit_btn" class="btn btn-primary" type="submit" value="Änderungen speichern">
-		<a class="btn btn-primary" href="overviewMember.jsp" role="button">Abbrechen</a>
+		<a class="btn btn-primary" href="./MemberDashboardServlet" role="button">Abbrechen</a>
 		</form>
 	</fieldset>
 	

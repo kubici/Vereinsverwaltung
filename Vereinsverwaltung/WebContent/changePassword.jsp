@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/welcome.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-<title>Passwort Ã¤ndern</title>
+<title>Passwort ändern</title>
 </head>
 <body>
 <header>
@@ -33,12 +33,12 @@
 			</a>
 	    </li>
    		<li class="nav-item active">
-			<a class="nav-link btn btn-light text-left pl-2" href="overviewRoles.jsp">
+			<a class="nav-link btn btn-light text-left pl-2" href="./RoleServlet">
 				Rollen 
 			</a>
 	    </li>
    		<li class="nav-item active">
-			<a class="nav-link btn btn-light text-left pl-2" href="overviewInventory.jsp">
+			<a class="nav-link btn btn-light text-left pl-2" href="./InventoryDashboardServlet">
 				Inventar 
 			</a>
 	    </li>	    	    
@@ -59,17 +59,17 @@
 					Benutzer: <c:out value="${currentUser.username}"/></a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="changePassword.jsp">
-					<input class="btn btn-secondary" type="submit" value="Passwort Ã¤ndern"/></a>
+					<input class="btn btn-secondary btn-block" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
-						<input class="btn btn-secondary" type="submit" value="Logout"/>
+						<input class="btn btn-secondary btn-block" type="submit" value="Logout"/>
 					</form>
 				</a>
 			</div>
 		</div>
 	</div>
 </nav>
-<h2>Password Ã¤ndern</h2>
+<h2>Password ändern</h2>
 </header>
 
 <!-- Check for a valid session -->
@@ -104,7 +104,7 @@ if(request.getSession().getAttribute("currentUser") == null)
 			<div class="form-group w-75">
 	  			<input type="password" name="pwd_new02" class="form-control" id="exampleInputPassword1" placeholder="neues Password wiederholen">
 			</div>
-			<button type="submit" class="btn btn-primary">Passwort Ã¤ndern</button>
+			<button type="submit" class="btn btn-primary">Passwort ändern</button>
 		</form>
 	</div>
 </div>
