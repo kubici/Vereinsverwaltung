@@ -46,7 +46,6 @@ pageContext.setAttribute("iList", invendao.readInventory());
 			<td><c:out value="${iList.nextAudit}"></c:out></td>
 			<td><c:out value="${iList.acquisitionDate}"></c:out></td>
 			<td><c:out value="${iList.lastauditby}"></c:out></td>
-	
 			
 			<td>
 				<!-- This form is needed to get the selected item -->

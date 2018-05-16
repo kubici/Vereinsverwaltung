@@ -9,9 +9,6 @@
 
 <% 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
-InventoryDao invendao = new InventoryDao();
-Inventory inventory = new Inventory();
-pageContext.setAttribute("mList", invendao.editInventory(inventory));
 
 %>
 
@@ -24,7 +21,7 @@ pageContext.setAttribute("mList", invendao.editInventory(inventory));
 <body>
 <h2>Inventar bearbeiten</h2>
 	
-	<form action="${pageContext.request.contextPath}/editInventory" method="post">
+	<form action="${pageContext.request.contextPath}/InventoryEditServletSave" method="post">
 
 		<input type="hidden" name="inventory_id" value=<%=request.getParameter("inventory_id") %> />
 			<input type="text" name="category"  value='<%=request.getAttribute("category")%>'/><br>
@@ -38,7 +35,7 @@ pageContext.setAttribute("mList", invendao.editInventory(inventory));
 		</p>
 				
 
-<input type="submit" name="submit_inventar" value="inventar Bearbeiten"><br>				
+		<input type="submit" name="submit_inventar" value="inventar Bearbeiten"><br>				
 				
 
 </form>

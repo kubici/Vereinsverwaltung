@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 // TODO First next Day Set this filter before MemberDashboardServlet
 
-@WebFilter({"/ChangePassword", "/ChangePasswordServlet", "/DashboardServlet", "/InventoryDashboardServlet", "/InventoryRegisterServlet", "/Logout", "/MemberDashboardServlet", "/MemberDeleteServlet", "/MemberEditServlet", "/MemberEditServletSave", "/MemberRegisterServlet", "/RoleServlet", "/RoleAddServlet", "/RoleDeleteServlet", "/RoleEditServlet"})
+@WebFilter({"/InventoryDashboardServlet", "/ChangePassword", "/ChangePasswordServlet", "/DashboardServlet", "/InventoryDashboardServlet", "/InventoryRegisterServlet", "/Logout", "/MemberDashboardServlet", "/MemberDeleteServlet", "/MemberEditServlet", "/MemberEditServletSave", "/MemberRegisterServlet", "/RoleServlet", "/RoleAddServlet", "/RoleDeleteServlet", "/RoleEditServlet"})
 public class SessionFilter implements Filter
 {
     public SessionFilter() {
