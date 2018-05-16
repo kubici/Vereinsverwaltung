@@ -83,6 +83,7 @@ public class MemberEditServlet extends HttpServlet {
 		
 		System.out.print("doPost() editMember: ");
 		System.out.println(request.getParameter("id"));
+	
 		
 	}
 }
