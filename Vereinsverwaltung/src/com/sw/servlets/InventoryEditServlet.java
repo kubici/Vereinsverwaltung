@@ -58,15 +58,15 @@ public class InventoryEditServlet extends HttpServlet {
 	
 		if(request.getParameter("last_audit") != null) {
 			String date = request.getParameter("last_audit");
-			inventory.setLastAudit(parse.convertEuro(date));
+			inventory.setLastAudit(parse.autoConvert(date));	
 		}
 		if(request.getParameter("next_audit") != null) {
 			String date = request.getParameter("next_audit");
-			inventory.setNextAudit(parse.convertEuro(date));
+			inventory.setNextAudit(parse.autoConvert(date));
 		}
 		if(request.getParameter("acqusition_date") != null) {
 			String date = request.getParameter("acqusition_date");
-			inventory.setAcquisitionDate(parse.convertEuro(date));
+			inventory.setAcquisitionDate(parse.autoConvert(date));
 		}
 		if(request.getParameter("last_audit_by") != null)
 			inventory.setLastauditby((String) request.getParameter("last_audit_by"));
@@ -88,8 +88,8 @@ public class InventoryEditServlet extends HttpServlet {
 		System.out.print("doPost() editInventory: ");
 		invenDao.editInventory(inventory);
 		
-//		request.getRequestDispatcher("./editInventory.jsp").forward(request, response);
-		response.sendRedirect("./overviewInventory.jsp");
+		request.getRequestDispatcher("./editInventory.jsp").forward(request, response);
+//		response.sendRedirect("./overviewInventory.jsp");
 		
 		
 	}

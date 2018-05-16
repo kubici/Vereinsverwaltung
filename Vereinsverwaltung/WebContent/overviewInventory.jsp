@@ -50,7 +50,7 @@ pageContext.setAttribute("iList", invendao.readInventory());
 			
 			<td>
 				<!-- This form is needed to get the selected item -->
-			 	<form action="editInventory.jsp" method="post">
+			 	<form action="editInventory" method="post">
 			 	
 		   				<button class="button" type="submit" name="id" value="${iList.inventoryId}" style="background-color:transparent; border-color:transparent;">
 		   					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>

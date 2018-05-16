@@ -61,9 +61,9 @@ private Connection InventoryConnection = null;
 				inventory.setCategory(category);
 				inventory.setDescription(description);
 				inventory.setPurchaseValue(purchaseValue);
-				inventory.setLastAudit(parse.convert(lastAudit));
-				inventory.setNextAudit(parse.convert(nextAudit));
-				inventory.setAcquisitionDate(parse.convert(acquisitionDate));
+				inventory.setLastAudit(parse.autoConvert(lastAudit));
+				inventory.setNextAudit(parse.autoConvert(nextAudit));
+				inventory.setAcquisitionDate(parse.autoConvert(acquisitionDate));
 				inventory.setLastauditby(lastauditby);
 			
 				List.add(inventory);
