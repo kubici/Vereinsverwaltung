@@ -19,24 +19,10 @@ import com.sw.security.Generator;
 import com.sw.security.HashText;
 import com.sw.security.ParseDate;
 
-/**
- * Servlet implementation class InventoryEditServlet
- */
 @WebServlet("/editInventory")
 public class InventoryEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public InventoryEditServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 
