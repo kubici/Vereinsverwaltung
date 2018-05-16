@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sw.dao.MemberHasRoleDao;
 import com.sw.dao.RoleDao;
 import com.sw.dao.RoleModuleAccessDao;
 
@@ -22,7 +23,8 @@ public class RoleDeleteServlet extends HttpServlet{
 		RoleModuleAccessDao accessdao = new RoleModuleAccessDao();
 		accessdao.deleteRoleModuleAccess(role_id);
 		
-		// TODO delete Member_has_role if implemented once
+		MemberHasRoleDao member_has_role_dao = new MemberHasRoleDao();
+		member_has_role_dao.deleteMemberHasRoleREFERENCErole_id(role_id);
 		
 		RoleDao roledao = new RoleDao();
 		roledao.deleteRole(role_id);

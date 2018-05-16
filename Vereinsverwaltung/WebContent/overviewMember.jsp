@@ -1,5 +1,9 @@
 <%@page import="com.sw.servlets.MemberDashboardServlet"%>
 <%@page import="com.sw.beans.Member" %>
+<%@page import="com.sw.beans.Role" %>
+<%@page import="com.sw.dao.RoleDao" %>
+<%@page import="com.sw.security.ParseDate" %>
+<%@page import="java.util.Date" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="de">
@@ -14,6 +18,8 @@
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
 MemberDashboardServlet memberServlet = new MemberDashboardServlet();
 pageContext.setAttribute("mList", memberServlet.getLstMember());
+RoleDao roledao = new RoleDao();
+pageContext.setAttribute("rList", roledao.getRoles());
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
   <title>Mitgliederübersicht</title>
@@ -96,13 +102,15 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 					<tr>
 						<td><c:out value="${mList.firstName}"></c:out></td>
 						<td><c:out value="${mList.lastName}"></c:out></td>
-						<% //TODO Date-Format-integration %>
-						<td>!!!</td>
+						<% ParseDate parser = new ParseDate();
+							Date birthdate = ((Member) pageContext.getAttribute("mList")).getBirth();
+						%>
+						<td><%=parser.convertString(birthdate) %></td>
 						<td><c:out value="${mList.emailAddress}"></c:out></td>
 						<td>
 							<!-- This form is needed to get the selected item -->
-							<form action="editMember" method="post">
-					   				<button class="btn btn-light" type="submit" name="id" value="${mList.memberId}" style="background-color:transparent; border-color:transparent;">
+							<form action="editMember.jsp" method="post">
+					   				<button class="btn btn-light" type="submit" name="id" value="${mList.username}" style="background-color:transparent; border-color:transparent;">
 					   					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
 					   				</button>
 							</form>
@@ -143,15 +151,15 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 				
 				<div class="form-group">
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" name="gender" value="male">
+						<input class="form-check-input" type="radio" id="inlineRadio1" name="gender" value="male">
 						<label class="form-check-label" for="inlineRadio1">Männlich</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" name="gender" value="female">
+						<input class="form-check-input" type="radio" id="inlineRadio2" name="gender" value="female">
 						<label class="form-check-label" for="inlineRadio2">Weiblich</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" name="gender" value="other">
+						<input class="form-check-input" type="radio" id="inlineRadio3" name="gender" value="other">
 						<label class="form-check-label" for="inlineRadio3">Neutral</label>
 					</div>	
 				</div>
@@ -193,6 +201,13 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 						<label for="formGroupExampleInput">beigetreten am</label>
 					<input type="text" class="form-control" id="formGroupExampleInput" name="entry_date" placeholder="DD.MM.JJJJ">
 				</div>	
+				<div>
+					<c:forEach items="${rList}" var="rList" varStatus="loop">
+						<input type="checkbox" name="member_has_role" value="${rList.role_id}" />
+						<c:out value="${rList.role_description}"></c:out><br>
+					</c:forEach>
+				</div>
+				
 				<%//TODO Submit JS-Integration + Reload current-site %>					
 				<button type="submit" class="btn btn-primary" name="submit_mitglied">Mitglied erstellen</button>
 				<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_registerMember" role="button" aria-expanded="false" aria-controls="collapse_registerMember">Abbrechen</button>

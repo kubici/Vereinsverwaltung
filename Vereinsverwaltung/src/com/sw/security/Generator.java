@@ -1,6 +1,5 @@
 package com.sw.security;
 
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 import com.sw.beans.Member;

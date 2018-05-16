@@ -1,11 +1,34 @@
+<%@page import="com.sw.dao.MemberHasRoleDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@page import="com.sw.dao.MemberDao"%>
+<%@page import="com.sw.beans.Member" %>
+<%@page import="com.sw.beans.Role" %>
+<%@page import="com.sw.dao.RoleDao" %>
+<%@page import="com.sw.security.ParseDate" %>
+<%@page import="com.sw.security.Generator" %>
+<%@page import="java.util.Date" %>
+<%@page import="java.util.ArrayList"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<% 
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
+MemberDao memberServlet = new MemberDao();
+pageContext.setAttribute("mList", memberServlet.getMemberByUsername(request.getParameter("id")));
+RoleDao roledao = new RoleDao();
+pageContext.setAttribute("rList", roledao.getRoles());
+MemberHasRoleDao member_has_role_dao = new MemberHasRoleDao();
+ArrayList<Integer> list = member_has_role_dao.getRoleIdByMemberId( ((Member)pageContext.getAttribute("mList")).getMemberId() );
+try {
+
+} catch (Exception e) {
+	e.printStackTrace();
+	}
+%>
 
 <title>Mitglieder</title>
 </head>
@@ -74,35 +97,39 @@
 	<fieldset class="mb-5 border p-4">
 		<form action="${pageContext.request.contextPath}/saveMember" method="post">
 		
-		<h4>Benutzer: <%= request.getAttribute("username") %></h4><br/>
+		<h4>Benutzer: <c:out value="${mList.username}"></c:out></h4><br/>
+		<input type="hidden" value="${mList.username}" name="username" />
 		
 		<div class="form-group">
 			<div class="form-row">
 				<div class="col">
-					<input type="text" class="form-control" name="first_name" value='<%=request.getAttribute("first_name")%>'/>
+					<input type="text" class="form-control" name="first_name" value="${mList.firstName}"/>
 				</div>
 				<div class="col">
-					<input type="text" class="form-control" name="last_name"  value='<%=request.getAttribute("last_name")%>'/>
+					<input type="text" class="form-control" name="last_name"  value="${mList.lastName}"/>
 				</div>
 			</div>
 		</div>
 		
 		<div class="form-group">
 			<label for="formGroupExampleInput">Geburtstag</label>
-			<input type="date" class="form-control" name="birth_date" value='<%=request.getAttribute("birth")%>'/>
+			<% 	ParseDate parser = new ParseDate();
+				Date birthdate = ((Member) pageContext.getAttribute("mList")).getBirth();
+			%>
+			<input type="date" class="form-control" name="birth_date" value='<%=parser.convertStringII(birthdate) %>'/>
 		</div>
 
 		<div class="form-group">
 			<div class="form-check form-check-inline">
-				<input type="radio" name="gender" value="male"  <%= request.getAttribute("gender").equals("male") ?  "checked" : "" %>>
+				<input type="radio" name="gender" value="male"  <%= ((Member) pageContext.getAttribute("mList")).getGender().equals("male") ?  "checked" : "" %>>
 				<label class="form-check-label" for="inlineRadio1">Männlich</label>
 			</div>
 			<div class="form-check form-check-inline">
-				<input type="radio" name="gender" value="female"  <%= request.getAttribute("gender").equals("female") ?  "checked" : "" %>>
+				<input type="radio" name="gender" value="female"  <%= ((Member) pageContext.getAttribute("mList")).getGender().equals("female") ?  "checked" : "" %>>
 				<label class="form-check-label" for="inlineRadio2">Weiblich</label>
 			</div>
 			<div class="form-check form-check-inline">
-				<input type="radio" name="gender" value="other"  <%= request.getAttribute("gender").equals("other") ?  "checked" : "" %>>
+				<input type="radio" name="gender" value="other"  <%= ((Member) pageContext.getAttribute("mList")).getGender().equals("other") ?  "checked" : "" %>>
 				<label class="form-check-label" for="inlineRadio3">Neutral</label>
 			</div>	
 		</div>
@@ -111,42 +138,54 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="inputEmail4">Email</label>
-					<input type="email" class="form-control" name="email_address" value='<%=request.getAttribute("mail")%>'>
+					<input type="email" class="form-control" name="email_address" value="${mList.emailAddress}">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="inputPassword4">Telefon</label>
-					<input type="tel" class="form-control" name="phone_number" value='<%=request.getAttribute("phone")%>'>
+					<input type="tel" class="form-control" name="phone_number" value="${mList.phoneNumber}">
 				</div>
 			</div>
 		</div>
 		
 		<div class="form-group">
 			<label for="inputAddress">Addresse</label>
-			<input type="text" class="form-control" name="address_line" value='<%=request.getAttribute("address")%>'>		
+			<input type="text" class="form-control" name="address_line" value="${mList.adressline}">		
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" name="address_add" value='<%=request.getAttribute("address_add")%>' placeholder="Addresszeile 2">
+			<input type="text" class="form-control" name="address_add" value="${mList.adresslineAdd}" placeholder="Addresszeile 2">
 		</div>
 		
 		<div class="form-group">
 			<div class="form-row">
 				<div class="col">
-					<input type="text" class="form-control" name="post_code" value='<%=request.getAttribute("post_code")%>'>
+					<input type="text" class="form-control" name="post_code" value="${mList.postCode}">
 				</div>
 				<div class="col-7">
-					<input type="text" class="form-control" name="city" value='<%=request.getAttribute("city")%>'>
+					<input type="text" class="form-control" name="city" value="${mList.city}">
 				</div>
 			</div>
 		</div>
 
+		<div>
+		<c:forEach items="${rList}" var="rList" varStatus="loop">
+			<input type="checkbox" name="member_has_role" value="${rList.role_id}"
+			 <%=list.contains( ((Role) pageContext.getAttribute("rList")).getRole_id()) ? "checked" : "" %> />
+			<c:out value="${rList.role_description}"></c:out> 
+			<br>
+		</c:forEach>
+		</div>
 		<div class="form-group">
 			<small id="passwordHelpBlock" class="form-text text-muted">
 	  			Um ein neues Passwort zu generieren Checkbox benutzen. Ansonsten wird das alte Passwort beibehalten!
 			</small>
 			
 			<div class="custom-control custom-checkbox">
-  				<input type="checkbox" class="custom-control-input" id="customCheck1" name="password_change" value='<%=request.getAttribute("password")%>'>
-  				<label class="custom-control-label" for="customCheck1"><%=request.getAttribute("password")%></label>
+			<%
+			Generator generator = new Generator();
+			String newPassword = generator.generatePassword();
+			%>
+  				<input type="checkbox" class="custom-control-input" id="customCheck1" name="password_change" value='<%=newPassword%>'>
+  				<label class="custom-control-label" for="customCheck1"><%=newPassword%></label>
 			</div>
 		</div>
 		<%//TODO Änderungen am Gender speichern %>

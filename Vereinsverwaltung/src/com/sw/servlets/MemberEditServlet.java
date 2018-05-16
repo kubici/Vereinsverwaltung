@@ -1,7 +1,6 @@
 package com.sw.servlets;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.sw.beans.Member;
 import com.sw.servlets.MemberDashboardServlet;
 import com.sw.security.Generator;
@@ -40,8 +37,6 @@ public class MemberEditServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("memberId: " + request.getParameter("id")); // TODO this is the correct ID of the selected member
-		
-		HttpSession session = request.getSession();
 		
 		MemberDashboardServlet mdc = new MemberDashboardServlet();
 		List<Member> listMember = mdc.getLstMember();
