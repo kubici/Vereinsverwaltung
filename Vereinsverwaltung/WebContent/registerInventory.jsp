@@ -36,7 +36,7 @@ pageContext.setAttribute("mList", invendao.readInventory());
 	  			
 				<input type="date" name="acquisition_date" placeholder="AcquisitionDate" /><br>
 				
-				<input type="date" name="last_audit_by" placeholder="lastAuditBy" /><br>
+				<input type="text" name="last_audit_by" placeholder="lastAuditBy" /><br>
 
 				<input type="submit" name="submit_inventory" value="Inventar hinzfügen"><br>
 
