@@ -8,12 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.sw.beans.Inventory;
-import com.sw.beans.Member;
 import com.sw.dao.InventoryDao;
-import com.sw.dao.MemberDao;
 
 /**
  * Servlet implementation class InventoryDeleteServlet
