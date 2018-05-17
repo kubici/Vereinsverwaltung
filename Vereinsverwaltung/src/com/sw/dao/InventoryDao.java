@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sw.beans.Inventory;
-import com.sw.beans.Member;
 import com.sw.security.ParseDate;
 
 public class InventoryDao {
@@ -39,7 +38,7 @@ private Connection InventoryConnection = null;
 			List<Inventory> List = new ArrayList<Inventory>();
 			try
 			{
-				String sql = "Select * from INVENTORY "; 
+				String sql = "Select * from INVENTORY"; 
 				Statement statement = this.InventoryConnection.createStatement();
 				set = statement.executeQuery(sql);
 				
@@ -52,7 +51,7 @@ private Connection InventoryConnection = null;
 				String purchaseValue= set.getString("purchase_value");
 				String lastAudit= set.getString("last_audit");
 				String nextAudit= set.getString("next_audit");
-				String acquisitionDate= set.getString("next_audit") ;
+				String acquisitionDate= set.getString("acquisition_date") ;
 				String lastauditby= set.getString("last_audit_by") ;
 				int inventoryId = set.getInt("inventory_id");
 					
@@ -88,7 +87,7 @@ private Connection InventoryConnection = null;
 	{
 		try
 		{
-			String sql = "Insert into swp_system.INVENTORY (category, description, purchase_value, last_audit, next_audit, acquisition_date, last_audit_by) values ( ?, ?, ?, ?, ?, ?,?)";
+			String sql = "Insert into swp_system.INVENTORY (category, description, purchase_value, last_audit, next_audit, acquisition_date, last_audit_by) values ( ?, ?, ?, ?, ?, ?, ?)";
 			
 			PreparedStatement preparedStmt = this.InventoryConnection.prepareStatement(sql);
 
@@ -148,7 +147,7 @@ private Connection InventoryConnection = null;
 	public boolean editInventory(Inventory inventory)
 	{
 		try
-		{		String sql = "Update swp_system.INVENTORY SET category = ?, description = ?, purchase_value = ?, last_audit = ?, next_audit = ?, acquisition_date = ?,  last_audit_by= ?";
+		{		String sql = "Update swp_system.INVENTORY SET category = ?, description = ?, purchase_value = ?, last_audit = ?, next_audit = ?, acquisition_date = ?,  last_audit_by= ? WHERE inventory_id = ?";
 				
 				PreparedStatement preparedStmt = this.InventoryConnection.prepareStatement(sql);
 				preparedStmt.setObject(1, inventory.getCategory(), Types.VARCHAR);
@@ -158,6 +157,7 @@ private Connection InventoryConnection = null;
 				preparedStmt.setObject(5, inventory.getNextAudit(), Types.DATE);
 				preparedStmt.setObject(6, inventory.getAcquisitionDate(), Types.DATE);
 				preparedStmt.setObject(7, inventory.getLastauditby(), Types.VARCHAR);
+				preparedStmt.setInt(8, inventory.getInventoryId());
 			    preparedStmt.executeUpdate();
 			    preparedStmt.close();	
 			
@@ -175,6 +175,46 @@ private Connection InventoryConnection = null;
 			return false;
 		}
 		return true;
+	}
+	
+	public Inventory getInventoryById (int inventory_id) {
+		String sql = "SELECT * FROM swp_system.INVENTORY WHERE inventory_id = ?";
+		try (	Connection connection = DBConnection.getConnectionToDatabase();
+				PreparedStatement pstatement = connection.prepareStatement(sql);
+				) {
+			pstatement.setInt(1, inventory_id);
+			ResultSet set = pstatement.executeQuery();
+			
+			while (set.next()) {
+				String category= set.getString("category");
+				String description= set.getString("description");
+				String purchaseValue= set.getString("purchase_value");
+				String lastAudit= set.getString("last_audit");
+				String nextAudit= set.getString("next_audit");
+				String acquisitionDate= set.getString("next_audit") ;
+				String lastauditby= set.getString("last_audit_by") ;
+				int inventoryId = set.getInt("inventory_id");
+					
+				ParseDate parse = new ParseDate();
+				
+				Inventory inventory = new Inventory();
+				inventory.setInventoryId(inventoryId);
+				inventory.setCategory(category);
+				inventory.setDescription(description);
+				inventory.setPurchaseValue(purchaseValue);
+				inventory.setLastAudit(parse.autoConvert(lastAudit));
+				inventory.setNextAudit(parse.autoConvert(nextAudit));
+				inventory.setAcquisitionDate(parse.autoConvert(acquisitionDate));
+				inventory.setLastauditby(lastauditby);
+				
+				return inventory;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return null;
 	}
 
 }

@@ -25,19 +25,14 @@ public class MemberRegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 
-		// Get data from registerMember.jsp
-		// Create an object member with the given attributes
 		Member member = new Member();
 
 		member.setName(request.getParameter("first_name"));
 		member.setLastName(request.getParameter("last_name"));
 		
-		// Parse birth into Date object
 		String tempBirth = request.getParameter("birth_date");
 		ParseDate parser = new ParseDate();
 		member.setBirth(parser.autoConvert(tempBirth));
-		
-		System.out.println("++++++++++++++++++++++ " + request.getParameter("gender"));
 		member.setGender(request.getParameter("gender"));
 		member.setEmailAddress(request.getParameter("email_address"));
 		member.setPhoneNumber(request.getParameter("phone_number"));
@@ -45,7 +40,6 @@ public class MemberRegisterServlet extends HttpServlet {
 		member.setAdresslineAdd(request.getParameter("address_add"));
 		member.setPostCode(request.getParameter("post_code"));
 		
-		// Parse joinedDate into Date object
 		String tempEntryDate = request.getParameter("entry_date");
 		try
 		{
@@ -73,7 +67,7 @@ public class MemberRegisterServlet extends HttpServlet {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		// save new member into database
+		
 		MemberDao memberDao = new MemberDao();
 		memberDao.writeMember(member);
 		

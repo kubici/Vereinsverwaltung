@@ -11,40 +11,19 @@ import com.sw.beans.Inventory;
 import com.sw.dao.InventoryDao;
 import com.sw.security.ParseDate;
 
-/**
- * Servlet implementation class InventoryEditServletSave
- */
 @WebServlet("/InventoryEditServletSave")
 public class InventoryEditServletSave extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public InventoryEditServletSave() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int selectedInventoryId = Integer.parseInt(request.getParameter("id"));
-		System.out.println("Temp: " + selectedInventoryId);
 
 		InventoryDao invenDao = new InventoryDao();
 		Inventory inventory = new Inventory();
 		ParseDate parse = new ParseDate();
+		
+		inventory.setInventoryId(selectedInventoryId);
 			
 		if(request.getParameter("category") != null)
 			inventory.setCategory((String) request.getParameter("category"));
@@ -62,34 +41,16 @@ public class InventoryEditServletSave extends HttpServlet {
 			String date = request.getParameter("next_audit");
 			inventory.setNextAudit(parse.autoConvert(date));
 		}
-		if(request.getParameter("acqusition_date") != null) {
-			String date = request.getParameter("acqusition_date");
+		if(request.getParameter("acquisition_date") != null) {
+			String date = request.getParameter("acquisition_date");
 			inventory.setAcquisitionDate(parse.autoConvert(date));
 		}
+		
 		if(request.getParameter("last_audit_by") != null)
 			inventory.setLastauditby((String) request.getParameter("last_audit_by"));
 
-//		System.out.println(inventory);
-//		request.setAttribute("category", inventory.getCategory());
-//		request.setAttribute("description", inventory.getDescription());
-//
-//		request.setAttribute("purchase_value", inventory.getPurchaseValue());
-//		request.setAttribute("last_audit", parse.convertString(inventory.getLastAudit()));
-//		
-//		request.setAttribute("next_audit", parse.convertString(inventory.getNextAudit()));
-//		request.setAttribute("acquisition_date", parse.convertString(inventory.getAcquisitionDate()));
-//	
-//		request.setAttribute("last_audit_by", inventory.getLastauditby());
-	
-//		request.getRequestDispatcher("./editInventory.jsp").forward(request, response);
-		
-		System.out.print("doPost() editInventory: ");
 		invenDao.editInventory(inventory);
-		
-		request.getRequestDispatcher("./editInventory.jsp").forward(request, response);
-//		response.sendRedirect("./overviewInventory.jsp");
-		
-		
-	}
 
+		response.sendRedirect("./overviewInventory.jsp");		
+	}
 }
