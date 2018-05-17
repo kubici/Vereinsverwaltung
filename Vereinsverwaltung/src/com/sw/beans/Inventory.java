@@ -6,7 +6,7 @@ public class Inventory
 {
 
 	private int inventoryId;
-	private String Category;
+	private String category;
 	private String description;
 	private String purchaseValue;
 	private Date lastAudit;
@@ -23,11 +23,11 @@ public class Inventory
 	}
 
 	public String getCategory() {
-		return Category;
+		return category;
 	}
 
 	public void setCategory(String category) {
-		Category = category;
+		this.category = category;
 	}
 
 	public String getDescription() {

@@ -1,4 +1,5 @@
-
+<%@page import="com.sw.security.ParseDate" %>
+<%@page import="java.util.Date" %>
 <%@page import="com.sw.dao.InventoryDao"%>
 <%@page import="com.sw.beans.Inventory" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -9,10 +10,8 @@
 
 <% 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
-InventoryDao invendao = new InventoryDao();
-Inventory inventory = new Inventory();
-pageContext.setAttribute("mList", invendao.editInventory(inventory));
-
+InventoryDao idao = new InventoryDao();
+pageContext.setAttribute("iList", idao.getInventoryById(Integer.parseInt(request.getParameter("id"))));
 %>
 
 
@@ -24,21 +23,27 @@ pageContext.setAttribute("mList", invendao.editInventory(inventory));
 <body>
 <h2>Inventar bearbeiten</h2>
 	
-	<form action="${pageContext.request.contextPath}/editInventory" method="post">
+	<form action="${pageContext.request.contextPath}/InventoryEditServletSave" method="post">
 
-		<input type="hidden" name="inventory_id" value=<%=request.getParameter("inventory_id") %> />
-			<input type="text" name="category"  value='<%=request.getAttribute("category")%>'/><br>
-			<input type="text" name="description"  value='<%=request.getAttribute("description")%>'/><br>	
-			<input type="text" name="purchase_value"  value='<%=request.getAttribute("purchase_value")%>'/><br>
+		<input type="hidden" name="id" value="${iList.inventoryId}" />
+			<input type="text" name="category"  value="${iList.category}"/><br>
+			<input type="text" name="description"  value="${iList.description}"/><br>	
+			<input type="text" name="purchase_value"  value="${iList.purchaseValue}"/><br>
 		<p><br>
-			<input type="date" name="last_audit" value='<%=request.getAttribute("last_audit")%>'/><br>
-			<input type="date" name="next_audit" value='<%=request.getAttribute("next_audit")%>'/><br>
-			<input type="date" name="acquisition_date" value='<%=request.getAttribute("acquisition_date")%>'/><br>
-			<input type="date" name="last_audit_by" value='<%=request.getAttribute("last_audit_by")%>'/><br>
+			<%
+			ParseDate parser = new ParseDate();
+			Date last_audit = ((Inventory) pageContext.getAttribute("iList")).getLastAudit();
+			Date next_audit = ((Inventory) pageContext.getAttribute("iList")).getNextAudit();
+			Date acquisition_date = ((Inventory) pageContext.getAttribute("iList")).getAcquisitionDate();
+			%>
+			<input type="date" name="last_audit" value='<%=parser.convertStringII(last_audit) %>' /><br>
+			<input type="date" name="next_audit" value='<%=parser.convertStringII(next_audit) %>' /><br>
+			<input type="date" name="acquisition_date" value='<%=parser.convertStringII(acquisition_date) %>' /><br>
+			<input type="text" name="last_audit_by" value="${iList.lastauditby}"/><br>
 		</p>
 				
 
-<input type="submit" name="submit_inventar" value="inventar Bearbeiten"><br>				
+		<input type="submit" name="submit_inventar" value="inventar Bearbeiten"><br>				
 				
 
 </form>

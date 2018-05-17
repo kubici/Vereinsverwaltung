@@ -2,6 +2,8 @@
 <%@page import="com.sw.beans.Inventory" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="com.sw.security.ParseDate" %>
+<%@page import="java.util.Date" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,19 +41,21 @@ pageContext.setAttribute("iList", invendao.readInventory());
 		
 		<c:forEach items="${iList}" var="iList" varStatus="loop">
 		<tr>
+			<% ParseDate parser = new ParseDate(); %>
 			<td><c:out value="${iList.category}"></c:out></td>
 			<td><c:out value="${iList.description}"></c:out></td>
 			<td><c:out value="${iList.purchaseValue}"></c:out></td>
-			<td><c:out value="${iList.lastAudit}"></c:out></td>
-			<td><c:out value="${iList.nextAudit}"></c:out></td>
-			<td><c:out value="${iList.acquisitionDate}"></c:out></td>
+			<% Date last_audit = ((Inventory) pageContext.getAttribute("iList")).getLastAudit(); %>
+			<td><c:out value='<%=parser.convertString(last_audit) %>' ></c:out></td>
+			<% Date next_audit = ((Inventory) pageContext.getAttribute("iList")).getNextAudit(); %>
+			<td><c:out value='<%=parser.convertString(next_audit) %>' ></c:out></td>
+			<% Date ac_date = ((Inventory) pageContext.getAttribute("iList")).getAcquisitionDate(); %>
+			<td><c:out value='<%=parser.convertString(ac_date) %>' ></c:out></td>
 			<td><c:out value="${iList.lastauditby}"></c:out></td>
-	
 			
 			<td>
 				<!-- This form is needed to get the selected item -->
 			 	<form action="editInventory.jsp" method="post">
-			 	
 		   				<button class="button" type="submit" name="id" value="${iList.inventoryId}" style="background-color:transparent; border-color:transparent;">
 		   					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
 		   				</button>
