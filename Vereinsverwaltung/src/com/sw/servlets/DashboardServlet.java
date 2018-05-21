@@ -1,6 +1,8 @@
 package com.sw.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -8,6 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sw.beans.Inventory;
+import com.sw.beans.Member;
+import com.sw.filters.KeyFigures;
+import com.sw.security.ParseDate;
 
 /**
  * Servlet implementation class DashboardServlet
@@ -39,15 +46,22 @@ public class DashboardServlet extends HttpServlet {
 
 
 	public DashboardServlet(HttpServletRequest servletRequest, HttpServlet servletResponse) {
-        // TODO For Statistic on the Dashboard
-    		System.out.println("DashboardServlet() - Konstruktor");
+        
+        
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		KeyFigures figures = new KeyFigures();
+		ParseDate parser = new ParseDate();
+	        
+        ArrayList<Inventory> list = figures.getNextFewAudits(10);
+        for (int i=0; i<list.size(); i++) {
+        	System.out.println(parser.convertStringII(list.get(i).getNextAudit()));
+        }
+	        
 		System.out.println("doPost() - DashboardServlet");
 		request.getRequestDispatcher("./index.jsp").forward(request, response);
-		//response.sendRedirect("./index.jsp");
 	}
 
 }
