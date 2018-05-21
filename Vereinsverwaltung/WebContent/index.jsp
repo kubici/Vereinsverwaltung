@@ -7,11 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/module.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
 <title>Homepage</title>
 
 <% Member currentUser = (Member) session.getAttribute("currentUser");
@@ -23,20 +21,12 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setDateHeader("Expires", 0);
 %>
-
-</head>
-<body>
-
-<header>
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<a class="navbar-brand" href="./DashboardServlet" >
 		<img src="image/group_icon.png" width="30" height="30" class="d-inline-block" alt="">
 		Vereinsverwaltung
 	</a>
-<!-- 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
-<!-- 	  <span class="navbar-toggler-icon"></span> -->
-<!-- 	</button> -->
 		<div class="navbar-nav mr-auto"></div>
 <!-- 	DROPDOWN-MENU NAVBAR -->
 		<div class="nav-item dropdown">
@@ -59,21 +49,22 @@ response.setDateHeader("Expires", 0);
 				</a>
 			</div>
 		</div>
-</nav>		
-</header>
+</nav>	
+</head>
+<body>
+<h1>Herzlich Willkomen!</h1>
 <div class="content-wrap">
 	<div class="container">
-		<div class="row mx-0 px-0">
-			<div class="col mx-1">
+		<div class="row mx-0">
+			<div class="col p-0">
 				<a class="module" href="./MemberDashboardServlet">
 					<div id="card_img1"></div>
 					<div id="card_content">
 					  <h2>Mitglieder</h2>
 				  </div>  
 				</a>
-			
 			</div>
-			<div class="col mx-1">
+			<div class="col p-0">
 				<a class="module" href="./RoleServlet">
 					<div id="card_img2"></div>
 					<div id="card_content">
@@ -81,14 +72,22 @@ response.setDateHeader("Expires", 0);
 			  		</div>  
 				</a>        
 			</div>
-			<div class="col mx-1">
+			<div class="col p-0">
 				<a class="module" href="./InventoryDashboardServlet">
 					<div id="card_img3"></div>
 					<div id="card_content">
 					  <h2>Inventar</h2>
 				  </div>  
 				</a>        
-			</div>		
+			</div>
+			<div class="col p-0">
+				<a class="module" href="#">
+					<div id="card_img4"></div>
+					<div id="card_content">
+					  <h2>Finanzen</h2>
+				  </div>  
+				</a>        
+			</div>			
 		</div>
 	</div>
 </div>

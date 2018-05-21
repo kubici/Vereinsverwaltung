@@ -166,14 +166,21 @@ try {
 			</div>
 		</div>
 
-		<div>
-		<c:forEach items="${rList}" var="rList" varStatus="loop">
-			<input type="checkbox" name="member_has_role" value="${rList.role_id}"
-			 <%=list.contains( ((Role) pageContext.getAttribute("rList")).getRole_id()) ? "checked" : "" %> />
-			<c:out value="${rList.role_description}"></c:out> 
-			<br>
-		</c:forEach>
+		
+		<div class="form-group">
+			<label for="formGroupExampleInput">Rolle</label>		
+			<c:forEach items="${rList}" var="rList" varStatus="loop">
+				<div class="form-check">
+				<input class="form-check-input" id="defaultCheck1" type="checkbox" name="member_has_role" value="${rList.role_id}"
+				 <%=list.contains( ((Role) pageContext.getAttribute("rList")).getRole_id()) ? "checked" : "" %> />
+				<label class="form-check-label" for="defaultCheck1">
+					<c:out value="${rList.role_description}"></c:out> 
+				</label>
+				</div>
+			</c:forEach>
 		</div>
+		
+		
 		<div class="form-group">
 			<small id="passwordHelpBlock" class="form-text text-muted">
 	  			Um ein neues Passwort zu generieren Checkbox benutzen. Ansonsten wird das alte Passwort beibehalten!

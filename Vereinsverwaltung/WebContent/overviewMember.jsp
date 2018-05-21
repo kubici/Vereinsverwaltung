@@ -10,10 +10,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 <% 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
 MemberDashboardServlet memberServlet = new MemberDashboardServlet();
@@ -81,9 +80,9 @@ pageContext.setAttribute("rList", roledao.getRoles());
 </nav>	
 </head>
 <body>
-<h1>Mitgliederübersicht</h1>
+<h1 style="color:#2196F3 !important">Mitgliederübersicht</h1>
 
-<div id="users-contain" class="content-wrap ui-widget">
+<div class="content-wrap">
 	<!-- TABELLE Mitglieder -->
 	<div class="table-responsive-lg">
 		<table class="table table-hover">
@@ -201,10 +200,16 @@ pageContext.setAttribute("rList", roledao.getRoles());
 						<label for="formGroupExampleInput">beigetreten am</label>
 					<input type="text" class="form-control" id="formGroupExampleInput" name="entry_date" placeholder="DD.MM.JJJJ">
 				</div>	
-				<div>
+				
+				<div class="form-group">
+					<label for="formGroupExampleInput">Rolle</label>
 					<c:forEach items="${rList}" var="rList" varStatus="loop">
-						<input type="checkbox" name="member_has_role" value="${rList.role_id}" />
-						<c:out value="${rList.role_description}"></c:out><br>
+					<div class="form-check">
+						<input class="form-check-input" id="defaultCheck1" type="checkbox" name="member_has_role" value="${rList.role_id}" />
+						<label class="form-check-label" for="defaultCheck1">
+							<c:out value="${rList.role_description}"></c:out>
+						</label>
+					</div>
 					</c:forEach>
 				</div>
 				
