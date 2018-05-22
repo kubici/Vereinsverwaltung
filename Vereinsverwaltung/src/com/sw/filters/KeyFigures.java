@@ -1,7 +1,10 @@
 package com.sw.filters;
 
 import java.time.LocalDate;
+import java.time.MonthDay;
+import java.time.Year;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,27 +18,6 @@ public class KeyFigures {
 	/*
 	 * Kennzahlen der Mitglieder
 	 */
-
-	public ArrayList<Member> getNextBirthdays (int days) {
-		ArrayList<Member> list = new ArrayList<>();
-		
-		MemberDao memberdao = new MemberDao();
-		ArrayList<Member> memberlist = (ArrayList<Member>) memberdao.readMember();
-		
-		LocalDate today = LocalDate.now();
-		LocalDate selectedDay = today.plusDays(days);
-		
-		for (int i=0; i<memberlist.size(); i++) {
-			Date birthday = memberlist.get(i).getBirth();
-			LocalDate birth = birthday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			
-			if (birth.isBefore(selectedDay.plusDays(1))) {
-				list.add(memberlist.get(i));
-			}
-		}
-		
-		return list;
-	}
 	
 	public ArrayList<Member> getNextFewBirthdays (int count) {
 		ArrayList<Member> list = new ArrayList<>();
@@ -43,22 +25,33 @@ public class KeyFigures {
 		MemberDao memberdao = new MemberDao();
 		ArrayList<Member> memberlist = (ArrayList<Member>) memberdao.readMember();
 		
-		LocalDate nextBirthday = null;;
 		Member nextBirth = null;
 		
+		
 		for (int i=0; i<count; i++) {
+			int daystobday = 365;
 			
 			for (int j=0; j<memberlist.size(); j++) {
-				Date birthday = memberlist.get(j).getBirth();
-				LocalDate birth = birthday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				Date birthdate = memberlist.get(j).getBirth();
+				LocalDate birth = birthdate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				MonthDay birthday = MonthDay.of(birth.getMonth(), birth.getDayOfMonth());
+				MonthDay today = MonthDay.now();
 				
-				if (birth.isBefore(nextBirthday.plusDays(1))) {
-					nextBirthday = birth;
+				int daysleft = 0;
+								
+				if (birthday.isBefore(today)) {
+					daysleft = (int) birthday.atYear(Year.now().getValue()).until(today.atYear(Year.now().plusYears(1).getValue()), ChronoUnit.DAYS);
+				} else {
+					daysleft = (int) today.atYear(Year.now().getValue()).until(birthday.atYear(Year.now().getValue()), ChronoUnit.DAYS);
+				}
+				
+				if (daysleft <= daystobday) {
 					nextBirth = memberlist.get(j);
+					daystobday = daysleft;
 				}
 			}
 			
-			if(nextBirth != null) {
+			if(memberlist.contains(nextBirth)) {
 				list.add(nextBirth);
 				memberlist.remove(nextBirth);
 			}
@@ -122,34 +115,13 @@ public class KeyFigures {
 		return inventorydao.readInventory().size();
 	}
 	
-	public ArrayList<Inventory> getNextAudits (int days) {
-		ArrayList<Inventory> list = new ArrayList<>();
-		
-		InventoryDao inventorydao = new InventoryDao();
-		ArrayList<Inventory> inventorylist = (ArrayList<Inventory>) inventorydao.readInventory();
-		
-		LocalDate today = LocalDate.now();
-		LocalDate selectedDay = today.plusDays(days);
-		
-		for (int i=0; i<inventorylist.size(); i++) {
-			Date nextaudit = inventorylist.get(i).getNextAudit();
-			LocalDate audit = nextaudit.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			
-			if (audit.isBefore(selectedDay.plusDays(1))) {
-				list.add(inventorylist.get(i));
-			}
-		}
-		
-		return list;
-	}
-	
 	public ArrayList<Inventory> getNextFewAudits (int count) {
 		ArrayList<Inventory> list = new ArrayList<>();
 		
 		InventoryDao inventorydao = new InventoryDao();
-		ArrayList<Inventory> inventorylist = (ArrayList<Inventory>) inventorydao.readInventory();
+		ArrayList<Inventory> inventorylist = (ArrayList<Inventory>) inventorydao.readInventoryNextAudit();
 
-		LocalDate nextAudit = null;
+		LocalDate today = LocalDate.now();
 		Inventory nextInventory = null;
 		
 		for (int i=0; i<count; i++) {
@@ -158,36 +130,18 @@ public class KeyFigures {
 				Date nextInventoryAudit = inventorylist.get(j).getNextAudit();
 				LocalDate audit = nextInventoryAudit.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 				
-				if (nextAudit == null) nextAudit = getLastAudit(inventorylist);
-				
-				if (audit.isBefore(nextAudit.plusDays(1))) {
-					nextAudit = audit;
+				if (today.minusDays(1).isBefore(audit)) {
 					nextInventory = inventorylist.get(j);
 				}
 			}
 			
-			if(nextAudit != null) {
+			if (inventorylist.contains(nextInventory)) {
 				list.add(nextInventory);
 				inventorylist.remove(nextInventory);
-			}
+			}			
 		}
 		
 		return list;
 	}
 
-	private LocalDate getLastAudit(ArrayList<Inventory> inventorylist) {
-		LocalDate lastAudit = null;
-		
-		for (int i=0; i<inventorylist.size(); i++) {
-			Date nextInventoryAudit = inventorylist.get(i).getNextAudit();
-			LocalDate audit = nextInventoryAudit.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			
-			if  (lastAudit == null  || audit.isAfter(lastAudit)) {
-				lastAudit = audit;
-			}
-		}
-		return lastAudit;
-	}
-
-	
 }

@@ -52,13 +52,7 @@ public class DashboardServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		KeyFigures figures = new KeyFigures();
-		ParseDate parser = new ParseDate();
-	        
-        ArrayList<Inventory> list = figures.getNextFewAudits(10);
-        for (int i=0; i<list.size(); i++) {
-        	System.out.println(parser.convertStringII(list.get(i).getNextAudit()));
-        }
+		//Hier Keyfigures implementierbar
 	        
 		System.out.println("doPost() - DashboardServlet");
 		request.getRequestDispatcher("./index.jsp").forward(request, response);

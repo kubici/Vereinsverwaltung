@@ -83,6 +83,60 @@ private Connection InventoryConnection = null;
 
 	}
 	
+	public List<Inventory> readInventoryNextAudit()
+	{
+		ResultSet set = null;
+		
+		if(this.InventoryConnection != null)
+		{
+			List<Inventory> List = new ArrayList<Inventory>();
+			try
+			{
+				String sql = "Select * from INVENTORY ORDER BY next_audit DESC"; 
+				Statement statement = this.InventoryConnection.createStatement();
+				set = statement.executeQuery(sql);
+				
+				ParseDate parse = new ParseDate();
+				
+				while(set.next())
+				{
+				String category= set.getString("category");
+				String description= set.getString("description");
+				String purchaseValue= set.getString("purchase_value");
+				String lastAudit= set.getString("last_audit");
+				String nextAudit= set.getString("next_audit");
+				String acquisitionDate= set.getString("acquisition_date") ;
+				String lastauditby= set.getString("last_audit_by") ;
+				int inventoryId = set.getInt("inventory_id");
+					
+				Inventory inventory = new Inventory();
+				inventory.setInventoryId(inventoryId);
+				inventory.setCategory(category);
+				inventory.setDescription(description);
+				inventory.setPurchaseValue(purchaseValue);
+				inventory.setLastAudit(parse.autoConvert(lastAudit));
+				inventory.setNextAudit(parse.autoConvert(nextAudit));
+				inventory.setAcquisitionDate(parse.autoConvert(acquisitionDate));				
+				inventory.setLastauditby(lastauditby);
+			
+				List.add(inventory);
+			
+				}
+				
+			}
+			catch(Exception ex)
+			{
+				System.out.println("Exception readInventory():");
+				ex.printStackTrace();
+			}
+			return List;
+		}
+		
+		System.out.println("No inventory to read");
+		return null;
+
+	}
+	
 	public boolean insertInventory(Inventory inventory)
 	{
 		try
