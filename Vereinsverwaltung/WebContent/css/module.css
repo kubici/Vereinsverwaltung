@@ -5,14 +5,14 @@
 	height: 250px;
 	border: none;
 	transition: all 0.4s;
-	border-radius: 15px;
+	border-radius: 50px;
 }
 
 /* CARD1 */
 #card_img1 {
-  background-image: url(http://free-icon-rainbow.com/i/icon_05358/icon_053581_512.png);
+  background-image: url('../image/member_icon.png');
   background-repeat:no-repeat;
-  background-color: coral;
+  background-color: #6eb9f7;
   background-position: center;
   background-size: 75%;
   cursor: pointer;
@@ -24,9 +24,9 @@
 
 /* CARD2 */
 #card_img2 {
-  background-image: url(http://free-icon-rainbow.com/i/icon_04147/icon_041471_512.png);
+  background-image: url('../image/role_icon.png');
   background-repeat:no-repeat;
-  background-color:lightblue;
+  background-color: #f7776e;
   background-position: center;
   background-size: 75%;
   cursor: pointer;
@@ -38,15 +38,29 @@
 
 /* CARD3 */
 #card_img3 {
-  background-image: url(http://free-icon-rainbow.com/i/icon_00248/icon_002481_512.png);
+  background-image: url('../image/inventory_icon2.png');
   background-repeat:no-repeat;
-  background-color: lightgreen;
+  background-color: #fff066;
   background-position: center;
   background-size: 75%;
   cursor: pointer;
   box-shadow: 0 36px 10px -20px rgba(0, 0, 0, 0.2);
 }
 .module.move > #card_img3 {
+  	transform: translate(0,-20px);
+}
+
+/* CARD4 */
+#card_img4 {
+  background-image: url('../image/finance_icon.png');
+  background-repeat:no-repeat;
+  background-color: #66ffab;
+  background-position: center;
+  background-size: 75%;
+  cursor: pointer;
+  box-shadow: 0 36px 10px -20px rgba(0, 0, 0, 0.2);
+}
+.module.move > #card_img4 {
   	transform: translate(0,-20px);
 }
 

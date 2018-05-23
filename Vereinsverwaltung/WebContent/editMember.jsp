@@ -31,9 +31,7 @@ try {
 %>
 
 <title>Mitglieder</title>
-</head>
-<body>
-<header>
+
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<a class="navbar-brand" href="./DashboardServlet">
@@ -47,8 +45,8 @@ try {
 		<ul class="navbar-nav mr-auto">	
 <!-- 	NAVBAR-ITEM -->
 		<li class="nav-item active">
-	    <a class="nav-link btn btn-light text-left pl-2" href="./MemberDashboardServlet">
-	       Mitglieder 
+	    	<a class="nav-link btn btn-light text-left pl-2" href="./MemberDashboardServlet">
+	    	   Mitglieder 
 			</a>
 	    </li>
    		<li class="nav-item active">
@@ -78,21 +76,21 @@ try {
 					Benutzer: <c:out value="${currentUser.username}"/></a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="./ChangePasswordServlet">
-					<input class="btn btn-secondary btn-block" type="submit" value="Passwort ändern"/></a>
+					<input class="btn btn-primary btn-block" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
-						<input class="btn btn-secondary btn-block" type="submit" value="Logout"/>
+						<input class="btn btn-primary btn-block" type="submit" value="Logout"/>
 					</form>
 				</a>
 			</div>
 		</div>
 	</div>
-</nav>			
-</header>
-<h2>Mitglied bearbeiten</h2>
+</nav>
+</head>
+<body>
 
-		
-<%//TODO collapsing-form-integration ??? %>
+<h2>Mitglied bearbeiten</h2>
+	
 <div class="content-wrap">
 	<fieldset class="mb-5 border p-4">
 		<form action="${pageContext.request.contextPath}/saveMember" method="post">
@@ -166,14 +164,21 @@ try {
 			</div>
 		</div>
 
-		<div>
-		<c:forEach items="${rList}" var="rList" varStatus="loop">
-			<input type="checkbox" name="member_has_role" value="${rList.role_id}"
-			 <%=list.contains( ((Role) pageContext.getAttribute("rList")).getRole_id()) ? "checked" : "" %> />
-			<c:out value="${rList.role_description}"></c:out> 
-			<br>
-		</c:forEach>
+		
+		<div class="form-group">
+			<label for="formGroupExampleInput">Rolle</label>		
+			<c:forEach items="${rList}" var="rList" varStatus="loop">
+				<div class="form-check">
+				<input class="form-check-input" id="defaultCheck1" type="checkbox" name="member_has_role" value="${rList.role_id}"
+				 <%=list.contains( ((Role) pageContext.getAttribute("rList")).getRole_id()) ? "checked" : "" %> />
+				<label class="form-check-label" for="defaultCheck1">
+					<c:out value="${rList.role_description}"></c:out> 
+				</label>
+				</div>
+			</c:forEach>
 		</div>
+		
+		
 		<div class="form-group">
 			<small id="passwordHelpBlock" class="form-text text-muted">
 	  			Um ein neues Passwort zu generieren Checkbox benutzen. Ansonsten wird das alte Passwort beibehalten!
@@ -188,13 +193,24 @@ try {
   				<label class="custom-control-label" for="customCheck1"><%=newPassword%></label>
 			</div>
 		</div>
-		<%//TODO Änderungen am Gender speichern %>
 		<input id="submit_btn" class="btn btn-primary" type="submit" value="Änderungen speichern">
 		<a class="btn btn-primary" href="./MemberDashboardServlet" role="button">Abbrechen</a>
 		</form>
 	</fieldset>
-	
 </div>
+
+<!-- Override Button-Colors -->
+<style>
+	.btn-primary,
+	.btn-primary:hover,
+	.btn-primary:active,
+	.btn-primary:visited,
+	.btn-primary:focus {
+	    background-color: #2196F3 !important;
+	    border-color: #2196F3 !important;
+		}
+</style>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>

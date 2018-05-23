@@ -59,10 +59,10 @@
 					Benutzer: <c:out value="${currentUser.username}"/></a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="changePassword.jsp">
-					<input class="btn btn-secondary btn-block" type="submit" value="Passwort ändern"/></a>
+					<input class="btn btn-primary btn-block" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
-						<input class="btn btn-secondary btn-block" type="submit" value="Logout"/>
+						<input class="btn btn-primary btn-block" type="submit" value="Logout"/>
 					</form>
 				</a>
 			</div>
