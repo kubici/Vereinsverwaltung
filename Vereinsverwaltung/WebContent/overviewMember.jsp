@@ -21,6 +21,14 @@ pageContext.setAttribute("mList", memberServlet.getLstMember());
 RoleDao roledao = new RoleDao();
 pageContext.setAttribute("rList", roledao.getRoles());
 %>
+
+
+<!-- Test -->		
+<script type="text/javascript" src="js/registerMember.js"></script>
+
+<!-- Test -->
+
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
   <title>Mitgliederübersicht</title>
 
@@ -125,8 +133,7 @@ pageContext.setAttribute("rList", roledao.getRoles());
 					</tr>
 				</c:forEach>
 			</tbody>
-		</table>
-		
+		</table>		
 <!-- NEW MEMBER FORMULAR -->
 		<div class="collapse" id="collapse_registerMember">
 			<fieldset class="mb-5 border p-4">
@@ -136,17 +143,17 @@ pageContext.setAttribute("rList", roledao.getRoles());
 				<div class="form-group">
 					<div class="form-row">
 						<div class="col">
-							<input type="text" class="form-control" name="first_name" placeholder="Vorname">
+							<input id="first_name_field" required type="text" class="form-control" name="first_name" placeholder="Vorname">
 						</div>
 						<div class="col">
-							<input type="text" class="form-control" name="last_name" placeholder="Nachname">
+							<input id="last_name_field" required type="text" class="form-control" name="last_name" placeholder="Nachname">
 						</div>
 					</div>
 				</div>
 				
 			  	<div class="form-group">
 					<label for="inputbirthDate">Geburtstag</label>
-					<input type="date" class="form-control" name="birth_date" placeholder="DD.MM.JJJJ">
+					<input id="birth_date_field" required type="date" class="form-control" name="birth_date" placeholder="DD.MM.JJJJ">
 				</div>
 				
 				<div class="form-group">
@@ -168,18 +175,18 @@ pageContext.setAttribute("rList", roledao.getRoles());
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="inputEmail4">Email</label>
-							<input type="email" class="form-control" id="inputEmail4" name="email_address" placeholder="maxmuster@gmail.com">
+							<input type="email" required class="form-control" id="inputEmail4" name="email_address" placeholder="maxmuster@gmail.com">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="inputPassword4">Telefon</label>
-							<input type="tel" class="form-control" id="inputText4" name="phone_number" placeholder="Telefonnummer eingeben" >
+							<input type="tel" required class="form-control" id="inputText4" name="phone_number" placeholder="Telefonnummer eingeben" >
 						</div>
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label for="inputAddress">Addresse</label>
-					<input type="text" class="form-control" id="inputAddress" name="address_line" placeholder="Straße, Hausnr.">
+					<input type="text" required class="form-control" id="inputAddress" name="address_line" placeholder="Straße, Hausnr.">
 				</div>
 				
 				<div class="form-group">
@@ -189,17 +196,17 @@ pageContext.setAttribute("rList", roledao.getRoles());
 				<div class="form-group">
 					<div class="form-row">
 						<div class="col">
-							<input type="text" class="form-control" name="post_code" placeholder="Postleitzahl">
+							<input type="text" class="form-control" required name="post_code" placeholder="Postleitzahl">
 						</div>
 						<div class="col-7">
-							<input type="text" class="form-control" name="city" placeholder="Ort">
+							<input type="text" class="form-control" required name="city" placeholder="Ort">
 						</div>
 					</div>
 				</div>
 				
 				<div class="form-group">
 						<label for="formGroupExampleInput">beigetreten am</label>
-					<input type="text" class="form-control" id="formGroupExampleInput" name="entry_date" placeholder="DD.MM.JJJJ">
+					<input type="text" required class="form-control" id="entry_date_field" name="entry_date" placeholder="DD.MM.JJJJ">
 				</div>	
 				<div>
 					<c:forEach items="${rList}" var="rList" varStatus="loop">
@@ -209,7 +216,7 @@ pageContext.setAttribute("rList", roledao.getRoles());
 				</div>
 				
 				<%//TODO Submit JS-Integration + Reload current-site %>					
-				<button type="submit" class="btn btn-primary" name="submit_mitglied">Mitglied erstellen</button>
+				<button onclick="return checkNewMember()" type="submit" class="btn btn-primary" name="submit_mitglied">Mitglied erstellen</button>
 				<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_registerMember" role="button" aria-expanded="false" aria-controls="collapse_registerMember">Abbrechen</button>
 				</form>
 			</fieldset>
