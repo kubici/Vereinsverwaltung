@@ -1,6 +1,9 @@
 <%@page import="com.sw.dao.RoleDao"%>
 <%@page import="com.sw.beans.Role" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="com.sw.dao.ModuleDao"%>
+<%@page import="com.sw.beans.Module" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +16,10 @@
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
 RoleDao roledao = new RoleDao();
 pageContext.setAttribute("rList", roledao.getRoles());
+
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
+ModuleDao moduledao = new ModuleDao();
+pageContext.setAttribute("mList", moduledao.getModules());
 %>
 <title>Rollenverwaltung</title>
 
@@ -74,39 +81,91 @@ pageContext.setAttribute("rList", roledao.getRoles());
 </head>
 <body>
 
-	<h1>Rollenübersicht</h1>
+<h1 style="color:#F44336 !important">Rollenübersicht</h1>
 	
-	 <!-- Here you can see a table of all roles in your team -->
-	<jsp:useBean id="roleList" class="com.sw.dao.RoleDao"></jsp:useBean>
+ <!-- Here you can see a table of all roles in your team -->
+<jsp:useBean id="roleList" class="com.sw.dao.RoleDao"></jsp:useBean>
 
 <div class="content-wrap">
-	<table border="3">
-		<th>Beschreibung</th>
-		<th>Rolle bearbeiten</th>
-		<th>Rolle löschen</th>
-		<c:forEach items="${rList}" var="rList" varStatus="loop">
-		<tr>
-			<td><c:out value="${rList.role_description}"></c:out></td>
-			<td>
-				<!-- This form is needed to get the selected item -->
-				<form action="editRole.jsp" method="post">
-		   				<button class="button" type="submit" name="id" value="${rList.role_id}" style="background-color:transparent; border-color:transparent;">
-		   					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
-		   				</button>
-		   				<input type="hidden" name="role_id" value="${rList.role_id}">
-		   				<input type="hidden" name="role_description" value="${rList.role_description}">
-				</form>
-			</td>
-			<td>
-				<form action="deleteRole" method="post"  onsubmit="return buttonPressed();">
-		   				<button class="button" id="deleteButton" type="submit" name="id" value="${rList.role_id}" style="background-color:transparent; border-color:transparent;">
-		   					<img src="./image/delete_icon.png" style="width:32px;height=32px; border=0"/>
-		   				</button>
-				</form>
-			</td>
-		</tr>
-		</c:forEach>
-	</table>
+<!-- TABELLE Rollen -->
+	<div class="table-responsive-lg">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Beschreibung</th>
+					<th scope="col">Rolle bearbeiten</th>
+					<th scope="col">Rolle löschen</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${rList}" var="rList" varStatus="loop">
+					<tr>
+						<td><c:out value="${rList.role_description}"></c:out></td>
+						<td>
+							<!-- This form is needed to get the selected item -->
+							<form action="editRole.jsp" method="post">
+			   				<button class="button" type="submit" name="id" value="${rList.role_id}" style="background-color:transparent; border-color:transparent;">
+			   					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
+			   				</button>
+			   				<input type="hidden" name="role_id" value="${rList.role_id}">
+			   				<input type="hidden" name="role_description" value="${rList.role_description}">
+							</form>
+						</td>
+						<td>
+							<form action="deleteRole" method="post"  onsubmit="return buttonPressed();">
+			   				<button class="button" id="deleteButton" type="submit" name="id" value="${rList.role_id}" style="background-color:transparent; border-color:transparent;">
+			   					<img src="./image/delete_icon.png" style="width:32px;height=32px; border=0"/>
+			   				</button>
+							</form>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		
+		
+<!-- 	NEW ROLE FORM -->
+		<div class="collapse" id="collapse_addRole">
+		<fieldset class="mb-5 border p-4">
+			<h3>neue Rolle hinzufügen</h3><br/>
+			<form action="${pageContext.request.contextPath}/addRole" method="post">
+				<div class="form-group">
+					<input type="text" class="form-control" name="role_description" placeholder="Beschreibung eingeben"/>
+				</div>
+				<div class="form-group">
+					<label for="formGroupExampleInput">Zugangsberechtigung</label>
+					<c:forEach items="${mList}" var="mList" varStatus="loop">
+					<div class="form-check">
+						<input class="form-check-input" id="defaultCheck1" type="checkbox" name="role_module_access" value="${mList.module_id}"/>
+						<label class="form-check-label" for="defaultCheck1"> 
+							<c:out value="${mList.module_description}"></c:out>
+						</label>
+					</div>
+					</c:forEach>
+					<small class="form-text text-muted">
+						Die Rolle eines Mitglieds stellt fest, welche Zugangsberechtigungen<br>
+						in welche Module Zugriff haben.
+					</small>
+				</div>
+				<button type="submit" class="btn btn-primary" name="submit_mitglied">Mitglied erstellen</button>
+				<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerMember">Abbrechen</button>
+			</form>
+		</fieldset>
+		</div>
+		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerMember">+</button>
+		
+<!-- 	Override Button-Colors -->
+		<style>
+			.btn-primary,
+			.btn-primary:hover,
+			.btn-primary:active,
+			.btn-primary:visited,
+			.btn-primary:focus {
+			    background-color: #F44336 !important;
+			    border-color: #F44336 !important;
+				}
+		</style>
+	</div>
 	
 	<!-- Controll delete Button -->
 	<script type="text/javascript">
@@ -115,23 +174,14 @@ pageContext.setAttribute("rList", roledao.getRoles());
 			answer = confirm("Rolle löschen?");
 			if(answer == true)
 			{
-		   			return true;
+		   		return true;
 			}
 			else if(answer == false)
 			{
-				alert("Löschvorgang abgebrochen!");
 				return false;
 			}
 		}
 	</script>
-	
-	<!-- Here is the part for register new roles -->
-	<form action="addRole.jsp">		
-		<br/>
-		<br/>
-		Neues Rolle hinzufügen
-		<input type = "submit" value = "+"/>
-	</form>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

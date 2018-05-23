@@ -220,6 +220,16 @@ pageContext.setAttribute("rList", roledao.getRoles());
 			</fieldset>
 		</div>
 		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_registerMember" role="button" aria-expanded="false" aria-controls="collapse_registerMember">+</button>
+		<style>
+			.btn-primary,
+			.btn-primary:hover,
+			.btn-primary:active,
+			.btn-primary:visited,
+			.btn-primary:focus {
+			    background-color: #2196F3 !important;
+			    border-color: #2196F3 !important;
+				}
+		</style>
 	</div>
 	
 	
@@ -237,7 +247,6 @@ pageContext.setAttribute("rList", roledao.getRoles());
 		}
 		else if(answer == false)
 		{
-			alert("Löschvorgang abgebrochen!");
 			return false;
 		}	
 	}
