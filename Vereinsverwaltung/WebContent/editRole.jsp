@@ -83,7 +83,7 @@ ArrayList<Integer> list = accessdao.getModuleIdByRoleId(Integer.parseInt(request
 	<fieldset class="mb-5 border p-4">
 	<form action="${pageContext.request.contextPath}/editRole" method="post">
 		<div class="form-group">
-			<input type="hidden" class="form-control" name="role_id" value=<%=request.getParameter("role_id") %>/>
+			<input type="hidden" class="form-control" name="role_id" value=<%=request.getParameter("role_id") %> />
 			<input type="text" class="form-control" name="role_description" value=<%=request.getParameter("role_description") %> /><br>
 		</div>
 		<div class="form-group">
