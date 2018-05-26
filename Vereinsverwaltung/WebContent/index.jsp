@@ -75,7 +75,7 @@ response.setDateHeader("Expires", 0);
 				</a>        
 			</div>
 			<div class="col p-0">
-				<a class="module" href="./InventoryDashboardServlet">
+				<a class="module" href="./InventoryServlet">
 					<div id="card_img3"></div>
 					<div id="card_content">
 					  <h2>Inventar</h2>

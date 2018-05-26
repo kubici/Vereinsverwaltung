@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class InventoryDashboardServlet
  */
-@WebServlet("/InventoryDashboardServlet")
-public class InventoryDashboardServlet extends HttpServlet {
+@WebServlet("/InventoryServlet")
+public class InventoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InventoryDashboardServlet() {
-        System.out.println("Konstruktor: InventoryDashboardServlet()");
+    public InventoryServlet() {
+        System.out.println("Konstruktor: InventoryServlet()");
     }
 
 	@Override
@@ -33,7 +33,7 @@ public class InventoryDashboardServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost() - InventoryDashboardServlet");
+		System.out.println("doPost() - InventoryServlet");
 		request.getRequestDispatcher("./overviewInventory.jsp").forward(request, response);
 	}
 
