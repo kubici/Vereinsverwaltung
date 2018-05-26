@@ -23,7 +23,7 @@ pageContext.setAttribute("iList", idao.getInventoryById(Integer.parseInt(request
 <body>
 <h2>Inventar bearbeiten</h2>
 	
-	<form action="${pageContext.request.contextPath}/InventoryEditServletSave" method="post">
+	<form action="${pageContext.request.contextPath}/InventoryEditServlet" method="post">
 
 		<input type="hidden" name="id" value="${iList.inventoryId}" />
 			<input type="text" name="category"  value="${iList.category}"/><br>
