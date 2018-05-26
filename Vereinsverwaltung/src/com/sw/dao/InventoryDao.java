@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,34 +12,16 @@ import com.sw.beans.Inventory;
 import com.sw.security.ParseDate;
 
 public class InventoryDao {
-	
-	
-	
-private Connection InventoryConnection = null;
-	
-	public InventoryDao() {
-		Connection connection = DBConnection.getConnectionToDatabase();
-		if(connection != null){
-			this.InventoryConnection = connection;
-		}
-		else{
-			System.out.println("InventoryConnection(): No Connection to Database possible");
-		}
-		
-	}
 
 	public List<Inventory> readInventory()
 	{
-		ResultSet set = null;
+		List<Inventory> List = new ArrayList<Inventory>();
 		
-		if(this.InventoryConnection != null)
-		{
-			List<Inventory> List = new ArrayList<Inventory>();
-			try
+			try (	Connection connection = DBConnection.getConnectionToDatabase();
+					PreparedStatement pstatement = createPrepGetInventory(connection);
+					ResultSet set = pstatement.executeQuery();
+					)
 			{
-				String sql = "Select * from INVENTORY"; 
-				Statement statement = this.InventoryConnection.createStatement();
-				set = statement.executeQuery(sql);
 				
 				ParseDate parse = new ParseDate();
 				
@@ -72,29 +53,28 @@ private Connection InventoryConnection = null;
 			}
 			catch(Exception ex)
 			{
-				System.out.println("Exception readInventory():");
 				ex.printStackTrace();
 			}
+			
 			return List;
-		}
-		
-		System.out.println("No inventory to read");
-		return null;
+	}
 
+	private PreparedStatement createPrepGetInventory(Connection connection) throws SQLException {
+		String sql = "SELECT * FROM swp_system.INVENTORY";
+		PreparedStatement pstatement = connection.prepareStatement(sql);
+		
+		return pstatement;
 	}
 	
 	public List<Inventory> readInventoryNextAudit()
 	{
-		ResultSet set = null;
+		List<Inventory> List = new ArrayList<Inventory>();
 		
-		if(this.InventoryConnection != null)
-		{
-			List<Inventory> List = new ArrayList<Inventory>();
-			try
+			try (	Connection connection = DBConnection.getConnectionToDatabase();
+					PreparedStatement pstatement = createPrepGetNextAudit(connection);
+					ResultSet set = pstatement.executeQuery();
+					)
 			{
-				String sql = "Select * from INVENTORY ORDER BY next_audit DESC"; 
-				Statement statement = this.InventoryConnection.createStatement();
-				set = statement.executeQuery(sql);
 				
 				ParseDate parse = new ParseDate();
 				
@@ -116,7 +96,7 @@ private Connection InventoryConnection = null;
 				inventory.setPurchaseValue(purchaseValue);
 				inventory.setLastAudit(parse.autoConvert(lastAudit));
 				inventory.setNextAudit(parse.autoConvert(nextAudit));
-				inventory.setAcquisitionDate(parse.autoConvert(acquisitionDate));				
+				inventory.setAcquisitionDate(parse.autoConvert(acquisitionDate));
 				inventory.setLastauditby(lastauditby);
 			
 				List.add(inventory);
@@ -126,111 +106,105 @@ private Connection InventoryConnection = null;
 			}
 			catch(Exception ex)
 			{
-				System.out.println("Exception readInventory():");
 				ex.printStackTrace();
 			}
+			
 			return List;
-		}
-		
-		System.out.println("No inventory to read");
-		return null;
+	}
 
+	private PreparedStatement createPrepGetNextAudit(Connection connection) throws SQLException {
+		String sql = "SELECT * FROM swp_system.INVENTORY ORDER BY next_audit DESC";
+		PreparedStatement pstatement = connection.prepareStatement(sql);
+		
+		return pstatement;
 	}
 	
 	public boolean insertInventory(Inventory inventory)
 	{
-		try
-		{
-			String sql = "Insert into swp_system.INVENTORY (category, description, purchase_value, last_audit, next_audit, acquisition_date, last_audit_by) values ( ?, ?, ?, ?, ?, ?, ?)";
+		try (	Connection connection = DBConnection.getConnectionToDatabase();
+				PreparedStatement pstatement = createPrepInsertInventory(connection, inventory);
+				){
 			
-			PreparedStatement preparedStmt = this.InventoryConnection.prepareStatement(sql);
-
-			preparedStmt.setObject(1, inventory.getCategory(), Types.VARCHAR);
-			preparedStmt.setObject(2, inventory.getDescription(), Types.VARCHAR);
-			
-			preparedStmt.setObject(3, inventory.getPurchaseValue(), Types.VARCHAR);
-			preparedStmt.setObject(4, inventory.getLastAudit(), Types.DATE);
-			preparedStmt.setObject(5, inventory.getNextAudit(), Types.DATE);
-			preparedStmt.setObject(6, inventory.getAcquisitionDate(),Types.DATE);
-			preparedStmt.setObject(7, inventory.getLastauditby(), Types.VARCHAR);
-			
-		    preparedStmt.execute();
+			pstatement.execute();
 		}
-		catch(SQLException sqlE)
-		{
-			System.out.println("SQLException insertInventory() : ");
+		catch (SQLException sqlE) {
 			sqlE.printStackTrace();
-			return false;
-		}
-		catch(Exception ex)
-		{
-			System.out.println("Exception insertInventory() : ");
-			ex.printStackTrace();
 			return false;
 		}
 		return true;
 	}
 	
 	
-	public boolean deleteInventory(Inventory inventory) throws SQLException, Exception
-	{
-		try {
-			String sql ="DELETE FROM swp_system.Inventory WHERE inventory_Id = ?";
-			PreparedStatement preparedStmt = this.InventoryConnection.prepareStatement(sql);
-			preparedStmt.setObject(1, inventory.getInventoryId(), Types.INTEGER);
-			preparedStmt.executeUpdate();
-		    preparedStmt.close();
-		    
+	private PreparedStatement createPrepInsertInventory(Connection connection, Inventory inventory) throws SQLException {
+		String sql = "Insert into swp_system.INVENTORY (category, description, purchase_value, last_audit, next_audit, acquisition_date, last_audit_by) values ( ?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement preparedStmt = connection.prepareStatement(sql);
+
+		preparedStmt.setObject(1, inventory.getCategory(), Types.VARCHAR);
+		preparedStmt.setObject(2, inventory.getDescription(), Types.VARCHAR);
+		preparedStmt.setObject(3, inventory.getPurchaseValue(), Types.VARCHAR);
+		preparedStmt.setObject(4, inventory.getLastAudit(), Types.DATE);
+		preparedStmt.setObject(5, inventory.getNextAudit(), Types.DATE);
+		preparedStmt.setObject(6, inventory.getAcquisitionDate(),Types.DATE);
+		preparedStmt.setObject(7, inventory.getLastauditby(), Types.VARCHAR);
+		
+		return preparedStmt;
+	}
+
+	public boolean deleteInventory(Inventory inventory)	{
+		try  (	Connection connection = DBConnection.getConnectionToDatabase();
+				PreparedStatement pstatement  = createPrepDeleteInventory(connection, inventory)
+				){
+			
+			pstatement.executeUpdate();   
+		}
+		catch(SQLException sqlE){
+			
+			System.out.println("SQLException deleteInventory() : ");
+			sqlE.printStackTrace();
+			return false;
 		}
 		
-			catch(SQLException sqlE)
-			{
-				System.out.println("SQLException deleteInventory() : ");
-				sqlE.printStackTrace();
-				return false;
-			}
-			catch(Exception ex)
-			{
-				System.out.println("Exception deleteInventory() : ");
-				ex.printStackTrace();
-				return false;
-			}
-			return true;
+		return true;
 	}
 	
+	private PreparedStatement createPrepDeleteInventory(Connection connection, Inventory inventory) throws SQLException {
+		String sql ="DELETE FROM swp_system.Inventory WHERE inventory_Id = ?";
+		PreparedStatement preparedStmt = connection.prepareStatement(sql);
+		preparedStmt.setObject(1, inventory.getInventoryId(), Types.INTEGER);
+		
+		return preparedStmt;
+	}
+
 	public boolean editInventory(Inventory inventory)
 	{
-		try
-		{		String sql = "Update swp_system.INVENTORY SET category = ?, description = ?, purchase_value = ?, last_audit = ?, next_audit = ?, acquisition_date = ?,  last_audit_by= ? WHERE inventory_id = ?";
-				
-				PreparedStatement preparedStmt = this.InventoryConnection.prepareStatement(sql);
-				preparedStmt.setObject(1, inventory.getCategory(), Types.VARCHAR);
-				preparedStmt.setObject(2, inventory.getDescription(), Types.VARCHAR);
-				preparedStmt.setObject(3, inventory.getPurchaseValue(), Types.VARCHAR);
-				preparedStmt.setObject(4, inventory.getLastAudit(), Types.DATE);
-				preparedStmt.setObject(5, inventory.getNextAudit(), Types.DATE);
-				preparedStmt.setObject(6, inventory.getAcquisitionDate(), Types.DATE);
-				preparedStmt.setObject(7, inventory.getLastauditby(), Types.VARCHAR);
-				preparedStmt.setInt(8, inventory.getInventoryId());
-			    preparedStmt.executeUpdate();
-			    preparedStmt.close();	
+		try (	Connection connection = DBConnection.getConnectionToDatabase();
+				PreparedStatement pstatement = createPrepEditInventory(connection, inventory);
+				) {		
 			
+			pstatement.executeUpdate();
 		}
-		catch(SQLException sqlE)
-		{
-			System.out.println("SQLException editInventory() : ");
+		catch(SQLException sqlE) {
 			sqlE.printStackTrace();
-			return false;
-		}
-		catch(Exception ex)
-		{
-			System.out.println("Exception editInventory() : ");
-			ex.printStackTrace();
 			return false;
 		}
 		return true;
 	}
 	
+	private PreparedStatement createPrepEditInventory(Connection connection, Inventory inventory) throws SQLException {
+		String sql = "Update swp_system.INVENTORY SET category = ?, description = ?, purchase_value = ?, last_audit = ?, next_audit = ?, acquisition_date = ?,  last_audit_by= ? WHERE inventory_id = ?";
+		PreparedStatement preparedStmt = connection.prepareStatement(sql);
+		preparedStmt.setObject(1, inventory.getCategory(), Types.VARCHAR);
+		preparedStmt.setObject(2, inventory.getDescription(), Types.VARCHAR);
+		preparedStmt.setObject(3, inventory.getPurchaseValue(), Types.VARCHAR);
+		preparedStmt.setObject(4, inventory.getLastAudit(), Types.DATE);
+		preparedStmt.setObject(5, inventory.getNextAudit(), Types.DATE);
+		preparedStmt.setObject(6, inventory.getAcquisitionDate(), Types.DATE);
+		preparedStmt.setObject(7, inventory.getLastauditby(), Types.VARCHAR);
+		preparedStmt.setInt(8, inventory.getInventoryId());
+		
+		return preparedStmt;
+	}
+
 	public Inventory getInventoryById (int inventory_id) {
 		String sql = "SELECT * FROM swp_system.INVENTORY WHERE inventory_id = ?";
 		try (	Connection connection = DBConnection.getConnectionToDatabase();
@@ -265,7 +239,7 @@ private Connection InventoryConnection = null;
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		return null;
