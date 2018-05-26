@@ -1,8 +1,6 @@
 package com.sw.servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,10 +50,6 @@ public class InventoryDeleteServlet extends HttpServlet {
 		try 
 		{
 			invendao.deleteInventory(inventory);
-		}
-		catch(SQLException sqle)
-		{
-			
 		}
 		catch(Exception ex)
 		{
