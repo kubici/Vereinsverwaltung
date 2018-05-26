@@ -33,13 +33,6 @@ public class ChangePassword extends HttpServlet{
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		HttpSession session = request.getSession();
-		if(request.getSession().getAttribute("currentUser") == null) {
-			System.out.println("No Session");
-			response.sendRedirect("./welcome.jsp");
-		} else {
-			System.out.println("Session alive!");
-			System.out.println(request.getSession().getAttribute("currentUser"));
-		}
 		
 		String oldPWD = request.getParameter("pwd_old");
 		String newPWD01 = request.getParameter("pwd_new01");
