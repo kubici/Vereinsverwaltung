@@ -85,7 +85,7 @@ public class MemberRegisterServlet extends HttpServlet {
 			//nothing to do here
 		}
 
-		request.getRequestDispatcher("./MemberDashboardServlet").forward(request, response);
+		request.getRequestDispatcher("./MemberServlet").forward(request, response);
 	}
 
 	

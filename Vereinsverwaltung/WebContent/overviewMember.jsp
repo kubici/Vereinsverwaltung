@@ -1,4 +1,4 @@
-<%@page import="com.sw.servlets.MemberDashboardServlet"%>
+<%@page import="com.sw.servlets.MemberServlet"%>
 <%@page import="com.sw.beans.Member" %>
 <%@page import="com.sw.beans.Role" %>
 <%@page import="com.sw.dao.RoleDao" %>
@@ -15,7 +15,7 @@
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 <% 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
-MemberDashboardServlet memberServlet = new MemberDashboardServlet();
+MemberServlet memberServlet = new MemberServlet();
 pageContext.setAttribute("mList", memberServlet.getLstMember());
 RoleDao roledao = new RoleDao();
 pageContext.setAttribute("rList", roledao.getRoles());

@@ -14,21 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.sw.beans.Member;
 import com.sw.dao.MemberDao;
 
-/**
- * Servlet implementation class MemberDashboardTest
- */
-@WebServlet("/MemberDashboardServlet")
-public class MemberDashboardServlet extends HttpServlet {
+@WebServlet("/MemberServlet")
+public class MemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private List<Member> lstMember;
 	public static int lstMemberCounter;
 	
-    public MemberDashboardServlet() 
+    public MemberServlet() 
     {
     	try
 		{
-			System.out.println("MemberDashboardServlet:");
+			System.out.println("MemberServlet:");
 			MemberDao memberDao = new MemberDao();
 			setLstMember(memberDao.readMember());
 			this.lstMember = getLstMember();
@@ -36,7 +33,7 @@ public class MemberDashboardServlet extends HttpServlet {
 		}
 		catch(Exception ex)
 		{
-			System.out.println("Exception: MemberDashboardServlet() constructor");
+			System.out.println("Exception: MemberServlet() constructor");
 			ex.printStackTrace();
 		}
     }
@@ -44,7 +41,7 @@ public class MemberDashboardServlet extends HttpServlet {
 	@Override
 	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-		System.out.println("service() - MemberDashboardServlet");
+		System.out.println("service() - MemberServlet");
 		
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		HttpServletResponse servletResponse = (HttpServletResponse) response;
@@ -54,7 +51,7 @@ public class MemberDashboardServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		System.out.println("doPost() - MemberDashboardServlet");
+		System.out.println("doPost() - MemberServlet");
 		request.getRequestDispatcher("./overviewMember.jsp").forward(request, response);
 	}
 	

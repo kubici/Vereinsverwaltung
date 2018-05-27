@@ -3,7 +3,7 @@ package com.sw.security;
 import java.security.SecureRandom;
 
 import com.sw.beans.Member;
-import com.sw.servlets.MemberDashboardServlet;
+import com.sw.servlets.MemberServlet;
 
 public class Generator {
 	
@@ -12,7 +12,7 @@ public class Generator {
 		String generatedUserName = null;
 		String memberName = member.getFirstName();// return the firstname
 		String memberLname = member.getLastName();// return the Lastname
-		int memberId = MemberDashboardServlet.lstMemberCounter; // return the memberId
+		int memberId = MemberServlet.lstMemberCounter; // return the memberId
 
 		generatedUserName = memberName.substring(0,1)+""+memberLname+""+memberId; // firstletterofFirstname.lastname.RandomId
 		

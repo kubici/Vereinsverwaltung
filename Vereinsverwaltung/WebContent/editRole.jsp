@@ -33,7 +33,7 @@ ArrayList<Integer> list = accessdao.getModuleIdByRoleId(Integer.parseInt(request
 		<ul class="navbar-nav mr-auto">	
 <!-- 	NAVBAR-ITEM -->
 		<li class="nav-item active">
-	    	<a class="nav-link btn btn-light text-left pl-2" href="./MemberDashboardServlet">
+	    	<a class="nav-link btn btn-light text-left pl-2" href="./MemberServlet">
 	       	Mitglieder 
 			</a>
 	    </li>
