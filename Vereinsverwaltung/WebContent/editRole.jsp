@@ -3,7 +3,7 @@
 <%@page import="com.sw.dao.RoleModuleAccessDao"%>
 <%@page import="com.sw.beans.Module" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -47,11 +47,6 @@ ArrayList<Integer> list = accessdao.getModuleIdByRoleId(Integer.parseInt(request
 			Inventar 
 			</a>
 	    </li>	    
-<!-- 	    DISABLED NAVBAR-ITEM -->
-<!-- 	    <li class="nav-item"> -->
-<!-- 		<a class="nav-link disabled" href="#">Disabled</a> -->
-<!-- 	    </li> -->
-      
 		</ul>
 <!-- 	DROPDOWN-MENU NAVBAR -->
 		<div class="nav-item dropdown">
@@ -102,7 +97,6 @@ ArrayList<Integer> list = accessdao.getModuleIdByRoleId(Integer.parseInt(request
 			in welche Module Zugriff haben.
 		</small>
 		</div>
-		<%//TODO fix Änderungen speichern %>
 		<input id="submit_btn" class="btn btn-primary" type="submit" value="Änderungen speichern">
 		<a class="btn btn-primary" href="./RoleServlet" role="button">Abbrechen</a>
 	</form>

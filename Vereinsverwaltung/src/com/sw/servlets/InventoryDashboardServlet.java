@@ -25,7 +25,7 @@ public class InventoryDashboardServlet extends HttpServlet {
 
 	@Override
 	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-		System.out.println("service() - RoleServlet");
+		System.out.println("service() - InventoryServlet");
 		
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		HttpServletResponse servletResponse = (HttpServletResponse) response;

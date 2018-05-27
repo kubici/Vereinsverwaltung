@@ -5,14 +5,14 @@
 <%@page import="com.sw.security.ParseDate" %>
 <%@page import="java.util.Date" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!doctype html>
-<html lang="de">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
 <% 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
 MemberDashboardServlet memberServlet = new MemberDashboardServlet();

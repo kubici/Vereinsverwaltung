@@ -1,7 +1,8 @@
+<%@page import="com.sw.servlets.InventoryDashboardServlet"%>
 <%@page import="com.sw.dao.InventoryDao"%>
 <%@page import="com.sw.beans.Inventory" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="com.sw.security.ParseDate" %>
 <%@page import="java.util.Date" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,7 +14,7 @@
 
 <!-- Loading inventarList from Controller -->
 <% 
-response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 InventoryDao invendao= new InventoryDao();
 pageContext.setAttribute("iList", invendao.readInventory());
 %>
@@ -128,18 +129,22 @@ pageContext.setAttribute("iList", invendao.readInventory());
 				</c:forEach>
 			</tbody>
 		</table>
-<!--NEW ROLE FORM -->
+
+<% //TODO BRAUCHTS DAS?! %>
+<%-- <jsp:useBean id="List" class="com.sw.dao.InventoryDao"></jsp:useBean>		 --%>
+
+<!--NEW INVENTORY FORM -->
 		<div class="collapse" id="collapse_addInventory">
 		<fieldset class="mb-5 border p-4">
 			<h3>neues Inventar hinzufügen</h3><br/>
 			<form action="${pageContext.request.contextPath}/registerInventory" method="post">
 				<div class="form-group">
 					<label for="formGroupExampleInput">Kategorie</label>
-    				<input type="text" class="form-control" id="formGroupExampleInput" name="category" placeholder="Kategorie eingeben">
+    				<input type="text" class="form-control" name="category" placeholder="Kategorie eingeben">
 				</div>
 				<div class="form-group">
 					<label for="formGroupExampleInput">Beschreibung</label>
-    				<input type="text" class="form-control" id="formGroupExampleInput" name="category" placeholder="Beschreibung eingeben">
+    				<input type="text" class="form-control" name="description" placeholder="Beschreibung eingeben">
 				</div> 
 				<div class="form-group">
 					<div class="form-row">
@@ -160,26 +165,26 @@ pageContext.setAttribute("iList", invendao.readInventory());
 						  </div>    
 						</div>
 						<div class="col-6 pl-4">
-							<input type="text" class="form-control form-control-lg" id="inputaccdate" name="acquisition_date" placeholder="DD.MM.YYYY" />
+							<input type="date" class="form-control form-control-lg" name="acquisition_date" placeholder="DD.MM.YYYY" />
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputnextaudit">nächste Prüfung am</label>
-					<input type="text" class="form-control form-control-lg" id="inputnextaudit" name="next_audit" placeholder="DD.MM.JJJJ" />
+					<input type="date" class="form-control form-control-lg" name="next_audit" placeholder="DD.MM.JJJJ" />
 				</div>
 				<div class="form-group">
 					<div class="form-row">
 						<div class="col">
 							<div class="form-group">
 								<label for="inputlastaudit">letzte Prüfung am</label>
-								<input type="text" class="form-control" id="inputlastaudit" name="last_audit" placeholder="DD.MM.JJJJ" />
+								<input type="date" class="form-control" name="last_audit" placeholder="DD.MM.JJJJ" />
 							</div>    
 						</div>
 						<div class="col">
 							<div class="form-group">
 								<label for="inputlastauditby">letzte Prüfung von</label>
-								<input type="text" class="form-control" id="inputlastauditby" name="last_audit_by" placeholder="Prüfer eingeben" />
+								<input type="text" class="form-control" name="last_audit_by" placeholder="Prüfer eingeben" />
 							</div>    
 						</div>
 					</div>
@@ -187,7 +192,7 @@ pageContext.setAttribute("iList", invendao.readInventory());
 				<button type="submit" class="btn btn-primary" name="submit_inventory">
 					<a style="color:black">Inventar anlegen</a>
 				</button>
-				<button type="reset" class="btn btn-primary" name="submit_inventory" data-toggle="collapse" href="#collapse_addInventory" role="button" aria-expanded="false" aria-controls="collapse_addInventory">
+				<button type="reset" class="btn btn-primary" data-toggle="collapse" href="#collapse_addInventory" role="button" aria-expanded="false" aria-controls="collapse_addInventory">
 					<a style="color:black">Abbrechen</a>
 				</button>		
 			</form>
@@ -215,13 +220,6 @@ pageContext.setAttribute("iList", invendao.readInventory());
 	}
 </script>
 
-<!-- <form action="registerInventory.jsp">		 -->
-<!-- 		<br/> -->
-<!-- 		<br/> -->
-<!-- 		Neues Inventar hinzufügen -->
-<!-- 		<input type = "submit" value = "+"/> -->
-<!-- 	</form> -->
-	
 <!-- Override Button-Colors -->
 <style>
 	.btn-primary,
