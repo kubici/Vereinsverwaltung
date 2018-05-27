@@ -146,7 +146,7 @@ pageContext.setAttribute("mList", moduledao.getModules());
 		</fieldset>
 		</div>
 		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerMember">
-			<img src="./image/add_icon_white.png"></img>
+			<img src="./image/add_icon_white.png" height="25"></img>
 		</button>
 <!-- Override Button-Colors -->
 		<style>

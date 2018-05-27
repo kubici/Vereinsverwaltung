@@ -194,7 +194,7 @@ pageContext.setAttribute("iList", invendao.readInventory());
 		</fieldset>
 		</div>
 		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addInventory" role="button" aria-expanded="false" aria-controls="collapse_registerMember">
-			<img src="./image/add_icon_black.png"></img>
+			<img src="./image/add_icon_black.png" height="25"></img>
 		</button>
 	</div>
 </div>	

@@ -53,7 +53,7 @@ response.setDateHeader("Expires", 0);
 </head>
 <body>
 <header>
-<h1>Herzlich Willkomen!</h1>
+<h1>Herzlich Willkommen!</h1>
 </header>
 <div class="content-wrap">
 	<div class="container">

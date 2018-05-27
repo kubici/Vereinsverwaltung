@@ -8,10 +8,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="css/welcome.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
+<style>
+	#login_button{
+	color: white;
+	font-size: 20px;
+	padding: 1% 10%;
+	margin-top: 5%;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	}
+</style>
 <%
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.

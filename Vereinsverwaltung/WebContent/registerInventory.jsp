@@ -25,16 +25,16 @@ pageContext.setAttribute("mList", invendao.readInventory());
 <form action="${pageContext.request.contextPath}/registerInventory" method="post">
 
 	
-	<input type="text" name="category" placeholder="Category" /><br>
-				<input type="text" name="description" placeholder="Description" /><br>
+<!-- 	<input type="text" name="category" placeholder="Category" /><br> -->
+<!-- 				<input type="text" name="description" placeholder="Description" /><br> -->
 				 <br>
-					<input type="text" name="purchase_value" placeholder="purchaseValue" /><br>
+<!-- 					<input type="text" name="purchase_value" placeholder="purchaseValue" /><br> -->
 				
 				<input type="date" name="last_audit" placeholder="LastAudit"> <br>
 				
 	  			<input type="date" name="next_audit" placeholder="NextAudit"> <br>
 	  			
-				<input type="date" name="acquisition_date" placeholder="AcquisitionDate" /><br>
+<!-- 				<input type="date" name="acquisition_date" placeholder="AcquisitionDate" /><br> -->
 				
 				<input type="text" name="last_audit_by" placeholder="lastAuditBy" /><br>
 
