@@ -86,8 +86,8 @@ pageContext.setAttribute("iList", idao.getInventoryById(Integer.parseInt(request
 		Date next_audit = ((Inventory) pageContext.getAttribute("iList")).getNextAudit();
 		Date acquisition_date = ((Inventory) pageContext.getAttribute("iList")).getAcquisitionDate();
 		%>
-<%//TODO BRAUCHTS DAS?!" %>
-<%-- 		<input type="hidden" name="id" value="${iList.inventoryId}"/> --%>
+
+		<input type="hidden" name="id" value="${iList.inventoryId}"/>
 		<div class="form-group">
 			<label for="formGroupExampleInput">Kategorie</label>
   				<input type="text" class="form-control" name="category" value="${iList.category}" placeholder="Kategorie eingeben">
@@ -139,12 +139,8 @@ pageContext.setAttribute("iList", idao.getInventoryById(Integer.parseInt(request
 				</div>
 			</div>
 		</div>
-		<button id="submit_btn" class="btn btn-primary" type="submit" name="submit_inventar">
-			<a style="color:black">Änderungen speicher</a>
-		</button>
-		<button class="btn btn-primary" href="./RoleServlet" role="button">
-			<a style="color:black">Abbrechen</a>
-		</button>
+		<input id="inventory_submit" class="btn btn-primary" type="submit" value="Änderungen speichern">
+		<a id="inventory_submit" class="btn btn-primary" href="./InventoryDashboardServlet" role="button">Abbrechen</a>
 	</form>
 	</fieldset>
 </div>
@@ -159,6 +155,10 @@ pageContext.setAttribute("iList", idao.getInventoryById(Integer.parseInt(request
 	    background-color: #ffbf00 !important;
 	    border-color: #ffbf00 !important;
 		}
+	
+	#inventory_submit{
+		color:black !important;
+	}
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
