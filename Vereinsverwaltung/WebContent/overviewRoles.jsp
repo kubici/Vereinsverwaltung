@@ -120,7 +120,7 @@ pageContext.setAttribute("mList", moduledao.getModules());
 <!--NEW ROLE FORM -->
 		<div class="collapse" id="collapse_addRole">
 		<fieldset class="mb-5 border p-4">
-			<h3>neue Rolle hinzufügen</h3><br/>
+			<h3>Neue Rolle hinzufügen</h3><br/>
 			<form action="${pageContext.request.contextPath}/addRole" method="post">
 				<div class="form-group">
 					<input type="text" class="form-control" name="role_description" placeholder="Beschreibung eingeben"/>
@@ -140,12 +140,12 @@ pageContext.setAttribute("mList", moduledao.getModules());
 						in welche Module Zugriff haben.
 					</small>
 				</div>
-				<button type="submit" class="btn btn-primary" name="submit_mitglied">Mitglied erstellen</button>
-				<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerMember">Abbrechen</button>
+				<button type="submit" class="btn btn-primary" name="submit_mitglied">Rolle erstellen</button>
+				<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerRole">Abbrechen</button>
 			</form>
 		</fieldset>
 		</div>
-		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerMember">
+		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerRole">
 			<img src="./image/add_icon_white.png" height="25"></img>
 		</button>
 <!-- Override Button-Colors -->
