@@ -132,7 +132,6 @@ pageContext.setAttribute("rList", roledao.getRoles());
 		<div class="collapse" id="collapse_registerMember">
 			<fieldset class="mb-5 border p-4">
 			<h3>neues Mitglied hinzufügen</h3><br/>
-			<% //TODO Validation prüfung %>
 			<form action="${pageContext.request.contextPath}/registerMember" method="post">
 				<div class="form-group">
 					<div class="form-row">
@@ -226,13 +225,14 @@ pageContext.setAttribute("rList", roledao.getRoles());
 		</button>
 		<style>
 			.btn-primary,
-			.btn-primary:hover,
-			.btn-primary:active,
-			.btn-primary:visited,
-			.btn-primary:focus {
+ 			.btn-primary:hover,
+ 			.btn-primary:active,
+ 			.btn-primary:visited,
+ 			.btn-primary:focus
+			{
 			    background-color: #2196F3 !important;
 			    border-color: #2196F3 !important;
-				}
+			}
 		</style>
 	</div>	
 </div>

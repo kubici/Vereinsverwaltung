@@ -1,4 +1,4 @@
-<%@page import="com.sw.servlets.InventoryDashboardServlet"%>
+<%@page import="com.sw.servlets.InventoryServlet"%>
 <%@page import="com.sw.dao.InventoryDao"%>
 <%@page import="com.sw.beans.Inventory" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -165,7 +165,7 @@ pageContext.setAttribute("iList", invendao.readInventory());
 						  </div>    
 						</div>
 						<div class="col-6 pl-4">
-							<input type="date" class="form-control form-control-lg" name="acquisition_date" placeholder="DD.MM.YYYY" />
+							<input type="date" class="form-control form-control-lg" name="acquisition_date" placeholder="DD.MM.JJJJ" />
 						</div>
 					</div>
 				</div>
@@ -226,10 +226,11 @@ pageContext.setAttribute("iList", invendao.readInventory());
 	.btn-primary:hover,
 	.btn-primary:active,
 	.btn-primary:visited,
-	.btn-primary:focus {
+	.btn-primary:focus 
+	{
 	    background-color: #ffbf00 !important;
 	    border-color: #ffbf00 !important;
-		}
+	}
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
