@@ -11,7 +11,7 @@ import com.sw.beans.Inventory;
 import com.sw.dao.InventoryDao;
 import com.sw.security.ParseDate;
 
-@WebServlet("/InventoryEditServletSave")
+@WebServlet("/InventoryEditServlet")
 public class InventoryEditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

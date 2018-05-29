@@ -1,7 +1,6 @@
 package com.sw.servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,10 +36,6 @@ public class MemberDeleteServlet extends HttpServlet {
 		try 
 		{
 			memberdao.deleteMember(member);
-		}
-		catch(SQLException sqle)
-		{
-			
 		}
 		catch(Exception ex)
 		{

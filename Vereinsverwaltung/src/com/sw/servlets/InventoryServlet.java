@@ -10,28 +10,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MemberDashboardTest
+ * Servlet implementation class InventoryDashboardServlet
  */
-@WebServlet("/MemberDashboardServlet")
-public class MemberDashboardServlet extends HttpServlet {
+@WebServlet("/InventoryServlet")
+public class InventoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public InventoryServlet() {
+        System.out.println("Konstruktor: InventoryServlet()");
+    }
+
 	@Override
 	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-
-		System.out.println("service() - MemberDashboardServlet");
+		System.out.println("service() - RoleServlet");
 		
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		HttpServletResponse servletResponse = (HttpServletResponse) response;
 		doPost(servletRequest, servletResponse);
-		
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-		System.out.println("doPost() - MemberDashboardServlet");
-		//response.sendRedirect("./overviewMember.jsp");
-		request.getRequestDispatcher("./overviewMember.jsp").forward(request, response);
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doPost() - InventoryServlet");
+		request.getRequestDispatcher("./overviewInventory.jsp").forward(request, response);
 	}
 
 }

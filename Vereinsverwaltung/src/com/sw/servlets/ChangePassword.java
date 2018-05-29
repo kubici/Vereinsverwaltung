@@ -7,8 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.sw.beans.Member;
 import com.sw.dao.ChangePasswordDao;
 
@@ -32,14 +30,6 @@ public class ChangePassword extends HttpServlet{
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		HttpSession session = request.getSession();
-		if(request.getSession().getAttribute("currentUser") == null) {
-			System.out.println("No Session");
-			response.sendRedirect("./welcome.jsp");
-		} else {
-			System.out.println("Session alive!");
-			System.out.println(request.getSession().getAttribute("currentUser"));
-		}
 		
 		String oldPWD = request.getParameter("pwd_old");
 		String newPWD01 = request.getParameter("pwd_new01");
@@ -54,23 +44,17 @@ public class ChangePassword extends HttpServlet{
 			ChangePasswordDao cpd = new ChangePasswordDao();
 			boolean checkChange = cpd.changePassword(member);
 			
-			if(checkChange) {
-				if(session != null && session.getAttribute("currentUser") != null) {
-					session.removeAttribute("currentUser");
-					session.invalidate();
-					
+			if(checkChange) {			
 					ChangePassword.setInfoMessage("Passwort�nderungen wurden �bernommen.");
 					
-					//response.sendRedirect("./welcome.jsp");
 					request.getRequestDispatcher("./welcome.jsp").forward(request, response);
 					ChangePassword.setInfoMessage("Bitte mit neuem Passwort einloggen!");
 					System.out.println("Session deleted");
-				}
+
 			} else {
 				ChangePassword.infoMessage = "Ihr altes Passwort ist falsch!";
 				System.out.println(infoMessage);
 				request.setAttribute("infoMessage", infoMessage);
-				//response.sendRedirect("./changePassword.jsp");
 				request.getRequestDispatcher("./changePassword.jsp").forward(request, response);
 			}
 			
