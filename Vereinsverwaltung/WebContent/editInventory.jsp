@@ -76,7 +76,7 @@ pageContext.setAttribute("iList", idao.getInventoryById(Integer.parseInt(request
 </header>
 <div class="content-wrap">
 	<fieldset class="mb-5 border p-4">
-	<form action="${pageContext.request.contextPath}/InventoryEditServletSave" method="post">
+	<form action="${pageContext.request.contextPath}/InventoryEditServlet" method="post">
 		<h3>Inventar-ID: ${iList.inventoryId}</h3>
 		
 <!-- 	Date Parser -->
@@ -140,7 +140,7 @@ pageContext.setAttribute("iList", idao.getInventoryById(Integer.parseInt(request
 			</div>
 		</div>
 		<input id="inventory_submit" class="btn btn-primary" type="submit" value="Änderungen speichern">
-		<a id="inventory_submit" class="btn btn-primary" href="./InventoryDashboardServlet" role="button">Abbrechen</a>
+		<a id="inventory_submit" class="btn btn-primary" href="./InventoryServlet" role="button">Abbrechen</a>
 	</form>
 	</fieldset>
 </div>

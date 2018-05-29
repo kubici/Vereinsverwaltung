@@ -47,7 +47,7 @@ pageContext.setAttribute("mList", moduledao.getModules());
 				</a>
 		    </li>
 	   		<li class="nav-item active">
-				<a class="nav-link btn btn-light text-left pl-2" href="./InventoryDashboardServlet">
+				<a class="nav-link btn btn-light text-left pl-2" href="./InventoryServlet">
 					Inventar 
 				</a>
 		    </li>	    	    
