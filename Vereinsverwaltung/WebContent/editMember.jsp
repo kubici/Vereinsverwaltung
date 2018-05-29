@@ -46,7 +46,7 @@ try {
 		<ul class="navbar-nav mr-auto">	
 <!-- 	NAVBAR-ITEM -->
 		<li class="nav-item active">
-	    	<a class="nav-link btn btn-light text-left pl-2" href="./MemberDashboardServlet">
+	    	<a class="nav-link btn btn-light text-left pl-2" href="./MemberServlet">
 	    	   Mitglieder 
 			</a>
 	    </li>
@@ -190,7 +190,7 @@ try {
 			</div>
 		</div>
 		<input id="submit_btn" class="btn btn-primary" type="submit" value="Änderungen speichern">
-		<a class="btn btn-primary" href="./MemberDashboardServlet" role="button">Abbrechen</a>
+		<a class="btn btn-primary" href="./MemberServlet" role="button">Abbrechen</a>
 		</form>
 	</fieldset>
 </div>

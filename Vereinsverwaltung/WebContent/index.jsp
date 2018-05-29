@@ -59,7 +59,7 @@ response.setDateHeader("Expires", 0);
 	<div class="container">
 		<div class="row mx-0">
 			<div class="col p-0">
-				<a class="module" href="./MemberDashboardServlet">
+				<a class="module" href="./MemberServlet">
 					<div id="card_img1"></div>
 					<div id="card_content">
 					  <h2>Mitglieder</h2>

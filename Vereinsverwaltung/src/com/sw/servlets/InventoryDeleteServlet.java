@@ -58,7 +58,6 @@ public class InventoryDeleteServlet extends HttpServlet {
 		
 		System.out.println("Inventory : "+ inventory.getInventoryId()+" is deleted from database");
 		request.getRequestDispatcher("./overviewInventory.jsp").forward(request, response);
-		//response.sendRedirect("./overviewInventory.jsp");
 		}
 	}
 	

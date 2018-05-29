@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.sw.beans.Member;
 import com.sw.dao.ChangePasswordDao;
 
@@ -30,6 +32,7 @@ public class ChangePassword extends HttpServlet{
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		HttpSession session = request.getSession();
 		
 		String oldPWD = request.getParameter("pwd_old");
 		String newPWD01 = request.getParameter("pwd_new01");
