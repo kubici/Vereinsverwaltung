@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
    <%@page import="com.sw.beans.Member"  %>
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,14 +21,14 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setDateHeader("Expires", 0);
 %>
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="./DashboardServlet" >
-		<img src="image/group_icon.png" width="30" height="30" class="d-inline-block" alt="">
-		Vereinsverwaltung
-	</a>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="./DashboardServlet" >
+			<img src="image/group_icon.png" width="30" height="30" class="d-inline-block" alt="">
+			Vereinsverwaltung
+		</a>
 		<div class="navbar-nav mr-auto"></div>
-<!-- 	DROPDOWN-MENU NAVBAR -->
+	<!-- 	DROPDOWN-MENU NAVBAR -->
 		<div class="nav-item dropdown">
 	    	<a class="nav-link btn btn-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<img src="image/settings_icon.png" width="25" height="25" class="d-inline-block p-0" alt="">
@@ -49,12 +49,12 @@ response.setDateHeader("Expires", 0);
 				</a>
 			</div>
 		</div>
-</nav>	
+	</nav>
 </head>
 <body>
-<h1>Herzlich Willkomen!</h1>
-
-
+<header>
+<h1>Herzlich Willkommen!</h1>
+</header>
 <div class="content-wrap">
 	<div class="container">
 		<div class="row mx-0">
