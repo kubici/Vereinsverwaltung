@@ -25,7 +25,7 @@ pageContext.setAttribute("mList", moduledao.getModules());
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="index.jsp">
+	<a class="navbar-brand" href="./DashboardServlet">
 		<img src="image/group_icon.png" width="30" height="30" class="d-inline-block" alt="">
 		Vereinsverwaltung
 	</a>
@@ -98,7 +98,7 @@ pageContext.setAttribute("mList", moduledao.getModules());
 						<td><c:out value="${rList.role_description}"></c:out></td>
 						<td>
 							<!-- This form is needed to get the selected item -->
-							<form action="editRole.jsp" method="post">
+							<form action="RoleEditServlet" method="post">
 			   				<button class="button" type="submit" name="id" value="${rList.role_id}" style="background-color:transparent; border-color:transparent;">
 			   					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
 			   				</button>
@@ -120,7 +120,7 @@ pageContext.setAttribute("mList", moduledao.getModules());
 <!--NEW ROLE FORM -->
 		<div class="collapse" id="collapse_addRole">
 		<fieldset class="mb-5 border p-4">
-			<h3>neue Rolle hinzufügen</h3><br/>
+			<h3>Neue Rolle hinzufügen</h3><br/>
 			<form action="${pageContext.request.contextPath}/addRole" method="post">
 				<div class="form-group">
 					<input type="text" class="form-control" name="role_description" placeholder="Beschreibung eingeben"/>
@@ -140,12 +140,12 @@ pageContext.setAttribute("mList", moduledao.getModules());
 						in welche Module Zugriff haben.
 					</small>
 				</div>
-				<button type="submit" class="btn btn-primary" name="submit_mitglied">Mitglied erstellen</button>
-				<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerMember">Abbrechen</button>
+				<button type="submit" class="btn btn-primary" name="submit_mitglied">Rolle erstellen</button>
+				<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerRole">Abbrechen</button>
 			</form>
 		</fieldset>
 		</div>
-		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerMember">
+		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerRole">
 			<img src="./image/add_icon_white.png" height="25"></img>
 		</button>
 <!-- Override Button-Colors -->

@@ -21,7 +21,6 @@ public class MemberDeleteServlet extends HttpServlet {
 		
 		System.out.println(request.getParameter("id"));
 		int selectedMemberId = Integer.parseInt(request.getParameter("id"));
-		//selectedMemberId += 1; // plus 1 because Admin is at ID 0
 		System.out.println("Temp: " + selectedMemberId);
 		
 		request.setAttribute("member_Id", selectedMemberId); // set Attribut for deleteMember.jsp

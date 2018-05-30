@@ -15,6 +15,7 @@ public class Generator {
 		MemberDao dao = new MemberDao();
 		int memberId = dao.readMember().size() + 2; // return the memberId
 
+
 		generatedUserName = memberName.substring(0,1)+""+memberLname+""+memberId; // firstletterofFirstname.lastname.RandomId
 		
 		return generatedUserName; // generatedUserName -> ([erster buchst. vorname][nachname][id])

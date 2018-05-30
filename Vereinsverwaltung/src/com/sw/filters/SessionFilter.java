@@ -13,19 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-// TODO First next Day Set this filter before MemberDashboardServlet
+@WebFilter({"/InventoryDashboardServlet", "/ChangePassword", "/ChangePasswordServlet", "/DashboardServlet", 
+	"/InventoryDashboardServlet", "/InventoryRegisterServlet", "/Logout", "/MemberDashboardServlet", "/MemberDeleteServlet", 
+	"/MemberEditServlet", "/MemberEditServletSave", "/MemberRegisterServlet", "/RoleServlet", "/RoleAddServlet", "/RoleDeleteServlet", 
+	"/RoleEditServlet"})
 
-@WebFilter({"/InventoryDashboardServlet", "/ChangePassword", "/ChangePasswordServlet", "/DashboardServlet", "/InventoryDashboardServlet", "/InventoryRegisterServlet", "/Logout", "/MemberDashboardServlet", "/MemberDeleteServlet", "/MemberEditServlet", "/MemberEditServletSave", "/MemberRegisterServlet", "/RoleServlet", "/RoleAddServlet", "/RoleDeleteServlet", "/RoleEditServlet", "/overviewMember.jsp"})
 public class SessionFilter implements Filter
 {
-    public SessionFilter() {
-        // TODO Auto-generated constructor stub
+    public SessionFilter() 
+    {
     	System.out.println("SessionFilter() - Konstruktor");
     }
-
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException 
 	{
