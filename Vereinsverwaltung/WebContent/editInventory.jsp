@@ -109,6 +109,7 @@ pageContext.setAttribute("iList", idao.getInventoryById(Integer.parseInt(request
 				<div class="col">
 					<div class="form-group row">
 						<div class="col">
+							<% //TODO Kommata-Problem beheben (205,05 ist nicht 205.05) %>
 							<input type="text" class="form-control form-control-lg" id="colFormLabelLg" name="purchase_value" value="${iList.purchaseValue}" placeholder="00.00">
 		    			</div>
 		    			<img class="pr-3 pl-0 ml-0" src="image/euro_icon.png" height="50"></img>
