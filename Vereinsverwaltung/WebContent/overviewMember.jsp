@@ -15,8 +15,8 @@
 
 <% 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
-MemberDao memberServlet  = new MemberDao();
-pageContext.setAttribute("mList", memberServlet.readMember());
+MemberDao memberDao  = new MemberDao();
+pageContext.setAttribute("mList", memberDao.readMember());
 RoleDao roledao = new RoleDao();
 pageContext.setAttribute("rList", roledao.getRoles());
 %>

@@ -51,6 +51,6 @@ public class InventoryEditServlet extends HttpServlet {
 
 		invenDao.editInventory(inventory);
 
-		response.sendRedirect("./overviewInventory.jsp");		
+		request.getRequestDispatcher("./overviewInventory.jsp").forward(request, response);
 	}
 }
