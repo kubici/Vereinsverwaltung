@@ -42,6 +42,6 @@ public class MemberDeleteServlet extends HttpServlet {
 		}
 		
 		System.out.println("Member : "+ member.getMemberId()+" is deleted from database");
-		request.getRequestDispatcher("./overviewMember.jsp").forward(request, response);
+		request.getRequestDispatcher("/MemberServlet").forward(request, response);
 	}
 }

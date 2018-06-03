@@ -83,6 +83,6 @@ public class MemberEditServlet extends HttpServlet{
 			member_has_role_dao.deleteMemberHasRoleREFERENCEmember_id(current_id);
 		}
 		
-		request.getRequestDispatcher("./overviewMember.jsp").forward(request, response);
+		request.getRequestDispatcher("/MemberServlet").forward(request, response);
 	}
 }

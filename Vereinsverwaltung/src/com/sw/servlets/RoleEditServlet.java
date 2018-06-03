@@ -43,6 +43,6 @@ public class RoleEditServlet extends HttpServlet {
 			accessdao.deleteRoleModuleAccess(role.getRole_id());
 		}
 		
-		request.getRequestDispatcher("./overviewRoles.jsp").forward(request, response);
+		request.getRequestDispatcher("/RoleServlet").forward(request, response);
 	}
 }

@@ -50,7 +50,7 @@ public class InventoryEditServlet extends HttpServlet {
 			inventory.setLastauditby((String) request.getParameter("last_audit_by"));
 
 		invenDao.editInventory(inventory);
-
-		response.sendRedirect("./overviewInventory.jsp");		
+	
+		request.getRequestDispatcher("/InventoryServlet").forward(request, response);
 	}
 }

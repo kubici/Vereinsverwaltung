@@ -33,7 +33,7 @@ pageContext.setAttribute("iList", invendao.readInventory());
 		<ul class="navbar-nav mr-auto">	
 			<!--NAVBAR-ITEM -->
 			<li class="nav-item active">
-		        <a class="nav-link btn btn-light text-left pl-2" href="./MemberDashboardServlet">
+		        <a class="nav-link btn btn-light text-left pl-2" href="./MemberServlet">
 		        	Mitglieder 
 				</a>
 		    </li>
@@ -130,8 +130,8 @@ pageContext.setAttribute("iList", invendao.readInventory());
 			</tbody>
 		</table>
 
-<% //TODO BRAUCHTS DAS?! %>
-<%-- <jsp:useBean id="List" class="com.sw.dao.InventoryDao"></jsp:useBean>		 --%>
+
+<jsp:useBean id="List" class="com.sw.dao.InventoryDao"></jsp:useBean>
 
 <!--NEW INVENTORY FORM -->
 		<div class="collapse" id="collapse_addInventory">

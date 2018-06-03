@@ -36,7 +36,7 @@ pageContext.setAttribute("mList", moduledao.getModules());
 		<ul class="navbar-nav mr-auto">	
 			<!--NAVBAR-ITEM -->
 			<li class="nav-item active">
-		        <a class="nav-link btn btn-light text-left pl-2" href="./MemberDashboardServlet">
+		        <a class="nav-link btn btn-light text-left pl-2" href="./MemberServlet">
 		        	Mitglieder 
 				</a>
 		    </li>
@@ -98,7 +98,7 @@ pageContext.setAttribute("mList", moduledao.getModules());
 						<td><c:out value="${rList.role_description}"></c:out></td>
 						<td>
 							<!-- This form is needed to get the selected item -->
-							<form action="RoleEditServlet" method="post">
+							<form action="editRole.jsp" method="post">
 			   				<button class="button" type="submit" name="id" value="${rList.role_id}" style="background-color:transparent; border-color:transparent;">
 			   					<img src="./image/edit_icon.png" alt="Hallo" style="width:32px;height=32px; border=0"/>
 			   				</button>

@@ -29,6 +29,6 @@ public class RoleDeleteServlet extends HttpServlet{
 		RoleDao roledao = new RoleDao();
 		roledao.deleteRole(role_id);
 		
-		request.getRequestDispatcher("./overviewRoles.jsp").forward(request, response);
+		request.getRequestDispatcher("/RoleServlet").forward(request, response);
 	}
 }
