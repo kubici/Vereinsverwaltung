@@ -198,13 +198,16 @@ try {
 <!-- Override Button-Colors -->
 <style>
 	.btn-primary,
-	.btn-primary:hover,
 	.btn-primary:active,
 	.btn-primary:visited,
-	.btn-primary:focus {
-	    background-color: #2196F3 !important;
-	    border-color: #2196F3 !important;
-		}
+	.btn-primary:focus
+	{
+		 background-color: #6eb9f7 !important;
+		 border-color: #6eb9f7 !important;
+	}
+	.btn-primary:hover{
+		background-color: #2196F3 !important;
+		border-color: #2196F3 !important;
 </style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

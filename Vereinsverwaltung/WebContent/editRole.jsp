@@ -106,13 +106,16 @@ ArrayList<Integer> list = accessdao.getModuleIdByRoleId(Integer.parseInt(request
 <!-- Override Button-Colors -->
 <style>
 	.btn-primary,
-	.btn-primary:hover,
 	.btn-primary:active,
 	.btn-primary:visited,
 	.btn-primary:focus {
-	    background-color: #F44336 !important;
-	    border-color: #F44336 !important;
+		 background-color: #f7776e !important;
+		 border-color: #f7776e !important;
 		}
+	.btn-primary:hover{
+		background-color: #F44336 !important;
+		border-color: #F44336 !important;
+	}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

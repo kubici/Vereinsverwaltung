@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="css/module.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" integrity="sha256-JG6hsuMjFnQ2spWq0UiaDRJBaarzhFbUxiUTxQDA9Lk=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
 <title>Homepage</title>
 
 <% Member currentUser = (Member) session.getAttribute("currentUser");
@@ -57,8 +59,54 @@ response.setDateHeader("Expires", 0);
 </header>
 <div class="content-wrap">
 	<div class="container">
-		<div class="row mx-0">
-			<div class="col p-0">
+		<div class="row justify-content-center">
+			<h2 style="	font-family: helvetica neue; font-weight: light; font-variant-caps: all-small-caps;">Statistik</h2>
+		</div>
+		<div class="row border p-3">
+			<div class="col">
+				<h5 class="text-center mb-2">Test Daten</h5>
+				<canvas id="barChart" height="300"></canvas>
+			</div>
+			<div class="col">
+				<h5 class="text-center mb-2">Test Daten</h5>
+				<canvas id="donutChart" height="300"></canvas>
+			</div>
+			<div class="col">
+				<h5 class="text-center mb-2">Test Daten</h5>
+				<table class="table">
+				  <thead>
+					 <tr>
+						<th scope="col">#</th>
+						<th scope="col">First</th>
+						<th scope="col">Last</th>
+						<th scope="col">Handle</th>
+					 </tr>
+				  </thead>
+				  <tbody>
+					 <tr>
+						<th scope="row">1</th>
+						<td>Mark</td>
+						<td>Otto</td>
+						<td>@mdo</td>
+					 </tr>
+					 <tr>
+						<th scope="row">2</th>
+						<td>Jacob</td>
+						<td>Thornton</td>
+						<td>@fat</td>
+					 </tr>
+					 <tr>
+						<th scope="row">3</th>
+						<td>Larry</td>
+						<td>the Bird</td>
+						<td>@twitter</td>
+					 </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row mt-2 p-3">
+			<div class="col-sm">
 				<a class="module" href="./MemberServlet">
 					<div id="card_img1"></div>
 					<div id="card_content">
@@ -66,25 +114,28 @@ response.setDateHeader("Expires", 0);
 				  </div>  
 				</a>
 			</div>
-			<div class="col p-0">
+			<div class="col-sm">
 				<a class="module" href="./RoleServlet">
 					<div id="card_img2"></div>
 					<div id="card_content">
 						<h2>Rollen</h2>  
 			  		</div>  
-				</a>        
+				</a>
 			</div>
-			<div class="col p-0">
+			<div class="col-sm">
 				<a class="module" href="./InventoryServlet">
 					<div id="card_img3"></div>
 					<div id="card_content">
 					  <h2>Inventar</h2>
 				  </div>  
-				</a>        
+				</a>     
 			</div>		
 		</div>
 	</div>
 </div>
+<script src="js/statistics.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" integrity="sha256-JG6hsuMjFnQ2spWq0UiaDRJBaarzhFbUxiUTxQDA9Lk=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>

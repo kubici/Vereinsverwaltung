@@ -148,16 +148,19 @@ pageContext.setAttribute("mList", moduledao.getModules());
 		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerRole">
 			<img src="./image/add_icon_white.png" height="25"></img>
 		</button>
-<!-- Override Button-Colors -->
+		<!-- Override Button-Colors -->
 		<style>
 			.btn-primary,
-			.btn-primary:hover,
 			.btn-primary:active,
 			.btn-primary:visited,
 			.btn-primary:focus {
-			    background-color: #F44336 !important;
-			    border-color: #F44336 !important;
+			    background-color: #f7776e !important;
+			    border-color: #f7776e !important;
 				}
+			.btn-primary:hover{
+				background-color: #F44336 !important;
+			   border-color: #F44336 !important;
+			}
 		</style>
 	</div>
 </div>

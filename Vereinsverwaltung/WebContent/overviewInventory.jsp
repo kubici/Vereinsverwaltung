@@ -60,10 +60,10 @@ pageContext.setAttribute("iList", invendao.readInventory());
 					Benutzer: <c:out value="${currentUser.username}"/></a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="changePassword.jsp">
-					<input class="btn btn-primary btn-block" type="submit" value="Passwort ändern"/></a>
+					<input class="btn btn-warning btn-block" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
-						<input class="btn btn-primary btn-block" type="submit" value="Logout"/>
+						<input class="btn btn-warning btn-block" type="submit" value="Logout"/>
 					</form>
 				</a>
 			</div>
@@ -189,16 +189,16 @@ pageContext.setAttribute("iList", invendao.readInventory());
 						</div>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary" name="submit_inventory">
+				<button type="submit" class="btn btn-warning" name="submit_inventory">
 					<a style="color:black">Inventar anlegen</a>
 				</button>
-				<button type="reset" class="btn btn-primary" data-toggle="collapse" href="#collapse_addInventory" role="button" aria-expanded="false" aria-controls="collapse_addInventory">
+				<button type="reset" class="btn btn-warning" data-toggle="collapse" href="#collapse_addInventory" role="button" aria-expanded="false" aria-controls="collapse_addInventory">
 					<a style="color:black">Abbrechen</a>
 				</button>		
 			</form>
 		</fieldset>
 		</div>
-		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addInventory" role="button" aria-expanded="false" aria-controls="collapse_registerMember">
+		<button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="collapse" href="#collapse_addInventory" role="button" aria-expanded="false" aria-controls="collapse_registerMember">
 			<img src="./image/add_icon_black.png" height="25"></img>
 		</button>
 	</div>
@@ -219,19 +219,6 @@ pageContext.setAttribute("iList", invendao.readInventory());
 		}
 	}
 </script>
-
-<!-- Override Button-Colors -->
-<style>
-	.btn-primary,
-	.btn-primary:hover,
-	.btn-primary:active,
-	.btn-primary:visited,
-	.btn-primary:focus 
-	{
-	    background-color: #ffbf00 !important;
-	    border-color: #ffbf00 !important;
-	}
-</style>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
