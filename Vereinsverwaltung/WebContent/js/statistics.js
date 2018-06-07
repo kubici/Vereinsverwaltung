@@ -1,18 +1,20 @@
-var bar = document.getElementById("barChart").getContext('2d');
-var barChart = new Chart(bar, {
-    type: 'bar',
+/**
+ * @author tobi + kubi
+ */
+var line = document.getElementById("lineChart").getContext('2d');
+var data2018 = document.getElementById("2018Data").value;
+var data2017 = document.getElementById("2017Data").value;
+var data2016 = document.getElementById("2016Data").value;
+var data2015 = document.getElementById("2015Data").value;
+var data2014 = document.getElementById("2014Data").value;
+var barChart = new Chart(line, {
+    type: 'line',
 data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["2014", "2015", "2016", "2017", "2018"],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [data2014, data2015, data2016, data2017, data2018],
             backgroundColor: [
-                'rgba(255, 99, 132,0.7 )',
-                'rgba(54, 162, 235,0.7 )',
-                'rgba(255, 206, 86,0.7 )',
-                'rgba(75, 192, 192,0.7 )',
-                'rgba(153, 102, 255,0.7)',
-                'rgba(255, 159, 64,0.7)'
+                'rgba(255, 99, 132, 0.7)',
             ],
         }]
     },
@@ -28,20 +30,20 @@ data: {
 });
 
 var donut = document.getElementById("donutChart").getContext('2d');
+var femalePercentage = document.getElementById("femaleData").value;
+var neutralPercentage = document.getElementById("neutralData").value;
+var malePercentage = document.getElementById("maleData").value;
 var donutChart = new Chart(donut, {
     type: 'doughnut',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["Female", "Neutral", "Male"],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [femalePercentage, neutralPercentage, malePercentage],
             backgroundColor: [
                 'rgba(255, 99, 132,0.7 )',
-                'rgba(54, 162, 235,0.7 )',
-                'rgba(255, 206, 86,0.7 )',
-                'rgba(75, 192, 192,0.7 )',
-                'rgba(153, 102, 255,0.7)',
-                'rgba(255, 159, 64,0.7)'
+                'rgba(0, 255, 0,0.3)',
+                'rgba(0, 0, 255,0.3)'
             ],
         }]
     },

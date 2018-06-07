@@ -17,7 +17,11 @@ import com.sw.dao.MemberHasRoleDao;
 import com.sw.security.Generator;
 import com.sw.security.HashText;
 import com.sw.security.ParseDate;
-
+/**
+ * 
+ * @author tobi
+ *
+ */
 @WebServlet("/registerMember")
 public class MemberRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

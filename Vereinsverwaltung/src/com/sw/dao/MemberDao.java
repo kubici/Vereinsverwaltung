@@ -10,14 +10,74 @@ import java.util.List;
 
 import com.sw.beans.Member;
 import com.sw.security.ParseDate;
-
+/**
+ * 
+ * @author tobi
+ *
+ */
 public class MemberDao 
 {	
+	// read Member with the given sql Query
 	
 	public List<Member> readMember() {
 		
 		List<Member> memberList = new ArrayList<Member>();
 		String sql = "Select * from MEMBER where member_id > 1";
+		
+		try (	Connection connection = DBConnection.getConnectionToDatabase();
+				PreparedStatement pstatement = connection.prepareStatement(sql);
+				) {
+
+			ResultSet set = pstatement.executeQuery(sql);
+			ParseDate parse = new ParseDate();
+			
+			while(set.next()) {
+				String username = set.getString("username");
+				String firstName = set.getString("first_name");
+				String lastName = set.getString("last_name");
+				String birth = set.getString("birth_date");
+				String gender = set.getString("gender");
+				String address_line = set.getString("address_line");
+				String address_add = set.getString("address_add");
+				String post_code = set.getString("post_code");
+				String city = set.getString("city");
+				String phone_number = set.getString("phone_number");
+				String email_address = set.getString("email_address");
+				String entry_date = set.getString("entry_date");
+				int memberId = set.getInt("member_id");
+				
+				Member member = new Member();
+				member.setUsername(username);
+				member.setName(firstName);
+				member.setLastName(lastName);
+				member.setMemberId(memberId);
+				member.setBirth(parse.autoConvert(birth));
+				member.setGender(gender);
+				member.setAdressline(address_line);
+				member.setAdresslineAdd(address_add);
+				member.setPostCode(post_code);
+				member.setCity(city);
+				member.setPhoneNumber(phone_number);
+				member.setEmailAddress(email_address);
+				member.setEntryDate(parse.autoConvert(entry_date)); 
+				
+				memberList.add(member);
+			}
+			
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return memberList;		
+	}
+	
+	// readMember with a customized sql Query
+	
+	public List<Member> readMember(String sql) {
+		
+		List<Member> memberList = new ArrayList<Member>();
+		// String sql = "Select * from MEMBER where member_id > 1";
 		
 		try (	Connection connection = DBConnection.getConnectionToDatabase();
 				PreparedStatement pstatement = connection.prepareStatement(sql);

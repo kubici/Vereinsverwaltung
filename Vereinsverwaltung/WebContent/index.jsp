@@ -1,7 +1,15 @@
+<!-- @ kubi + tobi -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@page import="com.sw.beans.Member"  %>
+   <%@page import="com.sw.dao.MemberDao" %>
+   <%@page import="com.sw.security.ParseDate" %>
+    <%@page import="com.sw.filters.KeyFigures"  %>
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   <%@page import="java.util.*" %>
+	<%@page import="com.google.gson.*" %>
+   
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -52,11 +60,39 @@ response.setDateHeader("Expires", 0);
 			</div>
 		</div>
 	</nav>
+	
+<!--  TODO  -->
+
+<% // Make a Servlet with provided the data needed for the charts. %>
+<% // Anteil von Männern, Frauen, Neutral aus Datenbank lesen %>
+<% KeyFigures keyFigures = new KeyFigures();
+	String femalePercentage = "" + keyFigures.countFemalePercentage();
+	String neutralPercentage = "" + keyFigures.countNeutralPercentage();
+	String malePercentage = "" + keyFigures.countMenPercentage();
+	
+	// Data for Line chart
+	String data2014 = "" + keyFigures.dataByDate(2014);
+	String data2015 = "" + keyFigures.dataByDate(2015);
+	String data2016 = "" + keyFigures.dataByDate(2016);
+	String data2017 = "" + keyFigures.dataByDate(2017);
+	String data2018 = "" + keyFigures.dataByDate(2018);
+%>
+	<!-- Test TK -->
 </head>
 <body>
 <header>
 <h1>Herzlich Willkommen!</h1>
 </header>
+<!-- Textarea to store data for doughnut chart -->
+<textarea style="visibility: hidden;" id="femaleData" disabled="disabled"><%=femalePercentage%></textarea>
+<textarea style="visibility: hidden;" id="neutralData" disabled="disabled"><%=neutralPercentage%></textarea>
+<textarea style="visibility: hidden;" id="maleData" disabled="disabled"><%=malePercentage%></textarea>
+<!-- Textarea to store data for line chart -->
+<textarea style="visibility: hidden;" id="2014Data" disabled="disabled"><%=data2014%></textarea>
+<textarea style="visibility: hidden;" id="2015Data" disabled="disabled"><%=data2015%></textarea>
+<textarea style="visibility: hidden;" id="2016Data" disabled="disabled"><%=data2016%></textarea>
+<textarea style="visibility: hidden;" id="2017Data" disabled="disabled"><%=data2017%></textarea>
+<textarea style="visibility: hidden;" id="2018Data" disabled="disabled"><%=data2018%></textarea>
 <div class="content-wrap">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -64,43 +100,38 @@ response.setDateHeader("Expires", 0);
 		</div>
 		<div class="row border p-3">
 			<div class="col">
-				<h5 class="text-center mb-2">Test Daten</h5>
-				<canvas id="barChart" height="300"></canvas>
+				<h5 class="text-center mb-2">Mitglieder seit 2014</h5>
+				<canvas id="lineChart" height="300"></canvas>
 			</div>
-			<div class="col">
-				<h5 class="text-center mb-2">Test Daten</h5>
+			
+			
+			<div class="col" id="chart">
+				<h5 class="text-center mb-2">Geschlechter-Anteil</h5>
 				<canvas id="donutChart" height="300"></canvas>
 			</div>
+			<% pageContext.setAttribute("mList", keyFigures.getNextFewBirthdays(3));  %>
+			
 			<div class="col">
-				<h5 class="text-center mb-2">Test Daten</h5>
+				<h5 class="text-center mb-2">Nächste Geburtstage</h5>
 				<table class="table">
 				  <thead>
 					 <tr>
 						<th scope="col">#</th>
-						<th scope="col">First</th>
-						<th scope="col">Last</th>
-						<th scope="col">Handle</th>
+						<th scope="col">Vorname</th>
+						<th scope="col">Nachname</th>
+						<th scope="col">Geburtstag</th>
 					 </tr>
 				  </thead>
 				  <tbody>
-					 <tr>
-						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
-					 </tr>
-					 <tr>
-						<th scope="row">2</th>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
-					 </tr>
-					 <tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-					 </tr>
+				  <c:forEach items="${mList}" var="mList" varStatus="loop">
+				  <tr>
+				  <td></td>
+				  	<td><c:out value="${mList.firstName}"></c:out></td>
+				  	<td><c:out value="${mList.lastName}"></c:out></td>
+				  	<%ParseDate parser = new ParseDate();
+				  		Date birthdate = ((Member) pageContext.getAttribute("mList")).getBirth(); %>
+				  	<td><%= parser.convertString(birthdate) %></td>
+				  </c:forEach>
 				  </tbody>
 				</table>
 			</div>
