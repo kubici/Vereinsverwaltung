@@ -22,7 +22,7 @@ pageContext.setAttribute("iList", invendao.readInventory());
 <title>Inventarverwaltung</title>
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="index.jsp">
+	<a class="navbar-brand" href="./DashboardServlet">
 		<img src="image/group_icon.png" width="30" height="30" class="d-inline-block" alt="">
 		Vereinsverwaltung
 	</a>

@@ -62,7 +62,7 @@ pageContext.setAttribute("mList", moduledao.getModules());
 				<a class="dropdown-item" id="user_label">
 					Benutzer: <c:out value="${currentUser.username}"/></a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="changePassword.jsp">
+				<a class="dropdown-item" href="./ChangePasswordServlet">
 					<input class="btn btn-primary btn-block" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
