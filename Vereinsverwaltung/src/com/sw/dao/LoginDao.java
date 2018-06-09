@@ -8,7 +8,11 @@ import java.sql.SQLException;
 
 import com.sw.beans.Member;
 import com.sw.security.HashText;
-
+/**
+ * 
+ * @author tobi
+ *
+ */
 public class LoginDao 
 {
 	public boolean checkUser(Member userToCheck)

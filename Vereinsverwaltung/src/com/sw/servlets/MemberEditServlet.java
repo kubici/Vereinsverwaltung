@@ -14,6 +14,11 @@ import com.sw.dao.MemberHasRoleDao;
 import com.sw.security.HashText;
 import com.sw.security.ParseDate;
 
+/**
+ * 
+ * @author tobi
+ *
+ */
 @WebServlet("/saveMember")
 public class MemberEditServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -83,6 +88,6 @@ public class MemberEditServlet extends HttpServlet{
 			member_has_role_dao.deleteMemberHasRoleREFERENCEmember_id(current_id);
 		}
 		
-		request.getRequestDispatcher("./overviewMember.jsp").forward(request, response);
+		request.getRequestDispatcher("/MemberServlet").forward(request, response);
 	}
 }

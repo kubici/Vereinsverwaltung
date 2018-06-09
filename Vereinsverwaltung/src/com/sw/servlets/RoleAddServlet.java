@@ -39,6 +39,6 @@ public class RoleAddServlet extends HttpServlet{
 		} catch (Exception e) {
 			// TODO noch �berlegen
 		}
-		request.getRequestDispatcher("./overviewRoles.jsp").forward(request, response);
+		request.getRequestDispatcher("./RoleServlet").forward(request, response);
 	}
 }

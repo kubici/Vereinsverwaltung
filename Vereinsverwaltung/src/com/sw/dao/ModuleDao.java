@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sw.beans.Module;
-
+/**
+ * 
+ * @author tobi
+ *
+ */
 public class ModuleDao {
 	
 	public List<Module> getModules () {

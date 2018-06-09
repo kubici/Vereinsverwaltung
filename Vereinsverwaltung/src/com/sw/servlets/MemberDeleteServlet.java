@@ -13,6 +13,11 @@ import com.sw.dao.MemberHasRoleDao;
 /**
  * Servlet implementation class MemberDeleteServlet
  */
+/**
+ * 
+ * @author tobi
+ *
+ */
 @WebServlet("/deleteMember")
 public class MemberDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,6 +47,6 @@ public class MemberDeleteServlet extends HttpServlet {
 		}
 		
 		System.out.println("Member : "+ member.getMemberId()+" is deleted from database");
-		request.getRequestDispatcher("./overviewMember.jsp").forward(request, response);
+		request.getRequestDispatcher("/MemberServlet").forward(request, response);
 	}
 }

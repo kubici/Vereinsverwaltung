@@ -7,12 +7,18 @@ import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.sw.beans.Inventory;
 import com.sw.beans.Member;
+import com.sw.dao.DBConnection;
 import com.sw.dao.InventoryDao;
 import com.sw.dao.MemberDao;
-
+/**
+ * 
+ * @author moritz + tobi
+ *
+ */
 public class KeyFigures {
 	
 	/*
@@ -65,46 +71,6 @@ public class KeyFigures {
 		
 		return memberdao.readMember().size();
 	}
-	
-	public int countMales () {
-		int males = 0;
-		
-		MemberDao memberdao = new MemberDao();
-		ArrayList<Member> memberlist = (ArrayList<Member>) memberdao.readMember();
-		
-		for (int i=0; i<memberlist.size(); i++) {
-			if (memberlist.get(i).getGender().equals("male")) males++;
-		}
-		
-		return males;
-	}
-	
-	public int countFemales () {
-		int females = 0;
-		
-		MemberDao memberdao = new MemberDao();
-		ArrayList<Member> memberlist = (ArrayList<Member>) memberdao.readMember();
-		
-		for (int i=0; i<memberlist.size(); i++) {
-			if (memberlist.get(i).getGender().equals("female")) females++;
-		}
-		
-		return females;
-	}
-	
-	public int countOthers () {
-		int other = 0;
-		
-		MemberDao memberdao = new MemberDao();
-		ArrayList<Member> memberlist = (ArrayList<Member>) memberdao.readMember();
-		
-		for (int i=0; i<memberlist.size(); i++) {
-			if (memberlist.get(i).getGender().equals("other")) other++;
-		}
-		
-		return other;
-	}
-	
 	/*
 	 * Kennzahlen des Inventars
 	 */
@@ -143,5 +109,53 @@ public class KeyFigures {
 		
 		return list;
 	}
-
+	// Returns the number of female
+	public int countFemalePercentage()
+	{
+		int value = 0; 
+		String sql = "SELECT * FROM MEMBER WHERE member_id > 1 AND gender = 'female'";
+		MemberDao memberDao = new MemberDao();
+		List<Member> mListe = memberDao.readMember(sql);
+		
+		value = mListe.size();
+		
+		return value;
+	}
+	// Returns the number of neutral people 
+	public int countNeutralPercentage()
+	{
+		int value = 0; 
+		
+		String sql = "SELECT * FROM MEMBER WHERE member_id > 1 AND gender = 'other'";
+		MemberDao memberDao = new MemberDao();
+		List<Member> mListe = memberDao.readMember(sql);
+		
+		value = mListe.size();
+		
+		return value;
+	}
+	//Returns the number of men 
+	public int countMenPercentage()
+	{
+		int value = 0; 
+		
+		String sql = "SELECT * FROM MEMBER WHERE member_id > 1 AND gender = 'male'";
+		MemberDao memberDao = new MemberDao();
+		List<Member> mListe = memberDao.readMember(sql);
+		
+		value = mListe.size();
+		
+		return value;
+	}
+	
+	// Returns data from specific date
+	public int dataByDate(int date)
+	{
+		int value = 0; 
+		String sql = "SELECT * FROM MEMBER WHERE member_id > 1 AND entry_date like '%" + date +"%'";
+		MemberDao memberDao = new MemberDao();
+		List<Member> mListe = memberDao.readMember(sql);
+		value = mListe.size();
+		return value;
+	}
 }

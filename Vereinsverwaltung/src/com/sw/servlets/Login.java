@@ -11,7 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import com.sw.beans.Member;
 import com.sw.dao.LoginDao;
-
+/**
+ * 
+ * @author tobi
+ *
+ */
 @WebServlet("/welcome")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;

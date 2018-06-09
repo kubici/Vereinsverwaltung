@@ -1,27 +1,18 @@
-h1, h2{
+h1{
 	margin-left: 5% !important;
-	margin-top: 5% !important;
+	margin-top: 2% !important;
 }
 
-body {
-	margin-top: 2%;
-}
-
-.settings{
-	display: inline-block;
-	margin: 0 10%;
-	font-size: 13px;
-	float: right;
-	text-align: center;
+.content-wrap{
+	margin-top: 4%;
 }
 
 .module{
 	font-family: helvetica;
 	font-weight: lighter;
 	font-variant-caps: all-small-caps;
-	font-size: 40px;
-	padding: 8% 2%;
-	margin: 2%;
+	font-size: 50px;
+	padding: 1%;
 	cursor: pointer;
 	border-radius: 15px;
 	border: none;

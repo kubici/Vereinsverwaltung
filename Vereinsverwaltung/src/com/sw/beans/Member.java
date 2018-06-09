@@ -1,6 +1,11 @@
 package com.sw.beans;
 
 import java.util.Date;
+/**
+ * 
+ * @author tobi
+ *
+ */
 
 public class Member 
 {

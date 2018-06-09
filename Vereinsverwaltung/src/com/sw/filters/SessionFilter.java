@@ -11,7 +11,11 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ * 
+ * @author tobi
+ *
+ */
 
 @WebFilter({"/InventoryDashboardServlet", "/ChangePassword", "/ChangePasswordServlet", "/DashboardServlet", 
 	"/InventoryDashboardServlet", "/InventoryRegisterServlet", "/Logout", "/MemberDashboardServlet", "/MemberDeleteServlet", 

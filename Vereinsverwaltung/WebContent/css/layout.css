@@ -2,23 +2,10 @@ h1, h2{
 	margin-left: 5% !important;
 	margin-top: 5% !important;
 }
-
-body {
-	margin-top: 2%;
-}
-
 .content-wrap{
 	width: 70%;
 	margin: 10% auto;
 }
-
-.button{
-	background-color: lightgrey;
-	color: white;
-	font-size: 15px;
-	padding: 7px 20px;
-	margin-top: 3%;
-	border: none;
+.button:hover{
 	cursor: pointer;
-	border-radius: 5px;
 }

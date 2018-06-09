@@ -37,7 +37,8 @@ public class InventoryAddServlet extends HttpServlet {
 		InventoryDao invendao = new InventoryDao();
 		invendao.insertInventory(inventory);
 
-		response.sendRedirect("./overviewInventory.jsp");
+		
+		request.getRequestDispatcher("./InventoryServlet").forward(request, response);
 	}
 
 }

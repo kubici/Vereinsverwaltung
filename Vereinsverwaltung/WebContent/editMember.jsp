@@ -1,3 +1,4 @@
+<!--  @author tobi + kubi -->
 <%@page import="com.sw.dao.MemberHasRoleDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.sw.dao.MemberDao"%>
@@ -18,8 +19,8 @@
 
 <% 
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
-MemberDao memberServlet = new MemberDao();
-pageContext.setAttribute("mList", memberServlet.getMemberByUsername(request.getParameter("id")));
+MemberDao memberdao = new MemberDao();
+pageContext.setAttribute("mList", memberdao.getMemberByUsername(request.getParameter("id")));
 RoleDao roledao = new RoleDao();
 pageContext.setAttribute("rList", roledao.getRoles());
 MemberHasRoleDao member_has_role_dao = new MemberHasRoleDao();
@@ -198,13 +199,16 @@ try {
 <!-- Override Button-Colors -->
 <style>
 	.btn-primary,
-	.btn-primary:hover,
 	.btn-primary:active,
 	.btn-primary:visited,
-	.btn-primary:focus {
-	    background-color: #2196F3 !important;
-	    border-color: #2196F3 !important;
-		}
+	.btn-primary:focus
+	{
+		 background-color: #6eb9f7 !important;
+		 border-color: #6eb9f7 !important;
+	}
+	.btn-primary:hover{
+		background-color: #2196F3 !important;
+		border-color: #2196F3 !important;
 </style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

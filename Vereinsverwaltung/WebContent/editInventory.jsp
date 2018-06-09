@@ -32,7 +32,7 @@ pageContext.setAttribute("iList", idao.getInventoryById(Integer.parseInt(request
 		<ul class="navbar-nav mr-auto">	
 			<!--NAVBAR-ITEM -->
 			<li class="nav-item active">
-		        <a class="nav-link btn btn-light text-left pl-2" href="./MemberDashboardServlet">
+		        <a class="nav-link btn btn-light text-left pl-2" href="./MemberServlet">
 		        	Mitglieder 
 				</a>
 		    </li>
@@ -59,10 +59,10 @@ pageContext.setAttribute("iList", idao.getInventoryById(Integer.parseInt(request
 					Benutzer: <c:out value="${currentUser.username}"/></a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="changePassword.jsp">
-					<input class="btn btn-primary btn-block" type="submit" value="Passwort ändern"/></a>
+					<input class="btn btn-warning btn-block" type="submit" value="Passwort ändern"/></a>
 				<a class="dropdown-item" href="#">
 					<form action="${pageContext.request.contextPath}/Logout" method="post">
-						<input class="btn btn-primary btn-block" type="submit" value="Logout"/>
+						<input class="btn btn-warning btn-block" type="submit" value="Logout"/>
 					</form>
 				</a>
 			</div>
@@ -140,27 +140,11 @@ pageContext.setAttribute("iList", idao.getInventoryById(Integer.parseInt(request
 				</div>
 			</div>
 		</div>
-		<input id="inventory_submit" class="btn btn-primary" type="submit" value="Änderungen speichern">
-		<a id="inventory_submit" class="btn btn-primary" href="./InventoryServlet" role="button">Abbrechen</a>
+		<input id="inventory_submit" class="btn btn-warning" type="submit" value="Änderungen speichern">
+		<a id="inventory_submit" class="btn btn-warning" href="./InventoryServlet" role="button">Abbrechen</a>
 	</form>
 	</fieldset>
 </div>
-
-<!-- Override Button-Colors -->
-<style>
-	.btn-primary,
-	.btn-primary:hover,
-	.btn-primary:active,
-	.btn-primary:visited,
-	.btn-primary:focus {
-	    background-color: #ffbf00 !important;
-	    border-color: #ffbf00 !important;
-		}
-	
-	#inventory_submit{
-		color:black !important;
-	}
-</style>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>		

@@ -1,7 +1,15 @@
+<!-- @ kubi + tobi -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@page import="com.sw.beans.Member"  %>
+   <%@page import="com.sw.dao.MemberDao" %>
+   <%@page import="com.sw.security.ParseDate" %>
+    <%@page import="com.sw.filters.KeyFigures"  %>
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   <%@page import="java.util.*" %>
+	<%@page import="com.google.gson.*" %>
+   
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +18,8 @@
 <link rel="stylesheet" href="css/module.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" integrity="sha256-JG6hsuMjFnQ2spWq0UiaDRJBaarzhFbUxiUTxQDA9Lk=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
 <title>Homepage</title>
 
 <% Member currentUser = (Member) session.getAttribute("currentUser");
@@ -50,15 +60,84 @@ response.setDateHeader("Expires", 0);
 			</div>
 		</div>
 	</nav>
+	
+<!--  TODO  -->
+
+<% // Make a Servlet with provided the data needed for the charts. %>
+<% // Anteil von Männern, Frauen, Neutral aus Datenbank lesen %>
+<% KeyFigures keyFigures = new KeyFigures();
+	String femalePercentage = "" + keyFigures.countFemalePercentage();
+	String neutralPercentage = "" + keyFigures.countNeutralPercentage();
+	String malePercentage = "" + keyFigures.countMenPercentage();
+	
+	// Data for Line chart
+	String data2014 = "" + keyFigures.dataByDate(2014);
+	String data2015 = "" + keyFigures.dataByDate(2015);
+	String data2016 = "" + keyFigures.dataByDate(2016);
+	String data2017 = "" + keyFigures.dataByDate(2017);
+	String data2018 = "" + keyFigures.dataByDate(2018);
+%>
+	<!-- Test TK -->
 </head>
 <body>
 <header>
 <h1>Herzlich Willkommen!</h1>
 </header>
+<!-- Textarea to store data for doughnut chart -->
+<textarea style="visibility: hidden;" id="femaleData" disabled="disabled"><%=femalePercentage%></textarea>
+<textarea style="visibility: hidden;" id="neutralData" disabled="disabled"><%=neutralPercentage%></textarea>
+<textarea style="visibility: hidden;" id="maleData" disabled="disabled"><%=malePercentage%></textarea>
+<!-- Textarea to store data for line chart -->
+<textarea style="visibility: hidden;" id="2014Data" disabled="disabled"><%=data2014%></textarea>
+<textarea style="visibility: hidden;" id="2015Data" disabled="disabled"><%=data2015%></textarea>
+<textarea style="visibility: hidden;" id="2016Data" disabled="disabled"><%=data2016%></textarea>
+<textarea style="visibility: hidden;" id="2017Data" disabled="disabled"><%=data2017%></textarea>
+<textarea style="visibility: hidden;" id="2018Data" disabled="disabled"><%=data2018%></textarea>
 <div class="content-wrap">
 	<div class="container">
-		<div class="row mx-0">
-			<div class="col p-0">
+		<div class="row justify-content-center">
+			<h2 style="	font-family: helvetica neue; font-weight: light; font-variant-caps: all-small-caps;">Statistik</h2>
+		</div>
+		<div class="row border p-3">
+			<div class="col">
+				<h5 class="text-center mb-2">Mitglieder seit 2014</h5>
+				<canvas id="lineChart" height="300"></canvas>
+			</div>
+			
+			
+			<div class="col" id="chart">
+				<h5 class="text-center mb-2">Geschlechter-Anteil</h5>
+				<canvas id="donutChart" height="300"></canvas>
+			</div>
+			<% pageContext.setAttribute("mList", keyFigures.getNextFewBirthdays(3));  %>
+			
+			<div class="col">
+				<h5 class="text-center mb-2">Nächste Geburtstage</h5>
+				<table class="table">
+				  <thead>
+					 <tr>
+						<th scope="col">#</th>
+						<th scope="col">Vorname</th>
+						<th scope="col">Nachname</th>
+						<th scope="col">Geburtstag</th>
+					 </tr>
+				  </thead>
+				  <tbody>
+				  <c:forEach items="${mList}" var="mList" varStatus="loop">
+				  <tr>
+				  <td></td>
+				  	<td><c:out value="${mList.firstName}"></c:out></td>
+				  	<td><c:out value="${mList.lastName}"></c:out></td>
+				  	<%ParseDate parser = new ParseDate();
+				  		Date birthdate = ((Member) pageContext.getAttribute("mList")).getBirth(); %>
+				  	<td><%= parser.convertString(birthdate) %></td>
+				  </c:forEach>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row mt-2 p-3">
+			<div class="col-sm">
 				<a class="module" href="./MemberServlet">
 					<div id="card_img1"></div>
 					<div id="card_content">
@@ -66,25 +145,28 @@ response.setDateHeader("Expires", 0);
 				  </div>  
 				</a>
 			</div>
-			<div class="col p-0">
+			<div class="col-sm">
 				<a class="module" href="./RoleServlet">
 					<div id="card_img2"></div>
 					<div id="card_content">
 						<h2>Rollen</h2>  
 			  		</div>  
-				</a>        
+				</a>
 			</div>
-			<div class="col p-0">
+			<div class="col-sm">
 				<a class="module" href="./InventoryServlet">
 					<div id="card_img3"></div>
 					<div id="card_content">
 					  <h2>Inventar</h2>
 				  </div>  
-				</a>        
+				</a>     
 			</div>		
 		</div>
 	</div>
 </div>
+<script src="js/statistics.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" integrity="sha256-JG6hsuMjFnQ2spWq0UiaDRJBaarzhFbUxiUTxQDA9Lk=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>

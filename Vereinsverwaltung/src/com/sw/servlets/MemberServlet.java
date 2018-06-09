@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.sw.beans.Member;
 import com.sw.dao.MemberDao;
 
+/**
+ * 
+ * @author tobi
+ *
+ */
 @WebServlet("/MemberServlet")
 public class MemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
