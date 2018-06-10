@@ -14,7 +14,7 @@ data: {
         datasets: [{
             data: [data2014, data2015, data2016, data2017, data2018],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.7)',
+                '#99ff99',
             ],
         }]
     },
@@ -41,9 +41,9 @@ var donutChart = new Chart(donut, {
             label: '# of Votes',
             data: [femalePercentage, neutralPercentage, malePercentage],
             backgroundColor: [
-                'rgba(255, 99, 132,0.7 )',
-                'rgba(0, 255, 0,0.3)',
-                'rgba(0, 0, 255,0.3)'
+                '#ff66cc',
+                '#ffd700',
+                '#66ccff'
             ],
         }]
     },

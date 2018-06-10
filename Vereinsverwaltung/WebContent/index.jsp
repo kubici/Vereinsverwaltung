@@ -83,16 +83,6 @@ response.setDateHeader("Expires", 0);
 <header>
 <h1>Herzlich Willkommen!</h1>
 </header>
-<!-- Textarea to store data for doughnut chart -->
-<textarea style="visibility: hidden;" id="femaleData" disabled="disabled"><%=femalePercentage%></textarea>
-<textarea style="visibility: hidden;" id="neutralData" disabled="disabled"><%=neutralPercentage%></textarea>
-<textarea style="visibility: hidden;" id="maleData" disabled="disabled"><%=malePercentage%></textarea>
-<!-- Textarea to store data for line chart -->
-<textarea style="visibility: hidden;" id="2014Data" disabled="disabled"><%=data2014%></textarea>
-<textarea style="visibility: hidden;" id="2015Data" disabled="disabled"><%=data2015%></textarea>
-<textarea style="visibility: hidden;" id="2016Data" disabled="disabled"><%=data2016%></textarea>
-<textarea style="visibility: hidden;" id="2017Data" disabled="disabled"><%=data2017%></textarea>
-<textarea style="visibility: hidden;" id="2018Data" disabled="disabled"><%=data2018%></textarea>
 <div class="content-wrap">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -100,23 +90,22 @@ response.setDateHeader("Expires", 0);
 		</div>
 		<div class="row border p-3">
 			<div class="col">
-				<h5 class="text-center mb-2">Mitglieder seit 2014</h5>
+				<h5 class="text-center mb-3">neue Mitglieder seit 2014</h5>
 				<canvas id="lineChart" height="300"></canvas>
 			</div>
 			
 			
 			<div class="col" id="chart">
-				<h5 class="text-center mb-2">Geschlechter-Anteil</h5>
+				<h5 class="text-center mb-3">Geschlechter-Anteil</h5>
 				<canvas id="donutChart" height="300"></canvas>
 			</div>
 			<% pageContext.setAttribute("mList", keyFigures.getNextFewBirthdays(3));  %>
 			
 			<div class="col">
-				<h5 class="text-center mb-2">Nächste Geburtstage</h5>
-				<table class="table">
+				<h5 class="text-center mb-3">Nächste Geburtstage</h5>
+				<table class="table table-hover">
 				  <thead>
 					 <tr>
-						<th scope="col">#</th>
 						<th scope="col">Vorname</th>
 						<th scope="col">Nachname</th>
 						<th scope="col">Geburtstag</th>
@@ -125,7 +114,6 @@ response.setDateHeader("Expires", 0);
 				  <tbody>
 				  <c:forEach items="${mList}" var="mList" varStatus="loop">
 				  <tr>
-				  <td></td>
 				  	<td><c:out value="${mList.firstName}"></c:out></td>
 				  	<td><c:out value="${mList.lastName}"></c:out></td>
 				  	<%ParseDate parser = new ParseDate();
@@ -164,6 +152,16 @@ response.setDateHeader("Expires", 0);
 		</div>
 	</div>
 </div>
+<!-- Textarea to store data for doughnut chart -->
+<textarea style="visibility: hidden;" id="femaleData" disabled="disabled"><%=femalePercentage%></textarea>
+<textarea style="visibility: hidden;" id="neutralData" disabled="disabled"><%=neutralPercentage%></textarea>
+<textarea style="visibility: hidden;" id="maleData" disabled="disabled"><%=malePercentage%></textarea>
+<!-- Textarea to store data for line chart -->
+<textarea style="visibility: hidden;" id="2014Data" disabled="disabled"><%=data2014%></textarea>
+<textarea style="visibility: hidden;" id="2015Data" disabled="disabled"><%=data2015%></textarea>
+<textarea style="visibility: hidden;" id="2016Data" disabled="disabled"><%=data2016%></textarea>
+<textarea style="visibility: hidden;" id="2017Data" disabled="disabled"><%=data2017%></textarea>
+<textarea style="visibility: hidden;" id="2018Data" disabled="disabled"><%=data2018%></textarea>
 <script src="js/statistics.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" integrity="sha256-JG6hsuMjFnQ2spWq0UiaDRJBaarzhFbUxiUTxQDA9Lk=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
