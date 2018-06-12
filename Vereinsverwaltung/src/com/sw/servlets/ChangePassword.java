@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.sw.beans.Member;
 import com.sw.dao.ChangePasswordDao;
@@ -16,24 +15,7 @@ import com.sw.dao.ChangePasswordDao;
 public class ChangePassword extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
-	private static String infoMessage = null;
-		
-	public static String getInfoMessage(){
-		if(infoMessage != null)		{
-			return infoMessage;
-		}
-		return null;
-	}
-	
-	public static void setInfoMessage(String infoMessage)	{
-		if(infoMessage != null)		{
-			ChangePassword.infoMessage = infoMessage;
-		}
-	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		HttpSession session = request.getSession();
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {		
 		String oldPWD = request.getParameter("pwd_old");
 		String newPWD01 = request.getParameter("pwd_new01");
 		String newPWD02 = request.getParameter("pwd_new02");
@@ -47,24 +29,16 @@ public class ChangePassword extends HttpServlet{
 			ChangePasswordDao cpd = new ChangePasswordDao();
 			boolean checkChange = cpd.changePassword(member);
 			
-			if(checkChange) {			
-					ChangePassword.setInfoMessage("Passwortï¿½nderungen wurden ï¿½bernommen.");
-					
-					request.getRequestDispatcher("./welcome.jsp").forward(request, response);
-					ChangePassword.setInfoMessage("Bitte mit neuem Passwort einloggen!");
-					System.out.println("Session deleted");
-
+			if(checkChange) {
+				System.out.println("Session deleted");
+				request.getRequestDispatcher("./welcome.jsp").forward(request, response);
 			} else {
-				ChangePassword.infoMessage = "Ihr altes Passwort ist falsch!";
-				System.out.println(infoMessage);
-				request.setAttribute("infoMessage", infoMessage);
+				System.out.println("Ihr altes Passwort ist falsch");
 				request.getRequestDispatcher("./changePassword.jsp").forward(request, response);
 			}
 			
 		} else {
-			ChangePassword.infoMessage = "Keine Ãœbereinstimmung des neuen Passwortes";
-			System.out.println(infoMessage);
-			request.setAttribute("infoMessage", infoMessage);
+			System.out.println("Keine Übereinstimmung des neuen Passworts");
 			request.getRequestDispatcher("./changePassword.jsp").forward(request, response);
 		}
 		

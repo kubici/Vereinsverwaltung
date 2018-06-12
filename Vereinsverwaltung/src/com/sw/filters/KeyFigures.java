@@ -11,7 +11,6 @@ import java.util.List;
 
 import com.sw.beans.Inventory;
 import com.sw.beans.Member;
-import com.sw.dao.DBConnection;
 import com.sw.dao.InventoryDao;
 import com.sw.dao.MemberDao;
 /**
@@ -71,6 +70,7 @@ public class KeyFigures {
 		
 		return memberdao.readMember().size();
 	}
+	
 	/*
 	 * Kennzahlen des Inventars
 	 */
@@ -109,6 +109,7 @@ public class KeyFigures {
 		
 		return list;
 	}
+	
 	// Returns the number of female
 	public int countFemalePercentage()
 	{
@@ -121,6 +122,7 @@ public class KeyFigures {
 		
 		return value;
 	}
+	
 	// Returns the number of neutral people 
 	public int countNeutralPercentage()
 	{

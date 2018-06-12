@@ -27,7 +27,7 @@ public class RoleEditServlet extends HttpServlet {
 		role.setRole_id(role_id);
 		role.setRole_description(role_description);
 		RoleDao roledao = new RoleDao();
-		roledao.updateRole(role); // TODO false handling
+		roledao.updateRole(role);
 		
 		try {
 			String[] result = request.getParameterValues("role_module_access");

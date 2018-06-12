@@ -24,7 +24,7 @@ public class RoleAddServlet extends HttpServlet{
 		role.setRole_description(role_description);
 		
 		RoleDao roledao = new RoleDao();
-		roledao.insertRole(role); // TODO if false handling
+		roledao.insertRole(role);
 		
 		try {
 			String[] result = request.getParameterValues("role_module_access");
@@ -35,9 +35,9 @@ public class RoleAddServlet extends HttpServlet{
 			
 			Role role_saved = (roledao.getRoleByName(role_description));
 			RoleModuleAccessDao accessdao = new RoleModuleAccessDao();
-			accessdao.insertRoleModuleAccess(role_saved.getRole_id(), result_access); // TODO if false handling
+			accessdao.insertRoleModuleAccess(role_saved.getRole_id(), result_access);
 		} catch (Exception e) {
-			// TODO noch �berlegen
+			e.printStackTrace();
 		}
 		request.getRequestDispatcher("./RoleServlet").forward(request, response);
 	}

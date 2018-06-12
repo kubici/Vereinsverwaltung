@@ -37,14 +37,8 @@ public class MemberDeleteServlet extends HttpServlet {
 		member_has_role_dao.deleteMemberHasRoleREFERENCEmember_id(member.getMemberId());
 		
 		MemberDao memberdao = new MemberDao();
-		try 
-		{
-			memberdao.deleteMember(member);
-		}
-		catch(Exception ex)
-		{
-			
-		}
+		memberdao.deleteMember(member);
+		
 		
 		System.out.println("Member : "+ member.getMemberId()+" is deleted from database");
 		request.getRequestDispatcher("/MemberServlet").forward(request, response);

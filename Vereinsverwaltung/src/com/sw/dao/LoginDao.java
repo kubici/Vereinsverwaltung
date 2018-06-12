@@ -17,7 +17,7 @@ public class LoginDao
 {
 	public boolean checkUser(Member userToCheck)
 	{		
-		try (Connection connection = DBConnection.getConnectionToDatabase();
+		try (	Connection connection = DBConnection.getConnectionToDatabase();
 				PreparedStatement pstatement = createPreparedStatement(connection, userToCheck);
 				ResultSet set = pstatement.executeQuery();)
 		{
@@ -29,7 +29,6 @@ public class LoginDao
 		}
 		catch(Exception e)
 		{
-			System.out.println("Something went wrong in checkUser()");
 			e.printStackTrace();
 		}
 		return false;

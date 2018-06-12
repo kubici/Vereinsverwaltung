@@ -44,6 +44,7 @@ public class MemberRegisterServlet extends HttpServlet {
 		member.setAdresslineAdd(request.getParameter("address_add"));
 		member.setPostCode(request.getParameter("post_code"));
 		
+		//TODO eventuell Auslagern in ParseDate
 		String tempEntryDate = request.getParameter("entry_date");
 		try
 		{

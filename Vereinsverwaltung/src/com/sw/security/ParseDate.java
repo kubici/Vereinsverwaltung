@@ -19,7 +19,7 @@ public class ParseDate {
 				return birthDate;
 			}
 		} catch (ParseException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return null;
 	}
