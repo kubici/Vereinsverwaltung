@@ -14,7 +14,7 @@ data: {
         datasets: [{
             data: [data2014, data2015, data2016, data2017, data2018],
             backgroundColor: [
-                '#99ff99',
+                '#b3ffd5',
             ],
         }]
     },
