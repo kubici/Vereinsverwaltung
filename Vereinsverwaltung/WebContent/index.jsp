@@ -83,6 +83,7 @@ response.setDateHeader("Expires", 0);
 <header>
 <h1>Herzlich Willkommen!</h1>
 </header>
+<div id="particles-js"></div> 
 <div class="content-wrap">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -162,6 +163,9 @@ response.setDateHeader("Expires", 0);
 <textarea style="visibility: hidden;" id="2016Data" disabled="disabled"><%=data2016%></textarea>
 <textarea style="visibility: hidden;" id="2017Data" disabled="disabled"><%=data2017%></textarea>
 <textarea style="visibility: hidden;" id="2018Data" disabled="disabled"><%=data2018%></textarea>
+<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
+<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+<script src="js/particles.js"></script>
 <script src="js/statistics.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" integrity="sha256-JG6hsuMjFnQ2spWq0UiaDRJBaarzhFbUxiUTxQDA9Lk=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
