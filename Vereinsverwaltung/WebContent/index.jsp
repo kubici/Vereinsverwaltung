@@ -149,7 +149,15 @@ response.setDateHeader("Expires", 0);
 					  <h2>Inventar</h2>
 				  </div>  
 				</a>     
-			</div>		
+			</div>	
+			<div class="col-sm">
+				<a class="module" href="./TaskServlet">
+					<div id="card_img3"></div>
+					<div id="card_content">
+					  <h2>Tasks</h2>
+				  </div>  
+				</a>     
+			</div>	
 		</div>
 	</div>
 </div>
