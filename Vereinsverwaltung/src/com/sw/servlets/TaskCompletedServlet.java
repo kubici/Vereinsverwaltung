@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sw.dao.TaskDao;
+
 /**
  * Servlet implementation class TaskCompletedServlet
  */
@@ -42,6 +44,9 @@ public class TaskCompletedServlet extends HttpServlet {
 		// TODO Implement complete auf true setzten
 		
 		// TODO taskID auslesen, Datenbankverbindung aufbauen, complet auf true setzen
+		int taskId = Integer.parseInt(request.getParameter("taskId"));
+		TaskDao taskDao = new TaskDao();
+		taskDao.updateTask(taskId);
 		
 		request.getRequestDispatcher("./overviewTasks.jsp").forward(request, response);
 	}

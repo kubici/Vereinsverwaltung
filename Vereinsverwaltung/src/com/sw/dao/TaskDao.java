@@ -50,13 +50,29 @@ public class TaskDao
 		return pstatement;
 	}
 	
-	public boolean deleteTask(int task_id)
+	public boolean deleteTask(int taskId)
 	{
 		throw new NotImplementedException();
 		
 	}
 	
-	public boolean insertTask(int task_id)
+	private PreparedStatement createPrepUpdateTask(Connection connection, int taskId) throws SQLException
+	{
+		//TODO SQL statement
+		String sql = "UPDATE swp_system.Taskswhere SET completed = true task_id = ?";
+		PreparedStatement pstatement = connection.prepareStatement(sql);
+		pstatement.setObject(1, taskId);
+		return pstatement;
+	}
+	
+	// Set complete true
+	public void updateTask(int taskId)
+	{
+		Connection connectin = DBConnection.getConnectionToDatabase();
+		PreparedStatement pstatement = 
+	}
+	
+	public boolean insertTask(int taskId)
 	{
 		throw new NotImplementedException();
 	}
