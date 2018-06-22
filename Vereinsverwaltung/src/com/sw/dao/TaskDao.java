@@ -66,10 +66,11 @@ public class TaskDao
 	}
 	
 	// Set complete true
-	public void updateTask(int taskId)
+	public void updateTask(int taskId) throws SQLException
 	{
-		Connection connectin = DBConnection.getConnectionToDatabase();
-		PreparedStatement pstatement = 
+		String sql = null;
+		Connection connection = DBConnection.getConnectionToDatabase();
+		PreparedStatement pstatement = connection.prepareStatement(sql);
 	}
 	
 	public boolean insertTask(int taskId)

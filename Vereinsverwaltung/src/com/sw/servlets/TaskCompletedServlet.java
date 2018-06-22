@@ -1,6 +1,8 @@
 package com.sw.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -46,7 +48,12 @@ public class TaskCompletedServlet extends HttpServlet {
 		// TODO taskID auslesen, Datenbankverbindung aufbauen, complet auf true setzen
 		int taskId = Integer.parseInt(request.getParameter("taskId"));
 		TaskDao taskDao = new TaskDao();
-		taskDao.updateTask(taskId);
+		try {
+			taskDao.updateTask(taskId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		request.getRequestDispatcher("./overviewTasks.jsp").forward(request, response);
 	}
