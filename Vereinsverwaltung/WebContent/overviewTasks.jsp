@@ -125,9 +125,11 @@ pageContext.setAttribute("tList", taskDao.getTasks());
 		<table class="table table-hover mt-3">
 			<thead>
 				<tr>
-				<th scope="col">Task_ID</th>
-					<th scope="col">Completed</th>
+					<th scope="col">ID</th>
+					<th scope="col">Erledigt</th>
 					<th scope="col">Titel</th>
+					<th scope="col">Löschen</th>
+					<th scope="col">Erledigen</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -138,15 +140,15 @@ pageContext.setAttribute("tList", taskDao.getTasks());
 						<td><c:out value="${tList.titel}">></c:out></td>
 						<td>
 							<form action="deleteTask" method="post"  onsubmit="return buttonPressed();">
-			   				<button class="button" id="deleteButton" type="submit" name="id" value="${tList.taskId}" style="background-color:transparent; border-color:transparent;">
-			   					<img src="./image/delete_icon.png" style="width:32px;height=32px; border=0"/>
+			   				<button class="button btn-danger" id="deleteButton" type="submit" name="id" value="${tList.taskId}" style="background-color:transparent; border-color:transparent;">
+			   					<img src="./image/deletetask_64.png" style="width:32px;height=32px; border=0"/>
 			   				</button>
 							</form>
 						</td>
 						<td>
 							<form action="TaskCompletedServlet" method="post" >
-			   				<button class="button" id="checkButton" type="submit" name="id" value="${tList.taskId}" style="background-color:transparent; border-color:transparent;">
-			   					<img src="./image/edit_icon.png" style="width:32px;height=32px; border=0"/>
+			   				<button class="button btn-success" id="checkButton" type="submit" name="id" value="${tList.taskId}" style="background-color:transparent; border-color:transparent;">
+			   					<img src="./image/checktask_64.png" style="width:32px;height=32px; border=0"/>
 			   				</button>
 							</form>
 						</td>
