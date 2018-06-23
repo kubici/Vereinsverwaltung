@@ -12,9 +12,10 @@ var barChart = new Chart(line, {
 data: {
         labels: ["2014", "2015", "2016", "2017", "2018"],
         datasets: [{
+        	label: 'neue Mitglieder',
             data: [data2014, data2015, data2016, data2017, data2018],
             backgroundColor: [
-                '#b3ffd5',
+                '#00C85A',
             ],
         }]
     },
@@ -38,7 +39,6 @@ var donutChart = new Chart(donut, {
     data: {
         labels: ["Female", "Neutral", "Male"],
         datasets: [{
-            label: '# of Votes',
             data: [femalePercentage, neutralPercentage, malePercentage],
             backgroundColor: [
                 '#ff66cc',

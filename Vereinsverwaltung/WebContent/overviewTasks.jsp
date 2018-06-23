@@ -19,7 +19,7 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");	
 
 %>
-<title>Taskübersicht</title>
+<title>Aufgaben</title>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,17 +38,22 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 		        	Mitglieder 
 				</a>
 		    </li>
-	   		<li class="nav-item disabled">
-				<a class="nav-link btn btn-light text-left pl-2">
+	   		<li class="nav-item active">
+				<a class="nav-link btn btn-light text-left pl-2" href="./RoleServlet">
 					Rollen 
-					<span class="sr-only">(current)</span>
 				</a>
 		    </li>
 	   		<li class="nav-item active">
 				<a class="nav-link btn btn-light text-left pl-2" href="./InventoryServlet">
 					Inventar 
 				</a>
-		    </li>	    	    
+		    </li>	
+	   		<li class="nav-item disabled">
+				<a class="nav-link btn btn-light text-left pl-2">
+					Aufgaben
+					<span class="sr-only">(current)</span>
+				</a>
+		    </li>    	    
 		</ul>
 		<!--DROPDOWN-MENU NAVBAR -->
 		<div class="nav-item dropdown">
@@ -74,7 +79,7 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 </head>
 <body>
 <header>
-<h1 style="color:#F44336 !important">Taskübersicht</h1>
+<h1 style="color:#00C85A !important">Aufgabenübersicht</h1>
 </header>
 
 <%
@@ -85,15 +90,30 @@ pageContext.setAttribute("tList", taskDao.getTasks());
 <!-- List of Tasks -->
 <jsp:useBean id="taskList" class="com.sw.dao.TaskDao"></jsp:useBean>
 
-<div class="content wrap">
+<div class="content-wrap">
 	<div class="table-responsive-lg">
-		<table class="table table-hover">
+<!-- NEW TASK FORMULAR -->
+		<div class="collapse" id="collapse_addTask">
+			<fieldset class="mb-5 border p-4">
+			<h3>neue Aufgabe erstellen</h3><br/>
+				<form>
+				
+				
+				
+					<button type="submit" class="btn btn-primary" name="submit_mitglied">Aufgabe erstellen</button>
+					<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_addTask" role="button" aria-expanded="false" aria-controls="collapse_addTask">Abbrechen</button>
+				</form>
+			</fieldset>
+		</div>
+		<button type="button" id="collapse-button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addTask" role="button" aria-expanded="false" aria-controls="collapse_registerMember">
+			<img src="./image/add_icon_white.png" height="25"></img>
+		</button>
+		<table class="table table-hover mt-3">
 			<thead>
 				<tr>
 				<th scope="col">Task_ID</th>
 					<th scope="col">Completed</th>
 					<th scope="col">Titel</th>
-					
 				</tr>
 			</thead>
 			<tbody>
@@ -121,14 +141,32 @@ pageContext.setAttribute("tList", taskDao.getTasks());
 			</tbody>
 		</table>
 	</div>
-
 </div>
+
+<style>
+	.btn-primary,
+		.btn-primary:active,
+		.btn-primary:visited,
+		.btn-primary:focus
+	{
+	    background-color: #00C85A !important;
+	    border-color: #00C85A !important;
+	}
+	.btn-primary:hover{
+		background-color: #66ffab !important;
+		border-color: #66ffab !important;
+	}
+	
+	#collapse-button{
+	border-radius: 15px;
+	}
+</style>
 
 <!-- Controll delete Button -->
 <script type="text/javascript">
 	function buttonPressed()
 	{		
-		answer = confirm("Rolle löschen?");
+		answer = confirm("Aufgabe löschen?");
 		if(answer == true)
 		{
 	   		return true;

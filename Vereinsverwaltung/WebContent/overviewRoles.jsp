@@ -21,7 +21,7 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 ModuleDao moduledao = new ModuleDao();
 pageContext.setAttribute("mList", moduledao.getModules());
 %>
-<title>Rollenverwaltung</title>
+<title>Rollen</title>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,6 +49,11 @@ pageContext.setAttribute("mList", moduledao.getModules());
 	   		<li class="nav-item active">
 				<a class="nav-link btn btn-light text-left pl-2" href="./InventoryServlet">
 					Inventar 
+				</a>
+		    </li>
+	   		<li class="nav-item active">
+				<a class="nav-link btn btn-light text-left pl-2" href="./TaskServlet">
+					Aufgaben 
 				</a>
 		    </li>	    	    
 		</ul>
@@ -145,7 +150,7 @@ pageContext.setAttribute("mList", moduledao.getModules());
 			</form>
 		</fieldset>
 		</div>
-		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerRole">
+		<button type="button" id="collapse-button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addRole" role="button" aria-expanded="false" aria-controls="collapse_registerRole">
 			<img src="./image/add_icon_white.png" height="25"></img>
 		</button>
 		<!-- Override Button-Colors -->
@@ -159,7 +164,10 @@ pageContext.setAttribute("mList", moduledao.getModules());
 				}
 			.btn-primary:hover{
 				background-color: #F44336 !important;
-			   border-color: #F44336 !important;
+				border-color: #F44336 !important;
+			}
+			#collapse-button{
+				border-radius: 15px;
 			}
 		</style>
 	</div>
