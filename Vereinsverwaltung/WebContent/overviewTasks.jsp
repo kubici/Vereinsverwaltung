@@ -86,29 +86,7 @@ response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 TaskDao taskDao = new TaskDao();
 pageContext.setAttribute("tList", taskDao.getTasks());
  %>
- <!-- Task hinzufügen -->
- <div class="collapse" id="collapse_addTask">
- 	<fieldset class="mb-5 border p-4">
-			<h3>Neuen Task hinzufügen</h3><br/>
-			<form action="${pageContext.request.contextPath}/addTask" method="post">
-				<div class="form-group">
-					<input type="text" class="form-control" name="task_creator" value="${currentUser.username}" hidden/>
-					<input type="text" class="form-control" name="task_title" placeholder="Task-Titel"/>
-					<label for="comment">Beschreibung:</label>
-  					<textarea class="form-control" rows="5" id="comment" name="task_text"></textarea>
-				</div>
-				
-				<button type="submit" class="btn btn-primary" name="submit_mitglied">Task erstellen</button>
-				<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_addTask" role="button" aria-expanded="false" aria-controls="collapse_registerTask">Abbrechen</button>
-			</form>
-	</fieldset>
-</div>
-<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_addTask" role="button" aria-expanded="false" aria-controls="collapse_registerTask">
-			<img src="./image/add_icon_white.png" height="25"></img>
-</button>
- 
- 
- 
+
  <!-- TaskCreationServlet muss noch erzeugt werden -->
  <!-- 
 <form action="TaskCreationServlet" method="post" >
@@ -127,10 +105,15 @@ pageContext.setAttribute("tList", taskDao.getTasks());
 		<div class="collapse" id="collapse_addTask">
 			<fieldset class="my-5 border p-4">
 			<h3>neue Aufgabe erstellen</h3><br/>
-				<form>
-				
-				
-				
+				<form action="${pageContext.request.contextPath}/addTask" method="post">
+					<div class="form-group">
+						<input type="text" class="form-control" name="task_creator" value="${currentUser.username}" hidden/>
+						<input type="text" class="form-control" name="task_title" placeholder="Aufgaben-Titel"/>
+					</div>
+					<div class="form-group">
+						<label for="comment">Beschreibung:</label>
+	  					<textarea class="form-control" rows="5" name="task_text"></textarea>
+					</div>
 					<button type="submit" class="btn btn-primary" name="submit_mitglied">Aufgabe erstellen</button>
 					<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_addTask" role="button" aria-expanded="false" aria-controls="collapse_addTask">Abbrechen</button>
 				</form>
@@ -197,11 +180,7 @@ pageContext.setAttribute("tList", taskDao.getTasks());
 <script type="text/javascript">
 	function buttonPressed()
 	{		
-<<<<<<< HEAD
 		answer = confirm("Aufgabe löschen?");
-=======
-		answer = confirm("Task löschen?");
->>>>>>> origin/Tasks
 		if(answer == true)
 		{
 	   		return true;
