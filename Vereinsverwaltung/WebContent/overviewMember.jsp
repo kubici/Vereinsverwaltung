@@ -136,7 +136,7 @@ pageContext.setAttribute("rList", roledao.getRoles());
 		</table>		
 <!-- NEW MEMBER FORMULAR -->
 		<div class="collapse" id="collapse_registerMember">
-			<fieldset class="mb-5 border p-4">
+			<fieldset class="my-5 border p-4">
 			<h3>neues Mitglied hinzufügen</h3><br/>
 			<form action="${pageContext.request.contextPath}/registerMember" method="post">
 				<div class="form-group">

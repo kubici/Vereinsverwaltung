@@ -124,7 +124,7 @@ pageContext.setAttribute("mList", moduledao.getModules());
 		</table>
 <!--NEW ROLE FORM -->
 		<div class="collapse" id="collapse_addRole">
-		<fieldset class="mb-5 border p-4">
+		<fieldset class="my-5 border p-4">
 			<h3>Neue Rolle hinzufügen</h3><br/>
 			<form action="${pageContext.request.contextPath}/addRole" method="post">
 				<div class="form-group">

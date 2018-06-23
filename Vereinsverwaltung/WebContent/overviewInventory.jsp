@@ -140,7 +140,7 @@ pageContext.setAttribute("iList", invendao.readInventory());
 
 <!--NEW INVENTORY FORM -->
 		<div class="collapse" id="collapse_addInventory">
-		<fieldset class="mb-5 border p-4">
+		<fieldset class="my-5 border p-4">
 			<h3>neues Inventar hinzufügen</h3><br/>
 			<form action="${pageContext.request.contextPath}/registerInventory" method="post">
 				<div class="form-group">

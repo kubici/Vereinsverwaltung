@@ -94,7 +94,7 @@ pageContext.setAttribute("tList", taskDao.getTasks());
 	<div class="table-responsive-lg">
 <!-- NEW TASK FORMULAR -->
 		<div class="collapse" id="collapse_addTask">
-			<fieldset class="mb-5 border p-4">
+			<fieldset class="my-5 border p-4">
 			<h3>neue Aufgabe erstellen</h3><br/>
 				<form>
 				
