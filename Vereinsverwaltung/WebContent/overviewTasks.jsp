@@ -159,7 +159,7 @@ pageContext.setAttribute("tList", taskDao.getTasks());
 <script type="text/javascript">
 	function buttonPressed()
 	{		
-		answer = confirm("Rolle löschen?");
+		answer = confirm("Task löschen?");
 		if(answer == true)
 		{
 	   		return true;
