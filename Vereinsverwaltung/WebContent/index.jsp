@@ -90,7 +90,7 @@ response.setDateHeader("Expires", 0);
 		</div>
 		<div class="row border p-3">
 			<div class="col">
-				<h5 class="text-center mb-3">neue Mitglieder seit 2014</h5>
+				<h5 class="text-center mb-3">seit 2014</h5>
 				<canvas id="lineChart" height="300"></canvas>
 			</div>
 			
