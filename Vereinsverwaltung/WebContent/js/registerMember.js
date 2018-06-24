@@ -8,7 +8,6 @@ function checkNewMember()
 	
 	var birth_date = document.getElementById("birth_date_field").value;
 	var entry_date = document.getElementById("entry_date_field").value;
-	alert("nope");
 	if(!(datereg.test(birth_date)))
 	{
 		document.getElementById("birth_date_field").style.borderColor="#ff0000";
@@ -18,7 +17,6 @@ function checkNewMember()
 	}
 	else
 	{
-		alert("korrekt");
 		document.getElementById("birth_date_field").style.borderColor="green";
 		document.getElementById("birth_date_field").focus();
 	}
@@ -34,7 +32,6 @@ function checkNewMember()
 	{
 		document.getElementById("entry_date_field").style.borderColor="green";
 		document.getElementById("entry_date_field").focus();
-		alert("korrekt");
 		return true;
 	}
 }
