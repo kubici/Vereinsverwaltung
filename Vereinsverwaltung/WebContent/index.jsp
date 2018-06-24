@@ -124,8 +124,8 @@ response.setDateHeader("Expires", 0);
 				</table>
 			</div>
 		</div>
-		<div class="row mt-2 p-3">
-			<div class="col-sm">
+		<div class="row mt-2 p-3 justify-content-center">
+			<div class="col-md">
 				<a class="module" href="./MemberServlet">
 					<div id="card_img1"></div>
 					<div id="card_content">
@@ -133,7 +133,7 @@ response.setDateHeader("Expires", 0);
 				  </div>  
 				</a>
 			</div>
-			<div class="col-sm">
+			<div class="col-md">
 				<a class="module" href="./RoleServlet">
 					<div id="card_img2"></div>
 					<div id="card_content">
@@ -141,14 +141,22 @@ response.setDateHeader("Expires", 0);
 			  		</div>  
 				</a>
 			</div>
-			<div class="col-sm">
+			<div class="col-md">
 				<a class="module" href="./InventoryServlet">
 					<div id="card_img3"></div>
 					<div id="card_content">
 					  <h2>Inventar</h2>
 				  </div>  
 				</a>     
-			</div>		
+			</div>	
+			<div class="col-md">
+				<a class="module" href="./TaskServlet">
+					<div id="card_img4"></div>
+					<div id="card_content">
+					  <h2>Aufgaben</h2>
+				  </div>  
+				</a>     
+			</div>	
 		</div>
 	</div>
 </div>

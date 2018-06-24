@@ -19,7 +19,7 @@ InventoryDao invendao= new InventoryDao();
 pageContext.setAttribute("iList", invendao.readInventory());
 %>
 
-<title>Inventarverwaltung</title>
+<title>Inventar</title>
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<a class="navbar-brand" href="./DashboardServlet">
@@ -47,7 +47,12 @@ pageContext.setAttribute("iList", invendao.readInventory());
 					Inventar 
 					<span class="sr-only">(current)</span>
 				</a>
-		    </li>	    	    
+		    </li>
+	   		<li class="nav-item active">
+				<a class="nav-link btn btn-light text-left pl-2" href="./TaskServlet">
+					Aufgaben 
+				</a>
+		    </li>    	    
 		</ul>
 		<!--DROPDOWN-MENU NAVBAR -->
 		<div class="nav-item dropdown">
@@ -135,7 +140,7 @@ pageContext.setAttribute("iList", invendao.readInventory());
 
 <!--NEW INVENTORY FORM -->
 		<div class="collapse" id="collapse_addInventory">
-		<fieldset class="mb-5 border p-4">
+		<fieldset class="my-5 border p-4">
 			<h3>neues Inventar hinzufügen</h3><br/>
 			<form action="${pageContext.request.contextPath}/registerInventory" method="post">
 				<div class="form-group">
@@ -198,11 +203,17 @@ pageContext.setAttribute("iList", invendao.readInventory());
 			</form>
 		</fieldset>
 		</div>
-		<button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="collapse" href="#collapse_addInventory" role="button" aria-expanded="false" aria-controls="collapse_registerMember">
+		<button type="button" id="collapse-button" class="btn btn-warning btn-lg btn-block" data-toggle="collapse" href="#collapse_addInventory" role="button" aria-expanded="false" aria-controls="collapse_registerMember">
 			<img src="./image/add_icon_black.png" height="25"></img>
 		</button>
 	</div>
 </div>	
+
+<style>
+#collapse-button{
+border-radius: 15px;
+}
+</style>
 
 <!-- Controll delete Button -->
 <script type="text/javascript">

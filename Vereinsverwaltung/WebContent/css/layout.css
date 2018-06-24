@@ -7,6 +7,13 @@ h1, h2{
 	width: 70%;
 	margin: 10% auto;
 }
+
 .button:hover{
 	cursor: pointer;
 }
+
+table, fieldset{
+  box-shadow: 10px 7px 15px 10px rgba(0, 0, 0, 0.035);
+  border-radius: 7px;
+}
+

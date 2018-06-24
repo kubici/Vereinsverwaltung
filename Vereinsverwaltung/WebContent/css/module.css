@@ -1,6 +1,6 @@
 .module > div:first-child{
-	width: 336px;
-	height: 336px;
+	width: 300px;
+	height: 300px;
 	border: none;
 	transition: all 0.5s;
 	border-radius: 50px;
@@ -28,7 +28,7 @@
   background-image: url('../image/role_icon.png');
   background-repeat:no-repeat;
   background-color: #f7776e;
-  background-position: center;
+  background-position: 50% 30%;
   cursor: pointer;
   box-shadow: 0 36px 10px -20px rgba(0, 0, 0, 0.2);
 }
@@ -55,10 +55,27 @@
   	transform: translate(0,-20px);
 }
 
+/* CARD4 */
+#card_img4 {
+  background-image: url('../image/tasks_icon.png');
+  background-size: 70%;
+  background-repeat:no-repeat;
+  background-color: #00C85A;
+  background-position: 65% 50%;
+  cursor: pointer;
+  box-shadow: 0 36px 10px -20px rgba(0, 0, 0, 0.2);
+}
+#card_img4:hover{
+	background-color: #66ffab;
+}
+.module.move > #card_img4 {
+  	transform: translate(0,-20px);
+}
+
 .module > #card_content {
 	position: absolute;
 	transform: translate(0,-150px);
-	width: 350px;
+	width: 315px;
   	z-index: -1;
 	transition: all 0.25s;
  	text-align: center; 
@@ -67,8 +84,5 @@
 }
 
 .module.move > #card_content {
-  	transform: translate(0,-85px) scale(1.1);
-}
-#card_content h2 {
- 	margin-bottom: 5px;
+  	transform: translate(0,-70px) scale(1.1);
 }

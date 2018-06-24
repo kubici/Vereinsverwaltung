@@ -29,7 +29,7 @@ pageContext.setAttribute("rList", roledao.getRoles());
 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-  <title>Mitgliederübersicht</title>
+  <title>Mitglieder</title>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -57,6 +57,11 @@ pageContext.setAttribute("rList", roledao.getRoles());
 	   		<li class="nav-item active">
 				<a class="nav-link btn btn-light text-left pl-2" href="./InventoryServlet">
 					Inventar 
+				</a>
+		    </li>
+	   		<li class="nav-item active">
+				<a class="nav-link btn btn-light text-left pl-2" href="./TaskServlet">
+					Aufgaben 
 				</a>
 		    </li>	    	          
 		</ul>
@@ -131,7 +136,7 @@ pageContext.setAttribute("rList", roledao.getRoles());
 		</table>		
 <!-- NEW MEMBER FORMULAR -->
 		<div class="collapse" id="collapse_registerMember">
-			<fieldset class="mb-5 border p-4">
+			<fieldset class="my-5 border p-4">
 			<h3>neues Mitglied hinzufügen</h3><br/>
 			<form action="${pageContext.request.contextPath}/registerMember" method="post">
 				<div class="form-group">
@@ -221,7 +226,7 @@ pageContext.setAttribute("rList", roledao.getRoles());
 				</form>
 			</fieldset>
 		</div>
-		<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_registerMember" role="button" aria-expanded="false" aria-controls="collapse_registerMember">
+		<button type="button" id="collapse-button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse_registerMember" role="button" aria-expanded="false" aria-controls="collapse_registerMember">
 			<img src="./image/add_icon_white.png" height="25"></img>
 		</button>
 		<style>
@@ -236,6 +241,10 @@ pageContext.setAttribute("rList", roledao.getRoles());
 			.btn-primary:hover{
 				background-color: #2196F3 !important;
 				border-color: #2196F3 !important;
+			}
+			#collapse-button{
+			border-radius: 15px;
+			}
 		</style>
 	</div>	
 </div>
