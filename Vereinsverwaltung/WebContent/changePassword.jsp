@@ -47,7 +47,12 @@
 			<a class="nav-link btn btn-light text-left pl-2" href="./InventoryServlet">
 				Inventar 
 			</a>
-	    </li>	    	    
+	    </li>	    	  
+	    	<li class="nav-item active">
+			<a class="nav-link btn btn-light text-left pl-2" href="./TaskServlet">
+				Aufgaben 
+			</a>
+		</li>	  
 		</ul>
 <!-- 	DROPDOWN-MENU NAVBAR -->
 		<div class="nav-item dropdown">

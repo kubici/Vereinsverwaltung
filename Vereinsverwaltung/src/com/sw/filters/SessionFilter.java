@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter({"/InventoryDashboardServlet", "/ChangePassword", "/ChangePasswordServlet", "/DashboardServlet", 
 	"/InventoryDashboardServlet", "/InventoryRegisterServlet", "/Logout", "/MemberDashboardServlet", "/MemberDeleteServlet", 
 	"/MemberEditServlet", "/MemberEditServletSave", "/MemberRegisterServlet", "/RoleServlet", "/RoleAddServlet", "/RoleDeleteServlet", 
-	"/RoleEditServlet"})
+	"/RoleEditServlet", "/TaskServlet", "/deleteTask", "/addTask"})
 
 public class SessionFilter implements Filter
 {
