@@ -13,11 +13,7 @@ import com.sw.beans.Inventory;
 import com.sw.beans.Member;
 import com.sw.dao.InventoryDao;
 import com.sw.dao.MemberDao;
-/**
- * 
- * @author moritz + tobi
- *
- */
+
 public class KeyFigures {
 	
 	/*

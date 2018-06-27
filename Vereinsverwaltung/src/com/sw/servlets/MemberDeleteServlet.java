@@ -13,11 +13,6 @@ import com.sw.dao.MemberHasRoleDao;
 /**
  * Servlet implementation class MemberDeleteServlet
  */
-/**
- * 
- * @author tobi
- *
- */
 @WebServlet("/deleteMember")
 public class MemberDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

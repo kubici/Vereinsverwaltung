@@ -10,11 +10,7 @@ import java.util.List;
 
 import com.sw.beans.Member;
 import com.sw.security.ParseDate;
-/**
- * 
- * @author tobi
- *
- */
+
 public class MemberDao 
 {	
 	// read Member with the given sql Query

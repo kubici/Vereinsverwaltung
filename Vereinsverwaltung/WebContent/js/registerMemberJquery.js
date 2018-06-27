@@ -1,7 +1,3 @@
-/**
- * 
- * @author tobi
- */
 
 $( function() 
 		{

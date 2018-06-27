@@ -6,11 +6,6 @@ import java.sql.SQLException;
 
 import javax.xml.ws.http.HTTPException;
 
-/**
- * 
- * @author tobi
- *
- */
 public class DBConnection 
 {
 	private static String dbUser = "root";
