@@ -29,8 +29,6 @@ public class TaskServlet extends HttpServlet {
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		HttpServletResponse servletResponse = (HttpServletResponse) response;
 		doPost(servletRequest, servletResponse);
-		
-		// SessionFilter + TaskInventory eintragen
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

@@ -218,8 +218,7 @@ pageContext.setAttribute("rList", roledao.getRoles());
 					</div>
 					</c:forEach>
 				</div>
-				
-				<%//TODO Submit JS-Integration + Reload current-site %>					
+							
 				<button onclick="return checkNewMember()" type="submit" class="btn btn-primary" name="submit_mitglied">Mitglied erstellen</button>
 				<button type="reset" class="btn btn-primary" name="submit_mitglied" data-toggle="collapse" href="#collapse_registerMember" role="button" aria-expanded="false" aria-controls="collapse_registerMember">Abbrechen</button>
 				</form>

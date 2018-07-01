@@ -15,10 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/InventoryServlet")
 public class InventoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public InventoryServlet() {
         System.out.println("Konstruktor: InventoryServlet()");
     }

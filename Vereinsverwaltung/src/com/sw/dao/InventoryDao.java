@@ -49,7 +49,6 @@ public class InventoryDao {
 				List.add(inventory);
 			
 				}
-				
 			}
 			catch(Exception ex)
 			{

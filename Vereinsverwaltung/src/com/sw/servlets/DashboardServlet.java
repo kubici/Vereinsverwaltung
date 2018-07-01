@@ -45,8 +45,6 @@ public class DashboardServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		// TODO Hier Keyfigures implementierbar
-	        
 		System.out.println("doPost() - DashboardServlet");
 		request.getRequestDispatcher("./index.jsp").forward(request, response);
 	}

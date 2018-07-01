@@ -38,9 +38,8 @@ public class ChangePassword extends HttpServlet{
 			}
 			
 		} else {
-			System.out.println("Keine Übereinstimmung des neuen Passworts");
+			System.out.println("Keine ï¿½bereinstimmung des neuen Passworts");
 			request.getRequestDispatcher("./changePassword.jsp").forward(request, response);
-		}
-		
+		}	
 	}
 }

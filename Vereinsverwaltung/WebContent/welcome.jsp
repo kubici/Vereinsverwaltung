@@ -25,9 +25,6 @@
 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 response.setDateHeader("Expires", 0);
-
-	// TODO Is there a possibility to check if the page was refreshed?
-	//TODO  It can be done with javascript, but jsp would be better!
 pageContext.setAttribute("infoMessage", Login.getInfoMessage());
 %>
 	

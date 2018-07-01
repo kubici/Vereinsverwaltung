@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Member 
 {
-	// default constructor
 	public Member()
 	{
 		

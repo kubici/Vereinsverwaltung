@@ -40,7 +40,6 @@ public class MemberRegisterServlet extends HttpServlet {
 		member.setAdresslineAdd(request.getParameter("address_add"));
 		member.setPostCode(request.getParameter("post_code"));
 		
-		//TODO eventuell Auslagern in ParseDate
 		String tempEntryDate = request.getParameter("entry_date");
 		try
 		{
@@ -83,13 +82,9 @@ public class MemberRegisterServlet extends HttpServlet {
 			member_has_role_dao.deleteMemberHasRoleREFERENCEmember_id(current_id);
 			member_has_role_dao.insertMemberHasRole(current_id, result_member_has_role);
 		} catch (NullPointerException e) {
-			//nothing to do here
+			e.printStackTrace();
 		}
 
 		request.getRequestDispatcher("/MemberServlet").forward(request, response);
 	}
-
-	
-	
-	
 }

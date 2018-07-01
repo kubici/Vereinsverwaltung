@@ -73,7 +73,6 @@ public class MemberDao
 	public List<Member> readMember(String sql) {
 		
 		List<Member> memberList = new ArrayList<Member>();
-		// String sql = "Select * from MEMBER where member_id > 1";
 		
 		try (	Connection connection = DBConnection.getConnectionToDatabase();
 				PreparedStatement pstatement = connection.prepareStatement(sql);

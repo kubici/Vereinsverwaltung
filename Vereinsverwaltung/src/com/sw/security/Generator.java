@@ -35,7 +35,5 @@ public class Generator {
 
 		String tempPassword = passwordgenerator.toString();
 		return tempPassword;
-		
-		
 	}
 }
