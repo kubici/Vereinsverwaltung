@@ -21,10 +21,9 @@ RoleDao roledao = new RoleDao();
 pageContext.setAttribute("rList", roledao.getRoles());
 %>
 
-
-<!-- Test -->		
+		
 <script type="text/javascript" src="js/registerMember.js"></script>
-<!-- Test -->
+
 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>

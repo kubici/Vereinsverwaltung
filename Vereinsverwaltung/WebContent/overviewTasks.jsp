@@ -87,15 +87,6 @@ TaskDao taskDao = new TaskDao();
 pageContext.setAttribute("tList", taskDao.getTasks());
  %>
 
- <!-- TaskCreationServlet muss noch erzeugt werden -->
- <!-- 
-<form action="TaskCreationServlet" method="post" >
-<button class="button" id="createButton" type="submit" name="id" style="background-color:transparent; border-color:transparent;">
-<img src="./image/edit_icon.png" style="width:32px;height=32px; border=0"/>
-</button>
-</form>
--->
-
 <!-- List of Tasks -->
 <jsp:useBean id="taskList" class="com.sw.dao.TaskDao"></jsp:useBean>
 

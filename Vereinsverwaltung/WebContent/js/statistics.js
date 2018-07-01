@@ -1,6 +1,3 @@
-/**
- * @author tobi + kubi
- */
 var line = document.getElementById("lineChart").getContext('2d');
 var data2018 = document.getElementById("2018Data").value;
 var data2017 = document.getElementById("2017Data").value;
